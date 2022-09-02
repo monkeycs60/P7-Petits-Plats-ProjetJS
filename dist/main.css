@@ -571,6 +571,9 @@ video {
 .mt-\[8vh\] {
   margin-top: 8vh;
 }
+.block {
+  display: block;
+}
 .flex {
   display: flex;
 }
@@ -675,6 +678,9 @@ video {
 }
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.flex-row {
+  flex-direction: row;
 }
 .flex-col {
   flex-direction: column;
@@ -794,6 +800,10 @@ video {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .text-white {
   --tw-text-opacity: 1;

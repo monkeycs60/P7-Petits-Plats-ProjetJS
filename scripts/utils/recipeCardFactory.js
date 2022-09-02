@@ -22,10 +22,10 @@ export function recipeCardFactory(recipe) {
             <p>${time}</p>
         </div>
     </div>
-    <div id="card-bottom">
-        <ul class="ingredientsList">
+    <div id="card-bottom" class"flex">
+        <ul class="ingredientsList text-xs w-1/2 block">
         </ul>
-        <p class="description">${description}</p>
+        <p class="description text-xs w-1/2 block">${description}</p>
     </div>
     </div>
 `;
