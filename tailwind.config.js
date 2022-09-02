@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./scripts/app.js"],
+  content: [
+    "./index.html",
+    "./scripts/app.js",
+    "./scripts//utils/recipeCardFactory.js",
+  ],
   theme: {
     extend: {},
   },
