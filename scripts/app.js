@@ -1,3 +1,13 @@
+// fetch recipes
+async function fetchRecipes() {
+  await fetch("./../data/recipes.js")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+}
+fetchRecipes();
+
 // const gridArea = document.querySelector("#grid-area");
 
 // async function getMeal() {
