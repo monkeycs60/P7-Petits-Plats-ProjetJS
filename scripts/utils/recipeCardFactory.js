@@ -22,11 +22,12 @@ export function recipeCardFactory(recipe) {
             <p>${time}</p>
         </div>
     </div>
-    <div id="card-bottom" class"flex">
-        <ul class="ingredientsList text-xs w-1/2 block">
+    <div id="card-bottom" class="flex">
+        <ul class="ingredientsList text-xs w-1/2 bg-red-300">
         </ul>
-        <p class="description text-xs w-1/2 block">${description}</p>
+        <p class="description text-xs w-1/2">${description}</p>
     </div>
+
     </div>
 `;
     const listIngredients = article.querySelector(".ingredientsList");
