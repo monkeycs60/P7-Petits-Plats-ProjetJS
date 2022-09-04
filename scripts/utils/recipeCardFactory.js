@@ -6,26 +6,31 @@ export function recipeCardFactory(recipe) {
     const article = document.createElement("article");
     article.classList.add(
       "flex",
+      "flex-col",
       "justify-center",
+      "items-center",
       "w-full",
       "bg-green-300",
-      "rounded-md"
+      "rounded-xl",
+      "h-[35vh]",
+      "w-[25vw]"
     );
     article.innerHTML = `
     <div id="article-image">
+    <img class="w-[25vw] h-[17vh] rounded-lg rounded-b-none object-cover" src="./../../assets/restaurantpreview.png" alt="restaurant card" />
     </div>
-    <div id="article-content" class="w-[90%] flex flex-col justify-center bg-orange-600">
-    <div id="card-top" class="flex w-full justify-between bg-blue-700">
-        <h2>${name}</h2>
+    <div id="article-content" class="w-[25vw] h-[18vh] p-5 flex flex-col justify-center bg-orange-600 rounded-lg rounded-t-none">
+    <div id="card-top" class="h-[5vh] flex w-full justify-between items-center bg-blue-700">
+        <h2 class="text-xl">${name}</h2>
         <div id="clock-time" class="flex w-1/5 justify-around items-center text-xl bg-yellow-400" >
             <em class="fa-regular fa-clock"></em>
-            <p>${time}</p>
+            <p class="font-bold">${time}</p>
         </div>
     </div>
-    <div id="card-bottom" class="flex">
+    <div id="card-bottom" class="flex h-[13vw]">
         <ul class="ingredientsList text-xs w-1/2 bg-red-300">
         </ul>
-        <p class="description text-xs w-1/2">${description}</p>
+        <p class="description text-xs w-1/2 overflow-spots">${description}</p>
     </div>
 
     </div>
