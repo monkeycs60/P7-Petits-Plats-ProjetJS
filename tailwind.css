@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.overflow-spots {
+.block-with-text {
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+} 
+
+.overflow-spots-fullrecipe {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
 }
