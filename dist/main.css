@@ -616,6 +616,9 @@ video {
 .w-\[28vw\] {
   width: 28vw;
 }
+.w-\[26vw\] {
+  width: 26vw;
+}
 .translate-y-1 {
   --tw-translate-y: 0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -699,6 +702,31 @@ video {
 }
 .gap-y-\[3vh\] {
   row-gap: 3vh;
+}
+.gap-x-\[3vw\] {
+  -moz-column-gap: 3vw;
+       column-gap: 3vw;
+}
+.gap-x-\[5vw\] {
+  -moz-column-gap: 5vw;
+       column-gap: 5vw;
+}
+.gap-y-\[4vh\] {
+  row-gap: 4vh;
+}
+.gap-y-\[4\.vh\] {
+  row-gap: 4.vh;
+}
+.gap-y-\[4\.5vh\] {
+  row-gap: 4.5vh;
+}
+.gap-x-\[\.vw\] {
+  -moz-column-gap: .vw;
+       column-gap: .vw;
+}
+.gap-x-\[3\.5vw\] {
+  -moz-column-gap: 3.5vw;
+       column-gap: 3.5vw;
 }
 .overflow-x-hidden {
   overflow-x: hidden;

@@ -13,13 +13,13 @@ export function recipeCardFactory(recipe) {
       "bg-green-300",
       "rounded-xl",
       "h-[35vh]",
-      "w-[25vw]"
+      "w-[26vw]"
     );
     article.innerHTML = `
     <div id="article-image">
-    <img class="w-[25vw] h-[17vh] rounded-lg rounded-b-none object-cover" src="./../../assets/restaurantpreview.png" alt="restaurant card" />
+    <img class="w-[26vw] h-[17vh] rounded-lg rounded-b-none object-cover" src="./../../assets/restaurantpreview.png" alt="restaurant card" />
     </div>
-    <div id="article-content" class="w-[25vw] h-[18vh] p-5 flex flex-col justify-center bg-orange-600 rounded-lg rounded-t-none">
+    <div id="article-content" class="w-[26vw] h-[18vh] p-5 flex flex-col justify-center bg-orange-600 rounded-lg rounded-t-none">
     <div id="card-top" class="h-[6vh] flex w-full justify-between items-center bg-blue-700">
         <h2 class="text-xl block-with-text">${name}</h2>
         <div id="clock-time" class="flex w-1/6 justify-around items-center text-xl bg-yellow-400" >
