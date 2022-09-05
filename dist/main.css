@@ -710,6 +710,10 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -746,6 +750,16 @@ video {
 .placeholder\:text-xl::placeholder {
   font-size: 1.25rem;
   line-height: 1.75rem;
+} 
+
+.placeholder\:text-base::-moz-placeholder {
+  font-size: 1rem;
+  line-height: 1.5rem;
+} 
+
+.placeholder\:text-base::placeholder {
+  font-size: 1rem;
+  line-height: 1.5rem;
 } 
 
 .placeholder\:font-semibold::-moz-placeholder {
@@ -817,8 +831,23 @@ video {
     line-height: 1.5rem;
   }
 
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .md\:leading-3 {
     line-height: .75rem;
+  }
+
+  .md\:placeholder\:text-xl::-moz-placeholder {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .md\:placeholder\:text-xl::placeholder {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 } 
 
@@ -844,6 +873,11 @@ video {
     width: 12vw;
   }
 
+  .xl\:translate-y-1 {
+    --tw-translate-y: 0.25rem;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
   .xl\:flex-nowrap {
     flex-wrap: nowrap;
   }
@@ -863,6 +897,11 @@ video {
   .xl\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .xl\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 } 
 
