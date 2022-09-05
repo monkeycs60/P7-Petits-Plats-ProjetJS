@@ -1002,6 +1002,102 @@ video {
   }
 } 
 
+@media (min-width: 1280px) {
+
+  .xl\:mt-\[2vh\] {
+    margin-top: 2vh;
+  }
+
+  .xl\:flex {
+    display: flex;
+  }
+
+  .xl\:h-\[6vh\] {
+    height: 6vh;
+  }
+
+  .xl\:h-\[\] {
+    height: ;
+  }
+
+  .xl\:w-\[9vw\] {
+    width: 9vw;
+  }
+
+  .xl\:w-\[\] {
+    width: ;
+  }
+
+  .xl\:w-\[12vw\] {
+    width: 12vw;
+  }
+
+  .xl\:w-\[15vw\] {
+    width: 15vw;
+  }
+
+  .xl\:w-\[16vw\] {
+    width: 16vw;
+  }
+
+  .xl\:w-\[20vw\] {
+    width: 20vw;
+  }
+
+  .xl\:w-\[10vw\] {
+    width: 10vw;
+  }
+
+  .xl\:w-\[vw\] {
+    width: vw;
+  }
+
+  .xl\:w-\[8vw\] {
+    width: 8vw;
+  }
+
+  .xl\:w-\[13vw\] {
+    width: 13vw;
+  }
+
+  .xl\:w-\[11vw\] {
+    width: 11vw;
+  }
+
+  .xl\:w-\[7vw\] {
+    width: 7vw;
+  }
+
+  .xl\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .xl\:items-start {
+    align-items: flex-start;
+  }
+
+  .xl\:items-center {
+    align-items: center;
+  }
+
+  .xl\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .xl\:justify-center {
+    justify-content: center;
+  }
+
+  .xl\:gap-\[2vw\] {
+    gap: 2vw;
+  }
+
+  .xl\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+} 
+
 @media (min-width: 1536px) {
 
   .\32xl\:mt-\[2vh\] {
