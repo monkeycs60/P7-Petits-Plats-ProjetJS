@@ -46,6 +46,9 @@ export function recipeCardFactory(recipe) {
       if (unit === undefined) {
         li.innerHTML = `<span class="font-bold">${ingredient}</span>: ${quantity}`;
       }
+      if (unit === undefined && quantity === undefined) {
+        li.innerHTML = `<span class="font-bold">${ingredient}</span>`;
+      }
       listIngredients.appendChild(li);
     });
 
