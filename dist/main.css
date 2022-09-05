@@ -595,6 +595,48 @@ video {
 .h-\[20vh\] {
   height: 20vh;
 }
+.h-1\/2 {
+  height: 50%;
+}
+.h-1 {
+  height: 0.25rem;
+}
+.h-\[\] {
+  height: ;
+}
+.h-\[90\] {
+  height: 90;
+}
+.h-\[90\%\] {
+  height: 90%;
+}
+.h-\[40\%\] {
+  height: 40%;
+}
+.h-40 {
+  height: 10rem;
+}
+.h-\[11vh\] {
+  height: 11vh;
+}
+.h-\[10vh\] {
+  height: 10vh;
+}
+.h-\[9vh\] {
+  height: 9vh;
+}
+.h-\[9v\] {
+  height: 9v;
+}
+.h-\[1vh\] {
+  height: 1vh;
+}
+.h-\[9\] {
+  height: 9;
+}
+.h-\[5vh\] {
+  height: 5vh;
+}
 .w-\[100vw\] {
   width: 100vw;
 }
@@ -648,8 +690,14 @@ video {
 .gap-y-\[4vh\] {
   row-gap: 4vh;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .overflow-x-hidden {
   overflow-x: hidden;
+}
+.break-words {
+  overflow-wrap: break-word;
 }
 .rounded-md {
   border-radius: 0.375rem;
@@ -858,6 +906,14 @@ video {
     height: 9vh;
   }
 
+  .md\:h-\[6v\] {
+    height: 6v;
+  }
+
+  .md\:h-\[6vh\] {
+    height: 6vh;
+  }
+
   .md\:w-\[\] {
     width: ;
   }
@@ -1032,6 +1088,10 @@ video {
     height: 45vh;
   }
 
+  .xl\:h-\[12vh\] {
+    height: 12vh;
+  }
+
   .xl\:w-\[9vw\] {
     width: 9vw;
   }
@@ -1107,6 +1167,10 @@ video {
   .xl\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .xl\:leading-5 {
+    line-height: 1.25rem;
   }
 } 
 
@@ -1225,5 +1289,13 @@ video {
 
   .\32xl\:leading-5 {
     line-height: 1.25rem;
+  }
+
+  .\32xl\:leading-4 {
+    line-height: 1rem;
+  }
+
+  .\32xl\:leading-3 {
+    line-height: .75rem;
   }
 }
