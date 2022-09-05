@@ -1020,6 +1020,18 @@ video {
     height: ;
   }
 
+  .xl\:h-\[20vh\] {
+    height: 20vh;
+  }
+
+  .xl\:h-\[4vh\] {
+    height: 4vh;
+  }
+
+  .xl\:h-\[45vh\] {
+    height: 45vh;
+  }
+
   .xl\:w-\[9vw\] {
     width: 9vw;
   }
