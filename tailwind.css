@@ -3,14 +3,15 @@
 @tailwind utilities;
 
 .block-with-text {
-     overflow: hidden;
-     white-space: nowrap;
-     text-overflow: ellipsis;
-} 
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .overflow-spots-fullrecipe {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
 }
