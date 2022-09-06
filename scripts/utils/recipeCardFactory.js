@@ -13,16 +13,16 @@ export function recipeCardFactory(recipe) {
       "bg-zinc-200",
       "rounded-xl",
       "w-full",
-      "h-[35vh]",
+      "h-[40vh]",
       "md:h-[25vh]",
       "2xl:h-[35vh]",
       "2xl:w-[26vw]"
     );
     article.innerHTML = `
     <div id="article-image">
-    <img class="w-[85vw] h-[17vh] rounded-lg rounded-b-none object-cover md:h-[12vh] 2xl:h-[17vh] 2xl:w-[26vw]" src="./../../assets/restaurantpreview.png" alt="restaurant card" />
+    <img class="w-[85vw] h-[19vh] rounded-lg rounded-b-none object-cover md:h-[12vh] 2xl:h-[17vh] 2xl:w-[26vw]" src="./../../assets/restaurantpreview.png" alt="restaurant card" />
     </div>
-    <div id="article-content" class="h-[18vh] w-full p-1 flex flex-col rounded-lg rounded-t-none md:h-[13vh] md:p-2 2xl:h-[18vh] 2xl:w-[26vw] 2xl:p-5 2xl:justify-center">
+    <div id="article-content" class="h-[21vh] w-full p-1 flex flex-col rounded-lg rounded-t-none md:h-[13vh] md:p-2 2xl:h-[18vh] 2xl:w-[26vw] 2xl:p-5 2xl:justify-center">
     <div id="card-top" class="h-[6vh] flex w-full justify-between items-center md:h-[4vh] 2xl:h-[6vh]">
         <h2 class="text-base block-with-text 2xl:text-xl">${name}</h2>
         <div id="clock-time" class="flex text-base w-1/6 justify-around items-center 2xl:text-xl" >
@@ -31,9 +31,9 @@ export function recipeCardFactory(recipe) {
         </div>
     </div>
     <div id="card-bottom" class="h-[12vh] flex overflow-hidden md:h-[9vh] xl:h-[12vh] 2xl:pt-[1vh]">
-        <ul class="ingredientsList h-[8vh] text-xs w-1/2 leading-4 overflow-spots-fullrecipe md:h-[6vh] md:leading-3 2xl:leading-5">
+        <ul class="ingredientsList text-xs w-1/2 leading-4 md:h-[6vh] md:leading-3 2xl:leading-5">
         </ul>
-        <p class="description h-[8vh] text-xs w-1/2 leading-4 overflow-spots-fullrecipe md:h-[6vh] xl:[8vh] md:leading-3 2xl:leading-4">${description}</p>
+        <p class="description text-xs w-1/2 leading-4 max-h-16 overflow-spots-fullrecipe md:max-h-16 md:leading-4 xl:[8vh] 2xl:max-h-20 2xl:leading-4">${description}</p>
     </div>
 
     </div>
