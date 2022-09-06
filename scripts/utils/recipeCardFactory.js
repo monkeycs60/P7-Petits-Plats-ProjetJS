@@ -34,7 +34,7 @@ export function recipeCardFactory(recipe) {
     <div id="card-bottom" class="h-[12vh] flex overflow-hidden md:h-[11vh] xl:h-[12vh] 2xl:pt-[1vh]">
         <ul class="ingredientsList text-xs w-1/2 leading-4 md:h-[6vh] md:leading-3 2xl:leading-5">
         </ul>
-        <p class="description text-xs w-1/2 leading-4 max-h-16 md:max-h-16 line-clamp-5 md:leading-4 xl:[8vh] 2xl:max-h-20 2xl:leading-4">${description}</p>
+        <p class="description text-xs w-1/2 leading-4 max-h-16 md:max-h-16 line-clamp-4 2xl:line-clamp-5 md:leading-4 xl:[8vh] 2xl:max-h-20 2xl:leading-4">${description}</p>
     </div>
 
     </div>
