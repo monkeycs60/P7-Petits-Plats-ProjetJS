@@ -723,17 +723,26 @@ video {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-.line-clamp-5 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-}
 .line-clamp-4 {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
+}
+
+.ingredients-full-list {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background: blue;
+  height: 20vh;
+  width: 29vw;
+  left: 0;
+  top: 6vh;
+  overflow-y: scroll;
+  scrollbar-width: large;
+  padding-left: 1vw;
 }
 
 .block-with-text {
@@ -854,20 +863,6 @@ video {
     line-height: 1rem;
   }
 
-  .md\:line-clamp-5 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-  }
-
-  .md\:line-clamp-4 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-  }
-
   .md\:placeholder\:text-xl::-moz-placeholder {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -934,20 +929,6 @@ video {
   .xl\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .xl\:line-clamp-5 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-  }
-
-  .xl\:line-clamp-4 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
   }
 }
 

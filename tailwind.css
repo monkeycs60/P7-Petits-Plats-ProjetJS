@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.ingredients-full-list {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background: blue;
+  height: 20vh;
+  width: 29vw;
+  left: 0;
+  top: 6vh;
+  overflow-y: scroll;
+  scrollbar-width: large;
+  padding-left: 1vw;
+}
 
 .block-with-text {
   overflow: hidden;
@@ -24,5 +38,3 @@
   line-clamp: 6;
   -webkit-box-orient: vertical;
 }
-
-

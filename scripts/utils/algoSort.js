@@ -55,7 +55,9 @@ recipes.forEach((recipe) => {
           
       // tableau des ingrédients
       const divIngredients = document.createElement("div");
-      divIngredients.classList.add("ingredients-full-list", "flex", "flex-col", "flex-wrap", "h-[20vh]", "overflow-y-scroll", "border", "border-gray-300", "rounded-md", "p-2", "mb-2");
+      divIngredients.classList.add(
+        "ingredients-full-list",
+      );
       searchPannel.appendChild(divIngredients);
       allIngredientsSimpleUnique.forEach((ingredient) => {
         divIngredients.innerHTML += `
@@ -65,7 +67,7 @@ recipes.forEach((recipe) => {
 
       // tableau des ustensiles 
       const divUstensils = document.createElement("div");
-            divUstensils.classList.add("ingredients-full-list", "flex", "flex-col", "flex-wrap", "h-[20vh]", "overflow-y-scroll", "border", "border-gray-300", "rounded-md", "p-2", "mb-2");
+            divUstensils.classList.add("ustensils-full-list", "flex", "flex-col", "flex-wrap", "h-[20vh]", "overflow-y-scroll", "border", "border-gray-300", "rounded-md", "p-2", "mb-2");
            searchPannel.appendChild(divUstensils);
             allUstensilsSimpleUniqueUppercaseSorted.forEach((ustensil) => {
          divUstensils.innerHTML += `
@@ -75,7 +77,7 @@ recipes.forEach((recipe) => {
 
       // tableau des appareils
       const divApplicances = document.createElement("div");
-                  divApplicances.classList.add("ingredients-full-list", "flex", "flex-col", "flex-wrap", "h-[20vh]", "overflow-y-scroll", "border", "border-gray-300", "rounded-md", "p-2", "mb-2");
+                  divApplicances.classList.add("appliances-full-list", "flex", "flex-col", "flex-wrap", "h-[20vh]", "overflow-y-scroll", "border", "border-gray-300", "rounded-md", "p-2", "mb-2");
            searchPannel.appendChild(divApplicances);
       allApplicancesSimpleUnique.forEach((applicance) => {
         divApplicances.innerHTML += `
