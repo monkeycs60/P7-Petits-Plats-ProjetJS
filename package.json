@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "autoprefixer": "^10.4.8",
     "eslint": "^8.23.0",
     "eslint-config-airbnb-base": "^15.0.0",
