@@ -17,4 +17,4 @@ async function fetchRecipes() {
 fetchRecipes();
 sortingMethod();
 
-//create a const 
+// create a const

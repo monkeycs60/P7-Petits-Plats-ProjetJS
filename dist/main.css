@@ -730,19 +730,40 @@ video {
   -webkit-line-clamp: 4;
 }
 
-.ingredients-full-list {
+.full-list {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  background: blue;
-  height: 20vh;
-  width: 29vw;
-  left: 0;
   top: 6vh;
   overflow-y: scroll;
   scrollbar-width: large;
   padding-left: 1vw;
+  /* cancel visibility */
+  visibility: hidden;
+}
+
+.ingredients {
+  background: rgb(5, 105, 236);
+  height: 20vh;
+  width: 29vw;
+  left: 0;
+}
+
+.appliances {
+  background: rgb(5, 236, 105);
+  height: 20vh;
+  width: 29vw;
+  left: 35vw;
+
+}
+
+.ustensils {
+  background: rgb(202, 58, 58);
+  height: 20vh;
+  width: 29vw;
+  left: 55vw;
+ 
 }
 
 .block-with-text {
