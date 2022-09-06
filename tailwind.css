@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .block-with-text {
   overflow: hidden;
   white-space: nowrap;
@@ -23,3 +24,5 @@
   line-clamp: 6;
   -webkit-box-orient: vertical;
 }
+
+
