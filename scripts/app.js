@@ -1,4 +1,5 @@
 import { recipeCardFactory } from "./utils/recipeCardFactory.js";
+import { sortingMethod } from "./utils/algoSort.js";
 // fetch recipes
 async function fetchRecipes() {
   await fetch("./../data/recipes.json")
@@ -14,3 +15,6 @@ async function fetchRecipes() {
 }
 
 fetchRecipes();
+sortingMethod();
+
+//create a const 
