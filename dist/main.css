@@ -856,6 +856,10 @@ video {
     width: 12vw;
   }
 
+  .xl\:w-\[1vw\] {
+    width: 1vw;
+  }
+
   .xl\:translate-y-1 {
     --tw-translate-y: 0.25rem;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -912,6 +916,22 @@ video {
 
   .\32xl\:w-\[26vw\] {
     width: 26vw;
+  }
+
+  .\32xl\:w-\[\] {
+    width: ;
+  }
+
+  .\32xl\:w-\[12v\] {
+    width: 12v;
+  }
+
+  .\32xl\:w-\[1\] {
+    width: 1;
+  }
+
+  .\32xl\:w-full {
+    width: 100%;
   }
 
   .\32xl\:scale-125 {
