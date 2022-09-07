@@ -8,52 +8,49 @@
   flex-wrap: wrap;
   flex-direction: column;
   top: 6vh;
-  overflow-y: scroll;
+  overflow-x: scroll;
   scrollbar-width: large;
-  padding-left: 1vw;
-  /* cancel visibility */
-  visibility: hidden;
+  color: white;
+  z-index: 3;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  font-size: 20px;
+
+ 
+}
+.full-list p {
+  margin-left: 1.5vw;
 }
 
 .ingredients {
-  background: rgb(5, 105, 236);
+  background: rgb(59, 130, 246);
   height: 20vh;
-  width: 29vw;
+  width: 26vw;
   left: 0;
+  /* display: none; */
 }
 
 .appliances {
-  background: rgb(5, 236, 105);
+  background: rgb(134, 239, 172);
   height: 20vh;
-  width: 29vw;
-  left: 35vw;
+  width: 20vw;
+  left: 14vw;
+  /* display: none; */
 }
 
 .ustensils {
-  background: rgb(202, 58, 58);
+  background: rgb(248, 113, 113);
   height: 20vh;
   width: 29vw;
-  left: 55vw;
+  left: 28vw;
+}
+
+.active {
+  display: flex;
 }
 
 .block-with-text {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.overflow-spots-fullrecipe {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
-}
-
-.overflow-spots-fullrecipeTablette {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  line-clamp: 6;
-  -webkit-box-orient: vertical;
 }
