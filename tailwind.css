@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  top: 6vh;
+  top: 5.5vh;
   overflow-x: scroll;
   scrollbar-width: large;
   color: white;
@@ -15,8 +15,6 @@
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   font-size: 20px;
-
- 
 }
 .full-list p {
   margin-left: 1.5vw;
@@ -27,7 +25,6 @@
   height: 20vh;
   width: 26vw;
   left: 0;
-  /* display: none; */
 }
 
 .appliances {
@@ -35,7 +32,6 @@
   height: 20vh;
   width: 20vw;
   left: 14vw;
-  /* display: none; */
 }
 
 .ustensils {
@@ -53,4 +49,67 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+/* RESPONSIVE TAG BARS */
+
+@media (max-width: 1536px) {
+  .full-list {
+    top: 9.5vh;
+  }
+  .ingredients {
+    width: 30vw;
+  }
+  .appliances {
+    width: 25vw;
+  }
+  .ustensils {
+    width: 35vw;
+  }
+}
+
+@media (max-width: 1280px) {
+  .full-list {
+    top: 7.5vh;
+  }
+  .ingredients {
+    position: absolute;
+    left: 6vw;
+    width: 35vw;
+  }
+  .appliances {
+    position: absolute;
+    left: 44vw;
+    width: 35vw;
+  }
+  .ustensils {
+    position: absolute;
+    left: 25vw;
+    width: 35vw;
+    top: 17.5vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .full-list {
+    top: 7.5vh;
+    font-size: 14px;
+  }
+  .ingredients {
+    position: absolute;
+    left: 7.5vw;
+    width: 70vw; 
+  }
+  .appliances {
+    position: absolute;
+    left: 7.5vw;
+    width: 70vw;
+    top: 16.5vh;
+  }
+  .ustensils {
+    position: absolute;
+    left: 7.5vw;
+    width: 70vw;
+    top: 26.5vh;
+  }
 }

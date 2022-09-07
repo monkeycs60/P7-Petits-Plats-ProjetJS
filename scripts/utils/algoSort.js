@@ -65,10 +65,7 @@ export function sortingMethod() {
 
         // tableau des ustensiles
         const divUstensils = document.createElement("div");
-        divUstensils.classList.add(
-          "full-list",
-          "ustensils",
-        );
+        divUstensils.classList.add("full-list", "ustensils");
         searchPannel.appendChild(divUstensils);
         allUstensilsSimpleUniqueUppercaseSorted.forEach((ustensil) => {
           divUstensils.innerHTML += `
