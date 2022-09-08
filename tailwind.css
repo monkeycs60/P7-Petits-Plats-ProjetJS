@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .full-list {
   position: absolute;
   display: flex;
@@ -41,8 +42,8 @@
   left: 28vw;
 }
 
-.active {
-  display: flex;
+.inactive {
+  display: none;
 }
 
 .block-with-text {
@@ -65,6 +66,7 @@
   }
   .ustensils {
     width: 35vw;
+    left: 27.9vw;
   }
 }
 
@@ -98,7 +100,7 @@
   .ingredients {
     position: absolute;
     left: 7.5vw;
-    width: 70vw; 
+    width: 70vw;
   }
   .appliances {
     position: absolute;
@@ -113,3 +115,4 @@
     top: 26.5vh;
   }
 }
+

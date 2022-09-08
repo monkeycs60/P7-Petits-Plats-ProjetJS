@@ -1,6 +1,19 @@
 import { recipeCardFactory } from "./utils/recipeCardFactory.js";
 import { sortingMethod } from "./utils/algoSort.js";
 // fetch recipes
+
+function hideChevron() {
+  const chevronUpIngredients = document.getElementById("chevronUpIngredients");
+  const chevronUpUstensiles = document.querySelector("#chevronUpUstensils");
+  const chevronUpAppliances = document.querySelector("#chevronUpAppliances");
+
+  // make each of chevron up display none
+  chevronUpIngredients.style.display = "none";
+  chevronUpUstensiles.style.display = "none";
+  chevronUpAppliances.style.display = "none";
+}
+hideChevron();
+
 async function fetchRecipes() {
   await fetch("./../data/recipes.json")
     .then((response) => response.json())

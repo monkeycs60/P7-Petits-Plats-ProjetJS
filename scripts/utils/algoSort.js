@@ -1,5 +1,5 @@
 export function sortingMethod() {
-  async function reFetchRecipes() {
+  async function displayAllTagItems() {
     await fetch("./../data/recipes.json")
       .then((response) => response.json())
       .then((data) => {
@@ -9,7 +9,7 @@ export function sortingMethod() {
         const allIngredients = [];
 
         recipes.forEach((recipe) => {
-          const { name, ingredients, appliance, ustensils } = recipe;
+          const { ingredients } = recipe;
           allIngredients.push(ingredients);
         });
 
@@ -59,7 +59,7 @@ export function sortingMethod() {
         searchPannel.appendChild(divIngredients);
         allIngredientsSimpleUnique.forEach((ingredient) => {
           divIngredients.innerHTML += `
-        <p>${ingredient}</p>
+        <p class="cursor-pointer">${ingredient}</p>
         `;
         });
 
@@ -69,7 +69,7 @@ export function sortingMethod() {
         searchPannel.appendChild(divUstensils);
         allUstensilsSimpleUniqueUppercaseSorted.forEach((ustensil) => {
           divUstensils.innerHTML += `
-        <p>${ustensil}</p>
+        <p class="cursor-pointer">${ustensil}</p>
         `;
         });
 
@@ -79,10 +79,140 @@ export function sortingMethod() {
         searchPannel.appendChild(divApplicances);
         allApplicancesSimpleUnique.forEach((applicance) => {
           divApplicances.innerHTML += `
-        <p>${applicance}</p>
+        <p class="cursor-pointer">${applicance}</p>
         `;
         });
+
+        const ingredientsList = document.querySelector(".ingredients");
+        const ustensilsList = document.querySelector(".ustensils");
+        const appliancesList = document.querySelector(".appliances");
+        const ingredients = document.querySelector("#ingredients");
+        const appliances = document.querySelector("#appareils");
+        const ustensils = document.querySelector("#ustensiles");
+        const ingredientsWidth = ingredients.offsetWidth;
+        const appliancesWidth = appliances.offsetWidth;
+        const ustensilsWidth = ustensils.offsetWidth;
+
+        const chevronDownIngredients = document.getElementById(
+          "chevronDownIngredients"
+        );
+        const chevronDownUstensiles = document.getElementById(
+          "chevronDownUstensils"
+        );
+        const chevronDownAppliances = document.getElementById(
+          "chevronDownAppliances"
+        );
+        const chevronUpIngredients = document.getElementById(
+          "chevronUpIngredients"
+        );
+        const chevronUpUstensiles = document.querySelector(
+          "#chevronUpUstensils"
+        );
+        const chevronUpAppliances = document.querySelector(
+          "#chevronUpAppliances"
+        );
+
+        // make each of this list display none
+        ingredientsList.style.display = "none";
+        ustensilsList.style.display = "none";
+        appliancesList.style.display = "none";
+
+        chevronDownIngredients.addEventListener(
+          "click",
+          makeIngredientsListVisible
+        );
+        chevronDownUstensiles.addEventListener(
+          "click",
+          makeUstensilsListVisible
+        );
+        chevronDownAppliances.addEventListener(
+          "click",
+          makeAppliancesListVisible
+        );
+        chevronUpIngredients.addEventListener(
+          "click",
+          makeIngredientsListInvisible
+        );
+        chevronUpUstensiles.addEventListener(
+          "click",
+          makeUstensilsListInvisible
+        );
+        chevronUpAppliances.addEventListener(
+          "click",
+          makeAppliancesListInvisible
+        );
+
+        function makeIngredientsListVisible() {
+          ingredientsList.style.display = "flex";
+          chevronDownIngredients.style.display = "none";
+          chevronUpIngredients.style.display = "block";
+          ustensilsList.style.display = "none";
+          appliancesList.style.display = "none";
+          chevronDownUstensiles.style.display = "block";
+          chevronUpUstensiles.style.display = "none";
+          chevronDownAppliances.style.display = "block";
+          chevronUpAppliances.style.display = "none";
+          ingredients.style.width = `${ingredientsList.offsetWidth}px`;
+
+          appliances.style.width = `${appliancesWidth}px`;
+          ustensils.style.width = `${ustensilsWidth}px`;
+        }
+
+        function makeUstensilsListVisible() {
+          ustensilsList.style.display = "flex";
+          chevronDownUstensiles.style.display = "none";
+          chevronUpUstensiles.style.display = "block";
+          ingredientsList.style.display = "none";
+          appliancesList.style.display = "none";
+          chevronDownIngredients.style.display = "block";
+          chevronUpIngredients.style.display = "none";
+          chevronDownAppliances.style.display = "block";
+          chevronUpAppliances.style.display = "none";
+          ustensils.style.width = `${ustensilsList.offsetWidth}px`;
+
+          ingredients.style.width = `${ingredientsWidth}px`;
+          appliances.style.width = `${appliancesWidth}px`;
+        }
+
+        function makeAppliancesListVisible() {
+          appliancesList.style.display = "flex";
+          chevronDownAppliances.style.display = "none";
+          chevronUpAppliances.style.display = "block";
+          ingredientsList.style.display = "none";
+          ustensilsList.style.display = "none";
+          chevronDownIngredients.style.display = "block";
+          chevronUpIngredients.style.display = "none";
+          chevronDownUstensiles.style.display = "block";
+          chevronUpUstensiles.style.display = "none";
+          appliances.style.width = `${appliancesList.offsetWidth}px`;
+
+          // on réinitialise la largeur des input quand on clique à la volée sur le troisième input
+          ustensils.style.width = `${ustensilsWidth}px`;
+          ingredients.style.width = `${ingredientsWidth}px`;
+        }
+
+        function makeIngredientsListInvisible() {
+          ingredientsList.style.display = "none";
+          chevronDownIngredients.style.display = "block";
+          chevronUpIngredients.style.display = "none";
+          ingredients.style.width = `${ingredientsWidth}px`;
+        }
+
+        function makeUstensilsListInvisible() {
+          ustensilsList.style.display = "none";
+          chevronDownUstensiles.style.display = "block";
+          chevronUpUstensiles.style.display = "none";
+          ustensils.style.width = `${ustensilsWidth}px`;
+        }
+
+        function makeAppliancesListInvisible() {
+          appliancesList.style.display = "none";
+          chevronDownAppliances.style.display = "block";
+          chevronUpAppliances.style.display = "none";
+          appliances.style.width = `${appliancesWidth}px`;
+        }
       });
   }
-  reFetchRecipes();
+
+  displayAllTagItems();
 }
