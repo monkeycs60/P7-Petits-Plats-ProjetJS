@@ -1,6 +1,6 @@
 import { recipeCardFactory } from "./utils/recipeCardFactory.js";
 import { sortingMethod } from "./utils/algoSort.js";
-// fetch recipes
+import { sortSimpleSearch } from "./utils/sorterFunc.js";
 
 function hideChevron() {
   const chevronUpIngredients = document.getElementById("chevronUpIngredients");
@@ -29,5 +29,6 @@ async function fetchRecipes() {
 
 fetchRecipes();
 sortingMethod();
+sortSimpleSearch();
 
-// create a const
+
