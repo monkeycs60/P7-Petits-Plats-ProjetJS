@@ -242,9 +242,10 @@ export function sortingMethod() {
               Array.from(section.children).forEach((child) => {
                 if (child.textContent.toLowerCase().includes(input)) {
                   child.style.display = "flex";
-                
+                // log the span 
+                  const span = child.querySelectorAll("span");
+                    console.log(span.innerHTML); 
 
-               
                 } else {
                   child.style.display = "none";
                 }
