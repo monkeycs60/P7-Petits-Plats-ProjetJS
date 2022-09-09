@@ -795,17 +795,18 @@ video {
 
 @media (max-width: 1536px) {
   .full-list {
-    top: 9.4vh;
+    top: 9.3vh;
   }
   .ingredients {
     width: 30vw;
   }
   .appliances {
-    width: 25vw;
+    width: 25.05vw;
+    left: 13.95vw;
   }
   .ustensils {
     width: 35vw;
-    left: 28vw;
+    left: 27.9vw;
   }
 }
 
