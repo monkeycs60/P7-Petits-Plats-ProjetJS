@@ -242,13 +242,9 @@ export function sortingMethod() {
               Array.from(section.children).forEach((child) => {
                 if (child.textContent.toLowerCase().includes(input)) {
                   child.style.display = "flex";
-                  // push the li in an array
                 
-                  // push all span preciseIngredient in the tabLi
-                  tabLi.push(
-                    child.children[1].children[1].children[0].children[1]
-                  );
 
+               
                 } else {
                   child.style.display = "none";
                 }
