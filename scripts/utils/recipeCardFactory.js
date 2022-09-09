@@ -43,15 +43,15 @@ export function recipeCardFactory(recipe) {
     ingredients.forEach((uniqueIngredient) => {
       const { ingredient, quantity, unit } = uniqueIngredient;
       const li = document.createElement("li");
-      li.innerHTML = `<span class="font-bold">${ingredient}</span>: ${quantity} ${unit} `;
+      li.innerHTML = `<span class="font-bold preciseIngredient">${ingredient}</span>: ${quantity} ${unit} `;
       if (quantity === undefined) {
-        li.innerHTML = `<span class="font-bold">${ingredient}</span>: ${unit} `;
+        li.innerHTML = `<span class="font-bold preciseIngredient">${ingredient}</span>: ${unit} `;
       }
       if (unit === undefined) {
-        li.innerHTML = `<span class="font-bold">${ingredient}</span>: ${quantity}`;
+        li.innerHTML = `<span class="font-bold preciseIngredient">${ingredient}</span>: ${quantity}`;
       }
       if (unit === undefined && quantity === undefined) {
-        li.innerHTML = `<span class="font-bold">${ingredient}</span>`;
+        li.innerHTML = `<span class="font-bold preciseIngredient">${ingredient}</span>`;
       }
       listIngredients.appendChild(li);
     });

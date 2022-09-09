@@ -209,6 +209,8 @@ export function sortingMethod() {
 
         function sortSimpleSearch() {
           const mainSearch = document.querySelector("#mainSearch");
+          const section = document.querySelector("section");
+          console.log(section);
 
           const inputIngredients = document.getElementById("inputIngredients");
           const inputUstensiles = document.getElementById("inputUstensils");
@@ -227,64 +229,41 @@ export function sortingMethod() {
                 (child) => child.textContent
               )
             );
-          console.log(allTagsArray);
+          // console.log(allTagsArray);
 
+          // RECHERCHE SIMPLE : afficher les éléments contenant le texte saisi dans l'input
           mainSearch.addEventListener("keyup", (e) => {
             const input = e.target.value.toLowerCase();
+            let tabLi = [];
 
             // if input length is greater than 2
             if (input.length > 2) {
-              console.log(input);
+              // only display direct child of section that contains the input value
+              Array.from(section.children).forEach((child) => {
+                if (child.textContent.toLowerCase().includes(input)) {
+                  child.style.display = "flex";
+                  // push the li in an array
+                
+                  // push all span preciseIngredient in the tabLi
+                  tabLi.push(
+                    child.children[1].children[1].children[0].children[1]
+                  );
 
-              // filter all children of allTagsArray that does not match input
-              const filteredTags = allTagsArray.filter((tag) =>
-                tag.toLowerCase().includes(input)
-              );
-              console.log(filteredTags);
+                } else {
+                  child.style.display = "none";
+                }
+              });
+             
 
-              // if filteredTags is not empty
-              if (filteredTags.length > 0) {
-                // display filteredTags in ingredientsList + ustensilsList + appliancesList
-                ingredientsList.innerHTML = filteredTags
-                  .map((tag) => `<p>${tag}</p>`)
-                  .join("");
-                ustensilsList.innerHTML = filteredTags
-                  .map((tag) => `<p>${tag}</p>`)
-                  .join("");
-                appliancesList.innerHTML = filteredTags
-                  .map((tag) => `<p>${tag}</p>`)
-                  .join("");
-              } else if (filteredTags.length === 0) {
-                // if filteredTags is empty, display "Aucun résultat"
-                ingredientsList.innerHTML = `<p>Aucun résultat</p>`;
-                ustensilsList.innerHTML = `<p>Aucun résultat</p>`;
-                appliancesList.innerHTML = `<p>Aucun résultat</p>`;
-              }
+console.log(tabLi);
+          
+  
+
             } else {
-              // if input length is less than 2, display all children of ingredientsList + ustensilsList + appliancesList
-              ingredientsList.innerHTML = allTagsArray
-                .map((tag) => `<p>${tag}</p>;}`)
-                .join("");
-              ustensilsList.innerHTML = allTagsArray
-                .map((tag) => `<p>${tag}</p>;}`)
-                .join("");
-              appliancesList.innerHTML = allTagsArray
-                .map((tag) => `<p>${tag}</p>;}`)
-                .join("");
-
-              // filter all children of ingredientsList that does not match input
-              // for (let i = 0; i < ingredientsList.children.length; i++) {
-              //   if (
-              //     ingredientsList.children[i].textContent
-              //       .toLowerCase()
-              //       .startsWith(input) === false
-              //   ) {
-              //     ingredientsList.children[i].style.display = "none";
-
-              //   } else {
-              //     ingredientsList.children[i].style.display = "block";
-              //   }
-              // }
+              // display all children of section
+              Array.from(section.children).forEach((child) => {
+                child.style.display = "flex";
+              });
             }
           });
         }
