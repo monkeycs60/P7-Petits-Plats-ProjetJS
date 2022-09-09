@@ -238,21 +238,26 @@ export function sortingMethod() {
 
             // if input length is greater than 2
             if (input.length > 2) {
+
+           async function displayCards() {
               // only display direct child of section that contains the input value
               Array.from(section.children).forEach((child) => {
                 if (child.textContent.toLowerCase().includes(input)) {
-                  child.style.display = "flex";
-                // log the span 
-                  const span = child.querySelectorAll("span");
-                    console.log(span.innerHTML); 
-
+                 child.style.display = "flex";
                 } else {
                   child.style.display = "none";
                 }
               });
-             
-
+             await Array.from(section.children).forEach((child) => {
+              if (child.textContent.toLowerCase().includes(input)) {
+               
+                const span = child.querySelectorAll("span");
+                console.log(span.innerHTML);
+              }
+            });
 console.log(tabLi);
+            }
+            displayCards();
           
   
 
