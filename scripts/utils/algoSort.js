@@ -4,8 +4,6 @@ export function sortingMethod() {
       .then((response) => response.json())
       .then((data) => {
         const { recipes } = data;
-        console.log(recipes);
-
         const allIngredients = [];
 
         recipes.forEach((recipe) => {
@@ -21,7 +19,6 @@ export function sortingMethod() {
         const allIngredientsSimpleUnique = [
           ...new Set(allIngredientsSimple),
         ].sort();
-        console.log(allIngredientsSimpleUnique);
 
         // PARTIE APPAREILS
         // renvoie tous les appareils dans un tableau d'objets
@@ -29,7 +26,6 @@ export function sortingMethod() {
         const allApplicancesSimpleUnique = [
           ...new Set(allApplicancesSimple),
         ].sort();
-        console.log(allApplicancesSimpleUnique);
 
         // PARTIE USTENSILES
         // applatit le tableau et renvoie tous les ustensiles dans un seul tableau d'objets
@@ -48,7 +44,6 @@ export function sortingMethod() {
           allUstensilsSimpleUniqueUppercase.sort((a, b) =>
             a.localeCompare(b, "fr", { sensitivity: "base" })
           );
-        console.log(allUstensilsSimpleUniqueUppercaseSorted);
 
         // AJOUT DES TABLEAUX DANS LE DOM - Search pannel
         const searchPannel = document.getElementById("search-pannel");
@@ -211,6 +206,89 @@ export function sortingMethod() {
           chevronUpAppliances.style.display = "none";
           appliances.style.width = `${appliancesWidth}px`;
         }
+
+        function sortSimpleSearch() {
+          const mainSearch = document.querySelector("#mainSearch");
+
+          const inputIngredients = document.getElementById("inputIngredients");
+          const inputUstensiles = document.getElementById("inputUstensils");
+          const inputAppliances = document.getElementById("inputAppliances");
+
+          // create a single array containing the textcontent of all children of ingredientsList + ustensilsList + appliancesList
+          const allTagsArray = Array.from(ingredientsList.children)
+            .map((child) => child.textContent)
+            .concat(
+              Array.from(ustensilsList.children).map(
+                (child) => child.textContent
+              )
+            )
+            .concat(
+              Array.from(appliancesList.children).map(
+                (child) => child.textContent
+              )
+            );
+          console.log(allTagsArray);
+
+          mainSearch.addEventListener("keyup", (e) => {
+            const input = e.target.value.toLowerCase();
+
+            // if input length is greater than 2
+            if (input.length > 2) {
+              console.log(input);
+
+              // filter all children of allTagsArray that does not match input
+              const filteredTags = allTagsArray.filter((tag) =>
+                tag.toLowerCase().includes(input)
+              );
+              console.log(filteredTags);
+
+              // if filteredTags is not empty
+              if (filteredTags.length > 0) {
+                // display filteredTags in ingredientsList + ustensilsList + appliancesList
+                ingredientsList.innerHTML = filteredTags
+                  .map((tag) => `<p>${tag}</p>`)
+                  .join("");
+                ustensilsList.innerHTML = filteredTags
+                  .map((tag) => `<p>${tag}</p>`)
+                  .join("");
+                appliancesList.innerHTML = filteredTags
+                  .map((tag) => `<p>${tag}</p>`)
+                  .join("");
+              } else if (filteredTags.length === 0) {
+                // if filteredTags is empty, display "Aucun résultat"
+                ingredientsList.innerHTML = `<p>Aucun résultat</p>`;
+                ustensilsList.innerHTML = `<p>Aucun résultat</p>`;
+                appliancesList.innerHTML = `<p>Aucun résultat</p>`;
+              }
+            } else {
+              // if input length is less than 2, display all children of ingredientsList + ustensilsList + appliancesList
+              ingredientsList.innerHTML = allTagsArray
+                .map((tag) => `<p>${tag}</p>;}`)
+                .join("");
+              ustensilsList.innerHTML = allTagsArray
+                .map((tag) => `<p>${tag}</p>;}`)
+                .join("");
+              appliancesList.innerHTML = allTagsArray
+                .map((tag) => `<p>${tag}</p>;}`)
+                .join("");
+
+              // filter all children of ingredientsList that does not match input
+              // for (let i = 0; i < ingredientsList.children.length; i++) {
+              //   if (
+              //     ingredientsList.children[i].textContent
+              //       .toLowerCase()
+              //       .startsWith(input) === false
+              //   ) {
+              //     ingredientsList.children[i].style.display = "none";
+
+              //   } else {
+              //     ingredientsList.children[i].style.display = "block";
+              //   }
+              // }
+            }
+          });
+        }
+        sortSimpleSearch();
       });
   }
 

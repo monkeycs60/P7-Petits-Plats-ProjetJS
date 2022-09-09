@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-[16px]">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
 
     <!-- SEARCH BAR -->
     <div class="searchbar mt-[4vh] relative h-[8vh] xl:h-[10vh] 2xl:h-[6vh]" >
-            <input class="w-[85vw] h-full m-auto bg-zinc-200 flex justify-center rounded-md placeholder:text-base md:placeholder:text-xl indent-5 outline-none" type="search" name="search" placeholder="Rechercher une recette..." aria-label="barre de recherche des recettes">
+            <input id="mainSearch" class="w-[85vw] h-full m-auto bg-zinc-200 flex justify-center rounded-md placeholder:text-base md:placeholder:text-xl indent-5 outline-none" type="search" name="search" placeholder="Rechercher une recette..." aria-label="barre de recherche des recettes">
             <i class="fas fa-search absolute top-1/4 right-[13vw] xl:translate-y-1\/2 text-xl md:text-2xl xl:text-3xl"></i>
     </div>
 
@@ -31,19 +31,19 @@
     <div id="search-pannel" class="relative flex flex-col w-[85vw] justify-center items-center m-auto mt-[4vh] gap-[3vw] md:flex-row md:flex-wrap xl:flex-nowrap xl:justify-start xl:items-start xl:mt-[2vh] xl:gap-[2vw]">
         
           <div id="ingredients" class="relative bg-blue-500 w-[70vw] h-[8vh] flex justify-between items-center text-sm rounded-md md:w-[35vw] md:text-base xl:h-[10vh] xl:w-[12vw] xl:text-xl 2xl:h-[6vh]">
-            <input class= "bg-blue-500 h-full outline-none absolute left-[4vw] md:left-[3vw] xl:left-[1vw] text-white placeholder:text-white placeholder:font-semibold xl:w-[7vw]" type="text" aria-label="rechercher un ingrédient" placeholder="Ingrédients">
+            <input id="inputIngredients" class= "bg-blue-500 h-full outline-none absolute left-[4vw] md:left-[3vw] xl:left-[1vw] text-white placeholder:text-white placeholder:font-semibold xl:w-[7vw]" type="text" aria-label="rechercher un ingrédient" placeholder="Ingrédients">
             <em id="chevronDownIngredients" class="fa-solid fa-chevron-down absolute right-[5.5vw] md:right-[2vw] xl:right-[1vw] text-white cursor-pointer"></em>
             <em id="chevronUpIngredients" class="hidden fa-solid fa-chevron-up absolute right-[5.5vw] md:right-[2vw] xl:right-[1vw] text-white cursor-pointer"></em>
           </div>
 
           <div id="appareils" class=" relative bg-green-300 w-[70vw] h-[8vh] flex justify-around items-center text-sm rounded-md md:w-[35vw] md:text-base xl:h-[10vh] xl:w-[12vw] xl:text-xl 2xl:h-[6vh]">
-            <input class="bg-green-300 h-full outline-none absolute left-[4vw] md:left[3vw] xl:left-[1vw] text-white placeholder:text-white placeholder:font-semibold xl:w-[7vw]" type="text" aria-label="rechercher un appareil" placeholder="Appareils">
+            <input id="inputAppliances" class="bg-green-300 h-full outline-none absolute left-[4vw] md:left[3vw] xl:left-[1vw] text-white placeholder:text-white placeholder:font-semibold xl:w-[7vw]" type="text" aria-label="rechercher un appareil" placeholder="Appareils">
             <em id="chevronDownAppliances" class="fa-solid fa-chevron-down absolute right-[5.5vw] md:right-[2vw] xl:right-[1vw] text-white cursor-pointer"></em>
             <em id="chevronUpAppliances" class="hidden fa-solid fa-chevron-up absolute right-[5.5vw] md:right-[2vw] xl:right-[1vw] text-white cursor-pointer"></em>
           </div>
 
           <div id="ustensiles" class="relative bg-red-400 w-[70vw] h-[8vh] flex justify-around items-center text-sm rounded-md md:w-[35vw] md:text-base xl:h-[10vh] xl:w-[12vw] xl:text-xl 2xl:h-[6vh]">
-            <input class="bg-red-400 h-full outline-none absolute left-[4vw] md:left[3vw] xl:left-[1vw] text-white placeholder:text-white placeholder:font-semibold xl:w-[7vw]" type="text" aria-label="rechercher un ustensile" placeholder="Ustensiles">
+            <input id="inputUstensils" class="bg-red-400 h-full outline-none absolute left-[4vw] md:left[3vw] xl:left-[1vw] text-white placeholder:text-white placeholder:font-semibold xl:w-[7vw]" type="text" aria-label="rechercher un ustensile" placeholder="Ustensiles">
             <em id="chevronDownUstensils" class="fa-solid fa-chevron-down absolute right-[5.5vw] md:right-[2vw] xl:right-[1vw] text-white cursor-pointer"></em>
             <em id="chevronUpUstensils" class="hidden fa-solid fa-chevron-up absolute right-[5.5vw] md:right-[2vw] xl:right-[1vw] text-white cursor-pointer"></em>
           </div>

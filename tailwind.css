@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .full-list {
   position: absolute;
   display: flex;
@@ -24,7 +23,7 @@
 .ingredients {
   background: rgb(59, 130, 246);
   height: 20vh;
-  width: 26vw;
+  width: 26.1vw;
   left: 0;
 }
 
@@ -38,8 +37,8 @@
 .ustensils {
   background: rgb(248, 113, 113);
   height: 20vh;
-  width: 29vw;
-  left: 28vw;
+  width: 28.92vw;
+  left: 27.95vw;
 }
 
 .inactive {
@@ -56,7 +55,7 @@
 
 @media (max-width: 1536px) {
   .full-list {
-    top: 9.5vh;
+    top: 9.4vh;
   }
   .ingredients {
     width: 30vw;
@@ -66,7 +65,7 @@
   }
   .ustensils {
     width: 35vw;
-    left: 27.9vw;
+    left: 28vw;
   }
 }
 
@@ -115,4 +114,3 @@
     top: 26.5vh;
   }
 }
-
