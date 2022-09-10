@@ -242,22 +242,25 @@ export function sortingMethod() {
                     );
                     let ingredientsUpdate = [];
                     dataSearch.forEach((child) => {
-                      console.log(child.textContent);
-                      ingredientsUpdate.push(child.textContent);
+                      ingredientsUpdate.push(child.textContent.toLowerCase());
                     });
-                    console.log(ingredientsUpdate);
+ 
                     ingredientsUpdate = [...new Set(ingredientsUpdate)];
+                    // sort ingredientsUpdate
+
+                    ingredientsUpdate.sort();
+                   // first letter of each word in uppercase
+                    ingredientsUpdate = ingredientsUpdate.map((word) => {
+                      return word.charAt(0).toUpperCase() + word.slice(1);
+                    });
        
 
                     // change ingredientsList innerHTML to display all child.textcontent of datasearch
                      ingredientsList.innerHTML = "";
                     ingredientsUpdate.forEach((element) => {
-                      ingredientsList.innerHTML += ` <li>${element}</li>`;
+                      ingredientsList.innerHTML += ` <p>${element}</p>`;
                     });
                       
-
-
-
                   } else {
                     child.style.display = "none";
                     child.setAttribute("data-search", "false");
@@ -266,7 +269,6 @@ export function sortingMethod() {
                         .children);
                         listAttribute.forEach((child) => {
                           child.children[0].removeAttribute("data-search");
-
                         }
                         );
                   }
@@ -279,6 +281,12 @@ export function sortingMethod() {
               // display all children of section
               Array.from(section.children).forEach((child) => {
                 child.style.display = "flex";
+              });
+              // reset ingredientsList innerHTML
+              console.log(allIngredientsSimpleUnique);
+              ingredientsList.innerHTML = "";
+              allIngredientsSimpleUnique.forEach((element) => {
+                ingredientsList.innerHTML += `<p>${element}</p>`;
               });
             }
           });
