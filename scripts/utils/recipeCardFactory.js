@@ -1,5 +1,5 @@
 export function recipeCardFactory(recipe) {
-  const { name, time, ingredients, description } = recipe;
+  const { name, time, ingredients, description, appliance } = recipe;
 
   function createRecipeCard() {
     // card container
@@ -37,6 +37,9 @@ export function recipeCardFactory(recipe) {
         <p class="description text-xs w-1/2 leading-4 max-h-16 md:max-h-16 line-clamp-4 2xl:line-clamp-5 md:leading-4 xl:[8vh] 2xl:max-h-20 2xl:leading-4 2xl:text-base">${description}</p>
     </div>
 
+    <div class="hidden other-datas"> 
+    </div>
+
     </div>
 `;
     const listIngredients = article.querySelector(".ingredientsList");
@@ -55,6 +58,24 @@ export function recipeCardFactory(recipe) {
       }
       listIngredients.appendChild(li);
     });
+
+    const otherDatas = article.querySelector(".other-datas");
+
+    const UlAppliance = document.createElement("ul");
+    const liAppliance = document.createElement("li");
+      liAppliance.innerHTML = `<span class="font-bold applianceTag">${appliance}</span>`;
+      UlAppliance.appendChild(liAppliance);
+      otherDatas.appendChild(UlAppliance);
+
+    const UlUstensils = document.createElement("ul");
+    recipe.ustensils.forEach((uniqueUstensil) => {
+      const liUstensil = document.createElement("li");
+      liUstensil.innerHTML = `<span class="font-bold ustensilTag">${uniqueUstensil}</span>`;
+      UlUstensils.appendChild(liUstensil);
+    });
+    otherDatas.appendChild(UlUstensils);
+    
+
 
     return article;
   }

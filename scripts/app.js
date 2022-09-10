@@ -29,6 +29,3 @@ async function fetchRecipes() {
 
 fetchRecipes();
 sortingMethod();
-// sortSimpleSearch();
-
-

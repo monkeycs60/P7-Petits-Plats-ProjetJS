@@ -218,72 +218,119 @@ export function sortingMethod() {
           // RECHERCHE SIMPLE : afficher les éléments contenant le texte saisi dans l'input
           mainSearch.addEventListener("keyup", (e) => {
             const input = e.target.value.toLowerCase();
-            const tabLi = [];
 
             // if input length is greater than 2
             if (input.length > 2) {
-              async function displayCards() {
-                // only display direct child of section that contains the input value
-                Array.from(section.children).forEach((child) => {
-                  if (child.textContent.toLowerCase().includes(input)) {
-                    child.style.display = "flex";
+              // only display direct child of section that contains the input value
+              Array.from(section.children).forEach((child) => {
+                if (child.textContent.toLowerCase().includes(input)) {
+                  child.style.display = "flex";
+                  // RECIPES TAGS : actualiser les tags à la recherche simple
+                  const listAttribute = Array.from(
+                    child.children[1].children[1].children[0].children
+                  );
+                  listAttribute.forEach((child) => {
+                    child.children[0].setAttribute("data-search", "true");
+                  });
+                  const dataSearch = document.querySelectorAll(
+                    '[data-search="true"]'
+                  );
+                  let ingredientsUpdate = [];
+                  dataSearch.forEach((child) => {
+                    ingredientsUpdate.push(child.textContent.toLowerCase());
+                  });
 
-                    // add attribute to only display tags matching the recipes left
-                    const listAttribute = Array.from(
-                      child.children[1].children[1].children[0].children
-                    );
-                    listAttribute.forEach((child) => {
-                      child.children[0].setAttribute("data-search", "true");
-                    });
+                  ingredientsUpdate = [...new Set(ingredientsUpdate)];
+                  // sort ingredientsUpdate
+
+                  ingredientsUpdate.sort();
+                  // first letter of each word in uppercase
+                  ingredientsUpdate = ingredientsUpdate.map(
+                    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                  );
+
+                  // change ingredientsList innerHTML to display all child.textcontent of datasearch
+                  ingredientsList.innerHTML = "";
+                  ingredientsUpdate.forEach((element) => {
+                    ingredientsList.innerHTML += ` <p>${element}</p>`;
+                  });
 
 
-                    const dataSearch = document.querySelectorAll(
-                      '[data-search="true"]'
-                    );
-                    let ingredientsUpdate = [];
-                    dataSearch.forEach((child) => {
-                      ingredientsUpdate.push(child.textContent.toLowerCase());
-                    });
- 
-                    ingredientsUpdate = [...new Set(ingredientsUpdate)];
-                    // sort ingredientsUpdate
+                  // RECIPES TAGS : actualiser les tags à la recherche simple
+                  const listApplianceAttribute = Array.from(
+                    child.children[1].children[2].children[0].children
+                  );
+                  console.log(listApplianceAttribute);
+                  listApplianceAttribute.forEach((child) => {
+                    child.children[0].setAttribute("data-appliance", "true");
+                  });
+                  console.log(listApplianceAttribute);
+                  const dataAppliance = document.querySelectorAll(
+                    '[data-appliance="true"]'
+                  );
+                  console.log(dataAppliance);
+               
+                  // add data-appliance attribute to children of appliancesList
+                  // listApplianceAttribute.setAttribute(
+                  //   "data-appliance", "true"
+                  // );
+                  // const dataAppliance = document.querySelectorAll(
+                  //   '[data-appliance="true"]'
+                  // );
+                  // let appliancesUpdate = [];
+                  // dataAppliance.forEach((child) => {
+                  //   appliancesUpdate.push(child.textContent.toLowerCase());
+                  // });
 
-                    ingredientsUpdate.sort();
-                   // first letter of each word in uppercase
-                    ingredientsUpdate = ingredientsUpdate.map((word) => {
-                      return word.charAt(0).toUpperCase() + word.slice(1);
-                    });
-       
+                  // appliancesUpdate = [...new Set(appliancesUpdate)];
+                  // console.log(appliancesUpdate);
 
-                    // change ingredientsList innerHTML to display all child.textcontent of datasearch
-                     ingredientsList.innerHTML = "";
-                    ingredientsUpdate.forEach((element) => {
-                      ingredientsList.innerHTML += ` <p>${element}</p>`;
-                    });
-                      
-                  } else {
-                    child.style.display = "none";
-                    child.setAttribute("data-search", "false");
-                    const listAttribute =
-                      Array.from(child.children[1].children[1].children[0]
-                        .children);
-                        listAttribute.forEach((child) => {
-                          child.children[0].removeAttribute("data-search");
-                        }
-                        );
-                  }
-                });
-                
+
+                  // USTEENSILS TAGS : actualiser les tags à la recherche simple
+                  const listUstensilAttribute = Array.from(
+                    child.children[1].children[2].children[1].children
+                  );
+                  listUstensilAttribute.forEach((child) => {
+                    child.children[0].setAttribute("data-ustensil", "true");
+                  });
+                  const dataUstensil = document.querySelectorAll(
+                    '[data-ustensil="true"]'
+                  );
+                  let ustensilsUpdate = [];
+                  dataUstensil.forEach((child) => {
+                    ustensilsUpdate.push(child.textContent.toLowerCase());
+                  });
+
+                  ustensilsUpdate = [...new Set(ustensilsUpdate)];
+
+
+
+
+                } else {
+                  child.style.display = "none";
+                  child.setAttribute("data-search", "false");
+                  const listAttribute = Array.from(
+                    child.children[1].children[1].children[0].children
+                  );
+                  listAttribute.forEach((child) => {
+                    child.children[0].removeAttribute("data-search");
+                  });
+                }
+              });
+
+              // APPLIANCES TAGS : actualiser les tags à la recherche simple
+              console.log(allApplicancesSimpleUnique);
               
-              }
-              displayCards();
+              // only display appliances that are contained in
+
+
+
+
             } else {
               // display all children of section
               Array.from(section.children).forEach((child) => {
                 child.style.display = "flex";
               });
-              // reset ingredientsList innerHTML
-              console.log(allIngredientsSimpleUnique);
               ingredientsList.innerHTML = "";
               allIngredientsSimpleUnique.forEach((element) => {
                 ingredientsList.innerHTML += `<p>${element}</p>`;
