@@ -112,30 +112,41 @@ export function sortingMethod() {
         ustensilsList.style.display = "none";
         appliancesList.style.display = "none";
 
-        chevronDownIngredients.addEventListener(
-          "click",
-          makeIngredientsListVisible
-        );
-        chevronDownUstensiles.addEventListener(
-          "click",
-          makeUstensilsListVisible
-        );
-        chevronDownAppliances.addEventListener(
-          "click",
-          makeAppliancesListVisible
-        );
-        chevronUpIngredients.addEventListener(
-          "click",
-          makeIngredientsListInvisible
-        );
-        chevronUpUstensiles.addEventListener(
-          "click",
-          makeUstensilsListInvisible
-        );
-        chevronUpAppliances.addEventListener(
-          "click",
-          makeAppliancesListInvisible
-        );
+        ingredients.addEventListener("click", makeIngredientsListVisible);
+        ustensils.addEventListener("click", makeUstensilsListVisible);
+        appliances.addEventListener("click", makeAppliancesListVisible);
+        ingredients.addEventListener("focusout", makeIngredientsListInvisible);
+        ustensils.addEventListener("focusout", makeUstensilsListInvisible);
+        appliances.addEventListener("focusout", makeAppliancesListInvisible);
+     
+
+        // chevronDownIngredients.addEventListener(
+        //   "click",
+        //   makeIngredientsListVisible
+        // );
+        // chevronDownUstensiles.addEventListener(
+        //   "click",
+        //   makeUstensilsListVisible
+        // );
+        // chevronDownAppliances.addEventListener(
+        //   "click",
+        //   makeAppliancesListVisible
+        // );
+        // chevronUpIngredients.addEventListener(
+        //   "click",
+        //   makeIngredientsListInvisible
+        // );
+        // chevronUpUstensiles.addEventListener(
+        //   "click",
+        //   makeUstensilsListInvisible
+        // );
+        // chevronUpAppliances.addEventListener(
+        //   "click",
+        //   makeAppliancesListInvisible
+        // );
+
+//add event listener on focus out
+
 
         function makeIngredientsListVisible() {
           ingredientsList.style.display = "flex";
