@@ -122,7 +122,6 @@ export function sortingMethod() {
         // add event listener on focus out
 
         function makeIngredientsListVisible() {
-          console.log("affichage");
           ingredientsList.style.display = "flex";
           chevronDownIngredients.style.display = "none";
           chevronUpIngredients.style.display = "block";
@@ -172,7 +171,6 @@ export function sortingMethod() {
         }
 
         function makeIngredientsListInvisible() {
-          console.log("disparition");
           ingredientsList.style.display = "none";
           chevronDownIngredients.style.display = "block";
           chevronUpIngredients.style.display = "none";
@@ -229,17 +227,52 @@ export function sortingMethod() {
                 Array.from(section.children).forEach((child) => {
                   if (child.textContent.toLowerCase().includes(input)) {
                     child.style.display = "flex";
+
+                    // add attribute to only display tags matching the recipes left
+                    const listAttribute = Array.from(
+                      child.children[1].children[1].children[0].children
+                    );
+                    listAttribute.forEach((child) => {
+                      child.children[0].setAttribute("data-search", "true");
+                    });
+
+
+                    const dataSearch = document.querySelectorAll(
+                      '[data-search="true"]'
+                    );
+                    let ingredientsUpdate = [];
+                    dataSearch.forEach((child) => {
+                      console.log(child.textContent);
+                      ingredientsUpdate.push(child.textContent);
+                    });
+                    console.log(ingredientsUpdate);
+                    ingredientsUpdate = [...new Set(ingredientsUpdate)];
+       
+
+                    // change ingredientsList innerHTML to display all child.textcontent of datasearch
+                     ingredientsList.innerHTML = "";
+                    ingredientsUpdate.forEach((element) => {
+                      ingredientsList.innerHTML += ` <li>${element}</li>`;
+                    });
+                      
+
+
+
                   } else {
                     child.style.display = "none";
+                    child.setAttribute("data-search", "false");
+                    const listAttribute =
+                      Array.from(child.children[1].children[1].children[0]
+                        .children);
+                        listAttribute.forEach((child) => {
+                          child.children[0].removeAttribute("data-search");
+
+                        }
+                        );
                   }
                 });
-                await Array.from(section.children).forEach((child) => {
-                  if (child.textContent.toLowerCase().includes(input)) {
-                    const span = child.querySelectorAll("span");
-                    console.log(span.innerHTML);
-                  }
-                });
-                console.log(tabLi);
+                
+              
               }
               displayCards();
             } else {
