@@ -118,37 +118,11 @@ export function sortingMethod() {
         ingredients.addEventListener("focusout", makeIngredientsListInvisible);
         ustensils.addEventListener("focusout", makeUstensilsListInvisible);
         appliances.addEventListener("focusout", makeAppliancesListInvisible);
-     
 
-        // chevronDownIngredients.addEventListener(
-        //   "click",
-        //   makeIngredientsListVisible
-        // );
-        // chevronDownUstensiles.addEventListener(
-        //   "click",
-        //   makeUstensilsListVisible
-        // );
-        // chevronDownAppliances.addEventListener(
-        //   "click",
-        //   makeAppliancesListVisible
-        // );
-        // chevronUpIngredients.addEventListener(
-        //   "click",
-        //   makeIngredientsListInvisible
-        // );
-        // chevronUpUstensiles.addEventListener(
-        //   "click",
-        //   makeUstensilsListInvisible
-        // );
-        // chevronUpAppliances.addEventListener(
-        //   "click",
-        //   makeAppliancesListInvisible
-        // );
-
-//add event listener on focus out
-
+        // add event listener on focus out
 
         function makeIngredientsListVisible() {
+          console.log("affichage");
           ingredientsList.style.display = "flex";
           chevronDownIngredients.style.display = "none";
           chevronUpIngredients.style.display = "block";
@@ -198,6 +172,7 @@ export function sortingMethod() {
         }
 
         function makeIngredientsListInvisible() {
+          console.log("disparition");
           ingredientsList.style.display = "none";
           chevronDownIngredients.style.display = "block";
           chevronUpIngredients.style.display = "none";
@@ -245,33 +220,28 @@ export function sortingMethod() {
           // RECHERCHE SIMPLE : afficher les éléments contenant le texte saisi dans l'input
           mainSearch.addEventListener("keyup", (e) => {
             const input = e.target.value.toLowerCase();
-            let tabLi = [];
+            const tabLi = [];
 
             // if input length is greater than 2
             if (input.length > 2) {
-
-           async function displayCards() {
-              // only display direct child of section that contains the input value
-              Array.from(section.children).forEach((child) => {
-                if (child.textContent.toLowerCase().includes(input)) {
-                 child.style.display = "flex";
-                } else {
-                  child.style.display = "none";
-                }
-              });
-             await Array.from(section.children).forEach((child) => {
-              if (child.textContent.toLowerCase().includes(input)) {
-               
-                const span = child.querySelectorAll("span");
-                console.log(span.innerHTML);
+              async function displayCards() {
+                // only display direct child of section that contains the input value
+                Array.from(section.children).forEach((child) => {
+                  if (child.textContent.toLowerCase().includes(input)) {
+                    child.style.display = "flex";
+                  } else {
+                    child.style.display = "none";
+                  }
+                });
+                await Array.from(section.children).forEach((child) => {
+                  if (child.textContent.toLowerCase().includes(input)) {
+                    const span = child.querySelectorAll("span");
+                    console.log(span.innerHTML);
+                  }
+                });
+                console.log(tabLi);
               }
-            });
-console.log(tabLi);
-            }
-            displayCards();
-          
-  
-
+              displayCards();
             } else {
               // display all children of section
               Array.from(section.children).forEach((child) => {
