@@ -780,8 +780,8 @@ video {
 .ustensils {
   background: rgb(248, 113, 113);
   height: 20vh;
-  width: 28.92vw;
-  left: 27.95vw;
+  width: 28.90vw;
+  left: 28vw;
 }
 
 .inactive {
@@ -804,12 +804,12 @@ video {
     width: 30vw;
   }
   .appliances {
-    width: 25.05vw;
-    left: 13.95vw;
+    width: 25.1vw;
+    left: 14vw;
   }
   .ustensils {
     width: 35vw;
-    left: 27.9vw;
+    left: 28.05vw;
   }
 }
 
@@ -895,10 +895,6 @@ text-size-adjust: none;
 }
 
 @media (min-width: 768px) {
-
-  .md\:left-\[3vw\] {
-    left: 3vw;
-  }
 
   .md\:right-\[2vw\] {
     right: 2vw;
