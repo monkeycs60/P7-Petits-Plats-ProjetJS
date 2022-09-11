@@ -705,6 +705,9 @@ video {
 .font-\[Roboto\] {
   font-family: Roboto;
 }
+.text-\[16px\] {
+  font-size: 16px;
+}
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -854,6 +857,13 @@ video {
     width: 70vw;
     top: 26.5vh;
   }
+}
+
+html { 
+  -webkit-text-size-adjust: none;
+-moz-text-size-adjust: none;
+-o-text-size-adjust: none;
+text-size-adjust: none;
 }
 
 .placeholder\:text-base::-moz-placeholder {
