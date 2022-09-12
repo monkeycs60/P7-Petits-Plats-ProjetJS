@@ -199,20 +199,50 @@ export function sortingMethod() {
           const inputUstensiles = document.getElementById("inputUstensils");
           const inputAppliances = document.getElementById("inputAppliances");
 
-          // create a single array containing the textcontent of all children of ingredientsList + ustensilsList + appliancesList
-          const allTagsArray = Array.from(ingredientsList.children)
-            .map((child) => child.textContent)
-            .concat(
-              Array.from(ustensilsList.children).map(
-                (child) => child.textContent
-              )
-            )
-            .concat(
-              Array.from(appliancesList.children).map(
-                (child) => child.textContent
-              )
+          // TAG RECIPE LISTENER
+          inputIngredients.addEventListener("keyup", (e) => {
+            const { value } = e.target;
+
+            const filteredIngredients = allIngredientsSimpleUnique.filter(
+              (ingredient) =>
+                ingredient.toLowerCase().includes(value.toLowerCase())
             );
-          // console.log(allTagsArray);
+            console.log(filteredIngredients);
+
+            ingredientsList.innerHTML = filteredIngredients.map(
+              (ingredient) => `<p>${ingredient}</p>`)
+          });
+
+          // USTENSILS RECIPE LISTENER
+          inputUstensiles.addEventListener("keyup", (e) => {
+            const { value } = e.target;
+
+            const filteredUstensils = allUstensilsSimpleUnique.filter(
+              (ustensil) => ustensil.toLowerCase().includes(value.toLowerCase())
+            );
+            console.log(filteredUstensils);
+
+            ustensilsList.innerHTML = filteredUstensils.map(
+              (ustensil) => `<p>${ustensil}</p>`
+            );
+          });
+
+          // APPLIANCES RECIPE LISTENER
+          inputAppliances.addEventListener("keyup", (e) => {
+            const { value } = e.target;
+
+            const filteredAppliances = allApplicancesSimpleUnique.filter(
+              (appliance) =>
+                appliance.toLowerCase().includes(value.toLowerCase())
+            );
+            console.log(filteredAppliances);
+
+            appliancesList.innerHTML = filteredAppliances.map(
+              (appliance) => `<p>${appliance}</p>`
+            );
+          });
+
+
 
           // RECHERCHE SIMPLE : afficher les éléments contenant le texte saisi dans l'input
           mainSearch.addEventListener("keyup", (e) => {
@@ -282,14 +312,12 @@ export function sortingMethod() {
                   appliancesUpdate = appliancesUpdate.map(
                     (word) => word.charAt(0).toUpperCase() + word.slice(1)
                   );
-          
 
                   // change appliancesList innerHTML to display all child.textcontent of dataappliance
                   appliancesList.innerHTML = "";
                   appliancesUpdate.forEach((element) => {
                     appliancesList.innerHTML += ` <p>${element}</p>`;
                   });
-
 
                   // USTEENSILS TAGS : actualiser les tags à la recherche simple
                   const listUstensilAttribute = Array.from(
@@ -322,10 +350,6 @@ export function sortingMethod() {
                   ustensilsUpdate.forEach((element) => {
                     ustensilsList.innerHTML += ` <p>${element}</p>`;
                   });
-
-
-
-
                 } else {
                   child.style.display = "none";
                   child.setAttribute("data-search", "false");
@@ -342,7 +366,7 @@ export function sortingMethod() {
                   listApplianceAttribute.forEach((child) => {
                     child.children[0].removeAttribute("data-appliance");
                   });
-                  
+
                   const listUstensilAttribute = Array.from(
                     child.children[1].children[2].children[1].children
                   );
@@ -375,8 +399,8 @@ export function sortingMethod() {
 
             // if there is no card to display in section, display an error message
             if (section.innerText === "") {
-             const noResult = document.querySelector(".no-result");
-              noResult.style.display = "flex"; 
+              const noResult = document.querySelector(".no-result");
+              noResult.style.display = "flex";
               ingredientsList.innerHTML = "";
               appliancesList.innerHTML = "";
               ustensilsList.innerHTML = "";
