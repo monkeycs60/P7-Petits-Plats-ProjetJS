@@ -115,9 +115,9 @@ export function sortingMethod() {
         ingredients.addEventListener("click", makeIngredientsListVisible);
         ustensils.addEventListener("click", makeUstensilsListVisible);
         appliances.addEventListener("click", makeAppliancesListVisible);
-        ingredients.addEventListener("focusout", makeIngredientsListInvisible);
-        ustensils.addEventListener("focusout", makeUstensilsListInvisible);
-        appliances.addEventListener("focusout", makeAppliancesListInvisible);
+        // ingredients.addEventListener("focusout", makeIngredientsListInvisible);
+        // ustensils.addEventListener("focusout", makeUstensilsListInvisible);
+        // appliances.addEventListener("focusout", makeAppliancesListInvisible);
 
         // add event listener on focus out
 
@@ -207,10 +207,11 @@ export function sortingMethod() {
               (ingredient) =>
                 ingredient.toLowerCase().includes(value.toLowerCase())
             );
-            console.log(filteredIngredients);
 
-            ingredientsList.innerHTML = filteredIngredients.map(
-              (ingredient) => `<p>${ingredient}</p>`)
+            ingredientsList.innerHTML = "";
+            ingredientsList.innerHTML += filteredIngredients.map(
+              (ingredient) => `<p class="cursor-pointer">${ingredient}</p>`
+            );
           });
 
           // USTENSILS RECIPE LISTENER
@@ -220,7 +221,6 @@ export function sortingMethod() {
             const filteredUstensils = allUstensilsSimpleUnique.filter(
               (ustensil) => ustensil.toLowerCase().includes(value.toLowerCase())
             );
-            console.log(filteredUstensils);
 
             ustensilsList.innerHTML = filteredUstensils.map(
               (ustensil) => `<p>${ustensil}</p>`
@@ -236,13 +236,10 @@ export function sortingMethod() {
                 appliance.toLowerCase().includes(value.toLowerCase())
             );
             console.log(filteredAppliances);
-
             appliancesList.innerHTML = filteredAppliances.map(
               (appliance) => `<p>${appliance}</p>`
             );
           });
-
-
 
           // RECHERCHE SIMPLE : afficher les éléments contenant le texte saisi dans l'input
           mainSearch.addEventListener("keyup", (e) => {
