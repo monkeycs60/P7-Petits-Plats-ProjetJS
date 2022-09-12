@@ -194,7 +194,6 @@ export function sortingMethod() {
         function sortSimpleSearch() {
           const mainSearch = document.querySelector("#mainSearch");
           const section = document.querySelector("section");
-          console.log(section);
 
           const inputIngredients = document.getElementById("inputIngredients");
           const inputUstensiles = document.getElementById("inputUstensils");
@@ -225,6 +224,7 @@ export function sortingMethod() {
               Array.from(section.children).forEach((child) => {
                 if (child.textContent.toLowerCase().includes(input)) {
                   child.style.display = "flex";
+
                   // RECIPES TAGS : actualiser les tags à la recherche simple
                   const listAttribute = Array.from(
                     child.children[1].children[1].children[0].children
@@ -255,35 +255,40 @@ export function sortingMethod() {
                     ingredientsList.innerHTML += ` <p>${element}</p>`;
                   });
 
-
-                  // RECIPES TAGS : actualiser les tags à la recherche simple
+                  // APPLIANCES TAGS : actualiser les tags à la recherche simple
                   const listApplianceAttribute = Array.from(
                     child.children[1].children[2].children[0].children
                   );
-                  console.log(listApplianceAttribute);
+
                   listApplianceAttribute.forEach((child) => {
                     child.children[0].setAttribute("data-appliance", "true");
                   });
-                  console.log(listApplianceAttribute);
                   const dataAppliance = document.querySelectorAll(
                     '[data-appliance="true"]'
                   );
                   console.log(dataAppliance);
-               
-                  // add data-appliance attribute to children of appliancesList
-                  // listApplianceAttribute.setAttribute(
-                  //   "data-appliance", "true"
-                  // );
-                  // const dataAppliance = document.querySelectorAll(
-                  //   '[data-appliance="true"]'
-                  // );
-                  // let appliancesUpdate = [];
-                  // dataAppliance.forEach((child) => {
-                  //   appliancesUpdate.push(child.textContent.toLowerCase());
-                  // });
 
-                  // appliancesUpdate = [...new Set(appliancesUpdate)];
-                  // console.log(appliancesUpdate);
+                  let appliancesUpdate = [];
+                  dataAppliance.forEach((child) => {
+                    appliancesUpdate.push(child.textContent.toLowerCase());
+                  });
+
+                  appliancesUpdate = [...new Set(appliancesUpdate)];
+
+                  // sort appliancesUpdate
+                  appliancesUpdate.sort();
+
+                  // first letter of each word in uppercase
+                  appliancesUpdate = appliancesUpdate.map(
+                    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                  );
+          
+
+                  // change appliancesList innerHTML to display all child.textcontent of dataappliance
+                  appliancesList.innerHTML = "";
+                  appliancesUpdate.forEach((element) => {
+                    appliancesList.innerHTML += ` <p>${element}</p>`;
+                  });
 
 
                   // USTEENSILS TAGS : actualiser les tags à la recherche simple
@@ -302,6 +307,21 @@ export function sortingMethod() {
                   });
 
                   ustensilsUpdate = [...new Set(ustensilsUpdate)];
+                  console.log(ustensilsUpdate);
+
+                  // sort ustensilsUpdate
+                  ustensilsUpdate.sort();
+
+                  // first letter of each word in uppercase
+                  ustensilsUpdate = ustensilsUpdate.map(
+                    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                  );
+
+                  // change ustensilsList innerHTML to display all child.textcontent of dataustensil
+                  ustensilsList.innerHTML = "";
+                  ustensilsUpdate.forEach((element) => {
+                    ustensilsList.innerHTML += ` <p>${element}</p>`;
+                  });
 
 
 
@@ -315,17 +335,25 @@ export function sortingMethod() {
                   listAttribute.forEach((child) => {
                     child.children[0].removeAttribute("data-search");
                   });
+
+                  const listApplianceAttribute = Array.from(
+                    child.children[1].children[2].children[0].children
+                  );
+                  listApplianceAttribute.forEach((child) => {
+                    child.children[0].removeAttribute("data-appliance");
+                  });
+                  
+                  const listUstensilAttribute = Array.from(
+                    child.children[1].children[2].children[1].children
+                  );
+                  listUstensilAttribute.forEach((child) => {
+                    child.children[0].removeAttribute("data-ustensil");
+                  });
                 }
               });
 
               // APPLIANCES TAGS : actualiser les tags à la recherche simple
               console.log(allApplicancesSimpleUnique);
-              
-              // only display appliances that are contained in
-
-
-
-
             } else {
               // display all children of section
               Array.from(section.children).forEach((child) => {
@@ -334,6 +362,14 @@ export function sortingMethod() {
               ingredientsList.innerHTML = "";
               allIngredientsSimpleUnique.forEach((element) => {
                 ingredientsList.innerHTML += `<p>${element}</p>`;
+              });
+              appliancesList.innerHTML = "";
+              allApplicancesSimpleUnique.forEach((element) => {
+                appliancesList.innerHTML += `<p>${element}</p>`;
+              });
+              ustensilsList.innerHTML = "";
+              allUstensilsSimpleUnique.forEach((element) => {
+                ustensilsList.innerHTML += `<p>${element}</p>`;
               });
             }
           });
