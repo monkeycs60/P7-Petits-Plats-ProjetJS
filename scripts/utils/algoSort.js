@@ -27,6 +27,7 @@ export function sortingMethod() {
           ...new Set(allApplicancesSimple),
         ].sort();
 
+
         // PARTIE USTENSILES
         // applatit le tableau et renvoie tous les ustensiles dans un seul tableau d'objets
         const allUstensilsSimple = recipes.map((recipe) => recipe.ustensils);
@@ -209,9 +210,12 @@ export function sortingMethod() {
             );
 
             ingredientsList.innerHTML = "";
-            ingredientsList.innerHTML += filteredIngredients.map(
-              (ingredient) => `<p class="cursor-pointer">${ingredient}</p>`
-            );
+            filteredIngredients.forEach((ingredient) => {
+              const p = document.createElement("p");
+              p.classList.add("cursor-pointer");
+              p.innerText = ingredient;
+              ingredientsList.appendChild(p);
+            });
           });
 
           // USTENSILS RECIPE LISTENER
@@ -222,9 +226,13 @@ export function sortingMethod() {
               (ustensil) => ustensil.toLowerCase().includes(value.toLowerCase())
             );
 
-            ustensilsList.innerHTML = filteredUstensils.map(
-              (ustensil) => `<p>${ustensil}</p>`
-            );
+            ustensilsList.innerHTML = "";
+            filteredUstensils.forEach((ustensil) => {
+              const p = document.createElement("p");
+              p.classList.add("cursor-pointer");
+              p.innerText = ustensil;
+              ustensilsList.appendChild(p);
+            });
           });
 
           // APPLIANCES RECIPE LISTENER
@@ -235,10 +243,14 @@ export function sortingMethod() {
               (appliance) =>
                 appliance.toLowerCase().includes(value.toLowerCase())
             );
-            console.log(filteredAppliances);
-            appliancesList.innerHTML = filteredAppliances.map(
-              (appliance) => `<p>${appliance}</p>`
-            );
+            
+            appliancesList.innerHTML = "";
+            filteredAppliances.forEach((appliance) => {
+              const p = document.createElement("p");
+              p.classList.add("cursor-pointer");
+              p.innerText = appliance;
+              appliancesList.appendChild(p);
+            });
           });
 
           // RECHERCHE SIMPLE : afficher les éléments contenant le texte saisi dans l'input
