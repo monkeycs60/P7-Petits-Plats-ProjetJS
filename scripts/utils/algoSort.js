@@ -5,6 +5,9 @@ export function sortingMethod() {
       .then((data) => {
         const { recipes } = data;
         const allIngredients = [];
+        const ingredients = document.querySelector("#ingredients");
+        const appliances = document.querySelector("#appareils");
+        const ustensils = document.querySelector("#ustensiles");
 
         recipes.forEach((recipe) => {
           const { ingredients } = recipe;
@@ -51,7 +54,7 @@ export function sortingMethod() {
         // tableau des ingrédients
         const divIngredients = document.createElement("div");
         divIngredients.classList.add("full-list", "ingredients");
-        searchPannel.appendChild(divIngredients);
+        ingredients.appendChild(divIngredients);
         allIngredientsSimpleUnique.forEach((ingredient) => {
           divIngredients.innerHTML += `
         <p class="cursor-pointer">${ingredient}</p>
@@ -61,7 +64,7 @@ export function sortingMethod() {
         // tableau des ustensiles
         const divUstensils = document.createElement("div");
         divUstensils.classList.add("full-list", "ustensils");
-        searchPannel.appendChild(divUstensils);
+        ustensils.appendChild(divUstensils);
         allUstensilsSimpleUniqueUppercaseSorted.forEach((ustensil) => {
           divUstensils.innerHTML += `
         <p class="cursor-pointer">${ustensil}</p>
@@ -71,7 +74,7 @@ export function sortingMethod() {
         // tableau des appareils
         const divApplicances = document.createElement("div");
         divApplicances.classList.add("full-list", "appliances");
-        searchPannel.appendChild(divApplicances);
+        appliances.appendChild(divApplicances);
         allApplicancesSimpleUnique.forEach((applicance) => {
           divApplicances.innerHTML += `
         <p class="cursor-pointer">${applicance}</p>
@@ -81,9 +84,7 @@ export function sortingMethod() {
         const ingredientsList = document.querySelector(".ingredients");
         const ustensilsList = document.querySelector(".ustensils");
         const appliancesList = document.querySelector(".appliances");
-        const ingredients = document.querySelector("#ingredients");
-        const appliances = document.querySelector("#appareils");
-        const ustensils = document.querySelector("#ustensiles");
+
         const ingredientsWidth = ingredients.offsetWidth;
         const appliancesWidth = appliances.offsetWidth;
         const ustensilsWidth = ustensils.offsetWidth;
@@ -115,9 +116,9 @@ export function sortingMethod() {
         ingredients.addEventListener("click", makeIngredientsListVisible);
         ustensils.addEventListener("click", makeUstensilsListVisible);
         appliances.addEventListener("click", makeAppliancesListVisible);
-        // ingredients.addEventListener("focusout", makeIngredientsListInvisible);
-        // ustensils.addEventListener("focusout", makeUstensilsListInvisible);
-        // appliances.addEventListener("focusout", makeAppliancesListInvisible);
+        ingredients.addEventListener("focusout", makeIngredientsListInvisible);
+        ustensils.addEventListener("focusout", makeUstensilsListInvisible);
+        appliances.addEventListener("focusout", makeAppliancesListInvisible);
 
         // add event listener on focus out
 
@@ -215,7 +216,6 @@ export function sortingMethod() {
               p.classList.add("cursor-pointer");
               p.innerText = ingredient;
               ingredientsList.appendChild(p);
-              console.timeEnd("ingredients");
             });
           });
 

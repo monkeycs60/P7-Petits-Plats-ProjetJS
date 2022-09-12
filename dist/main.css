@@ -565,14 +565,14 @@ video {
 .mt-\[4vh\] {
   margin-top: 4vh;
 }
+.mt-\[8vh\] {
+  margin-top: 8vh;
+}
 .mt-\[6vh\] {
   margin-top: 6vh;
 }
 .mb-\[4vh\] {
   margin-bottom: 4vh;
-}
-.mt-\[8vh\] {
-  margin-top: 8vh;
 }
 .flex {
   display: flex;
@@ -719,6 +719,10 @@ video {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -726,10 +730,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 .font-bold {
   font-weight: 700;
@@ -740,14 +740,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-orange-600 {
-  --tw-text-opacity: 1;
-  color: rgb(234 88 12 / var(--tw-text-opacity));
-}
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 .text-red-400 {
   --tw-text-opacity: 1;
@@ -785,7 +777,7 @@ video {
 .ingredients {
   background: rgb(59, 130, 246);
   height: 20vh;
-  width: 26.1vw;
+  width: 20vw;
   left: 0;
 }
 
@@ -793,14 +785,14 @@ video {
   background: rgb(134, 239, 172);
   height: 20vh;
   width: 20vw;
-  left: 14vw;
+  left: 0;
 }
 
 .ustensils {
   background: rgb(248, 113, 113);
   height: 20vh;
-  width: 28.90vw;
-  left: 28vw;
+  width: 20vw;
+  left: 0;
 }
 
 .inactive {
@@ -820,15 +812,15 @@ video {
     top: 9.3vh;
   }
   .ingredients {
-    width: 30vw;
+    width: 20vw;
   }
   .appliances {
-    width: 25.1vw;
-    left: 14vw;
+    width: 20vw;
+    left: 0;
   }
   .ustensils {
-    width: 35vw;
-    left: 28.05vw;
+    width: 20vw;
+    left: 0;
   }
 }
 
@@ -838,19 +830,19 @@ video {
   }
   .ingredients {
     position: absolute;
-    left: 6vw;
+    left: 0;
     width: 35vw;
   }
   .appliances {
     position: absolute;
-    left: 44vw;
+    left: 0;
     width: 35vw;
   }
   .ustensils {
     position: absolute;
-    left: 25vw;
+    left: 0;
     width: 35vw;
-    top: 17.5vh;
+  
   }
 }
 
@@ -861,28 +853,28 @@ video {
   }
   .ingredients {
     position: absolute;
-    left: 7.5vw;
+    left: 0;
     width: 70vw;
   }
   .appliances {
     position: absolute;
-    left: 7.5vw;
+    left: 0;
     width: 70vw;
     top: 16.5vh;
   }
   .ustensils {
     position: absolute;
-    left: 7.5vw;
+    left: 0vw;
     width: 70vw;
     top: 26.5vh;
   }
 }
 
-html { 
+html {
   -webkit-text-size-adjust: none;
--moz-text-size-adjust: none;
--o-text-size-adjust: none;
-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 .placeholder\:text-base::-moz-placeholder {

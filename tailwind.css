@@ -23,7 +23,7 @@
 .ingredients {
   background: rgb(59, 130, 246);
   height: 20vh;
-  width: 26.1vw;
+  width: 20vw;
   left: 0;
 }
 
@@ -31,14 +31,14 @@
   background: rgb(134, 239, 172);
   height: 20vh;
   width: 20vw;
-  left: 14vw;
+  left: 0;
 }
 
 .ustensils {
   background: rgb(248, 113, 113);
   height: 20vh;
-  width: 28.90vw;
-  left: 28vw;
+  width: 20vw;
+  left: 0;
 }
 
 .inactive {
@@ -58,15 +58,15 @@
     top: 9.3vh;
   }
   .ingredients {
-    width: 30vw;
+    width: 20vw;
   }
   .appliances {
-    width: 25.1vw;
-    left: 14vw;
+    width: 20vw;
+    left: 0;
   }
   .ustensils {
-    width: 35vw;
-    left: 28.05vw;
+    width: 20vw;
+    left: 0;
   }
 }
 
@@ -76,19 +76,19 @@
   }
   .ingredients {
     position: absolute;
-    left: 6vw;
+    left: 0;
     width: 35vw;
   }
   .appliances {
     position: absolute;
-    left: 44vw;
+    left: 0;
     width: 35vw;
   }
   .ustensils {
     position: absolute;
-    left: 25vw;
+    left: 0;
     width: 35vw;
-    top: 17.5vh;
+  
   }
 }
 
@@ -99,27 +99,27 @@
   }
   .ingredients {
     position: absolute;
-    left: 7.5vw;
+    left: 0;
     width: 70vw;
   }
   .appliances {
     position: absolute;
-    left: 7.5vw;
+    left: 0;
     width: 70vw;
     top: 16.5vh;
   }
   .ustensils {
     position: absolute;
-    left: 7.5vw;
+    left: 0vw;
     width: 70vw;
     top: 26.5vh;
   }
 }
 
-html { 
+html {
   -webkit-text-size-adjust: none;
--moz-text-size-adjust: none;
--ms-text-size-adjust: none;
--o-text-size-adjust: none;
-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
 }
