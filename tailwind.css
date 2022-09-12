@@ -23,21 +23,21 @@
 .ingredients {
   background: rgb(59, 130, 246);
   height: 20vh;
-  width: 20vw;
+  width: 25vw;
   left: 0;
 }
 
 .appliances {
   background: rgb(134, 239, 172);
   height: 20vh;
-  width: 20vw;
+  width: 25vw;
   left: 0;
 }
 
 .ustensils {
   background: rgb(248, 113, 113);
   height: 20vh;
-  width: 20vw;
+  width: 25vw;
   left: 0;
 }
 
@@ -58,14 +58,14 @@
     top: 9.3vh;
   }
   .ingredients {
-    width: 20vw;
+    width: 25vw;
   }
   .appliances {
-    width: 20vw;
+    width: 25vw;
     left: 0;
   }
   .ustensils {
-    width: 20vw;
+    width: 25vw;
     left: 0;
   }
 }
