@@ -27,7 +27,6 @@ export function sortingMethod() {
           ...new Set(allApplicancesSimple),
         ].sort();
 
-
         // PARTIE USTENSILES
         // applatit le tableau et renvoie tous les ustensiles dans un seul tableau d'objets
         const allUstensilsSimple = recipes.map((recipe) => recipe.ustensils);
@@ -243,7 +242,7 @@ export function sortingMethod() {
               (appliance) =>
                 appliance.toLowerCase().includes(value.toLowerCase())
             );
-            
+
             appliancesList.innerHTML = "";
             filteredAppliances.forEach((appliance) => {
               const p = document.createElement("p");
