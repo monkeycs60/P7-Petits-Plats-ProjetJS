@@ -88,7 +88,6 @@
     position: absolute;
     left: 0;
     width: 35vw;
-  
   }
 }
 
@@ -106,13 +105,11 @@
     position: absolute;
     left: 0;
     width: 70vw;
-    top: 16.5vh;
   }
   .ustensils {
     position: absolute;
     left: 0vw;
     width: 70vw;
-    top: 26.5vh;
   }
 }
 
