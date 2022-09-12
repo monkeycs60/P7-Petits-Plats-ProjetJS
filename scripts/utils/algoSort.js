@@ -115,9 +115,9 @@ export function sortingMethod() {
         ingredients.addEventListener("click", makeIngredientsListVisible);
         ustensils.addEventListener("click", makeUstensilsListVisible);
         appliances.addEventListener("click", makeAppliancesListVisible);
-        // ingredients.addEventListener("focusout", makeIngredientsListInvisible);
-        // ustensils.addEventListener("focusout", makeUstensilsListInvisible);
-        // appliances.addEventListener("focusout", makeAppliancesListInvisible);
+        ingredients.addEventListener("focusout", makeIngredientsListInvisible);
+        ustensils.addEventListener("focusout", makeUstensilsListInvisible);
+        appliances.addEventListener("focusout", makeAppliancesListInvisible);
 
         // add event listener on focus out
 
