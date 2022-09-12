@@ -115,9 +115,9 @@ export function sortingMethod() {
         ingredients.addEventListener("click", makeIngredientsListVisible);
         ustensils.addEventListener("click", makeUstensilsListVisible);
         appliances.addEventListener("click", makeAppliancesListVisible);
-        ingredients.addEventListener("focusout", makeIngredientsListInvisible);
-        ustensils.addEventListener("focusout", makeUstensilsListInvisible);
-        appliances.addEventListener("focusout", makeAppliancesListInvisible);
+        // ingredients.addEventListener("focusout", makeIngredientsListInvisible);
+        // ustensils.addEventListener("focusout", makeUstensilsListInvisible);
+        // appliances.addEventListener("focusout", makeAppliancesListInvisible);
 
         // add event listener on focus out
 
@@ -201,6 +201,7 @@ export function sortingMethod() {
 
           // TAG RECIPE LISTENER
           inputIngredients.addEventListener("keyup", (e) => {
+            console.time("ingredients");
             const { value } = e.target;
 
             const filteredIngredients = allIngredientsSimpleUnique.filter(
@@ -214,6 +215,7 @@ export function sortingMethod() {
               p.classList.add("cursor-pointer");
               p.innerText = ingredient;
               ingredientsList.appendChild(p);
+              console.timeEnd("ingredients");
             });
           });
 
