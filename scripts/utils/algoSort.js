@@ -372,6 +372,18 @@ export function sortingMethod() {
                 ustensilsList.innerHTML += `<p>${element}</p>`;
               });
             }
+
+            // if there is no card to display in section, display an error message
+            if (section.innerText === "") {
+             const noResult = document.querySelector(".no-result");
+              noResult.style.display = "flex"; 
+              ingredientsList.innerHTML = "";
+              appliancesList.innerHTML = "";
+              ustensilsList.innerHTML = "";
+            } else {
+              const noResult = document.querySelector(".no-result");
+              noResult.style.display = "none";
+            }
           });
         }
         sortSimpleSearch();
