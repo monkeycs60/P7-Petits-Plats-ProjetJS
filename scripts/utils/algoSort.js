@@ -3,6 +3,10 @@ export function sortingMethod() {
     await fetch("./../data/recipes.json")
       .then((response) => response.json())
       .then((data) => {
+        const tagIngredientsTable = [];
+        const tagApplicancesTable = [];
+        const tagUstensilsTable = [];
+
         const { recipes } = data;
         const allIngredients = [];
         const ingredients = document.querySelector("#ingredients");
@@ -124,8 +128,7 @@ export function sortingMethod() {
         ingredients.addEventListener("blur", makeIngredientsListInvisible);
         ustensils.addEventListener("blur", makeUstensilsListInvisible);
         appliances.addEventListener("blur", makeAppliancesListInvisible);
-      
-       
+
         // inputIngredients.addEventListener("blur", makeIngredientsListInvisible);
         // inputUstensiles.addEventListener("blur", makeUstensilsListInvisible);
         // inputAppliances.addEventListener("blur", makeAppliancesListInvisible);
@@ -221,9 +224,6 @@ export function sortingMethod() {
               p.innerText = ingredient;
               ingredientsList.appendChild(p);
             });
-
-            // only display appl
-
           });
 
           // USTENSILS RECIPE LISTENER
@@ -424,6 +424,62 @@ export function sortingMethod() {
               const noResult = document.querySelector(".no-result");
               noResult.style.display = "none";
             }
+          });
+
+          // partie création des tags INGREDIENTS
+
+          const tagArea = document.querySelector(".tag-area");
+          const ingredientItems = document.querySelectorAll(".ingredients p");
+          const applianceItems = document.querySelectorAll(".appliances p");
+          const ustensilItems = document.querySelectorAll(".ustensils p");
+
+          ingredientItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+              // create a span with the text of the clicked item
+              const tag = document.createElement("span");
+              tag.classList.add("tagIngredients");
+              tag.innerHTML = item.textContent;
+              tagArea.appendChild(tag);
+              item.remove();
+              const icon = document.createElement("i");
+              icon.classList.add("fa-regular", "fa-circle-xmark");
+              tag.appendChild(icon);
+            });
+          });
+
+          // partie création des tags APPLIANCES
+
+          applianceItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+              // create a span with the text of the clicked item
+              const tag = document.createElement("span");
+              tag.classList.add("tagAppliances");
+              tag.innerHTML = item.textContent;
+              tagArea.appendChild(tag);
+              item.remove();
+              const icon = document.createElement("i");
+              icon.classList.add("fa-regular", "fa-circle-xmark");
+              tag.appendChild(icon);
+            });
+          });
+
+          // partie création des tags USTENSILS
+
+          ustensilItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+              // create a span with the text of the clicked item
+              const tag = document.createElement("span");
+              tag.classList.add("tagUstensils");
+              tag.innerHTML = item.textContent;
+              tagArea.appendChild(tag);
+              item.remove();
+              const icon = document.createElement("i");
+              icon.classList.add("fa-regular", "fa-circle-xmark");
+              tag.appendChild(icon);
+            });
           });
         }
         sortSimpleSearch();

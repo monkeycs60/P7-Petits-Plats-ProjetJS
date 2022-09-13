@@ -565,6 +565,9 @@ video {
 .mt-\[4vh\] {
   margin-top: 4vh;
 }
+.mt-\[3vh\] {
+  margin-top: 3vh;
+}
 .mt-\[8vh\] {
   margin-top: 8vh;
 }
@@ -604,6 +607,9 @@ video {
 .h-\[12vh\] {
   height: 12vh;
 }
+.max-h-\[8vh\] {
+  max-height: 8vh;
+}
 .max-h-16 {
   max-height: 4rem;
 }
@@ -634,6 +640,9 @@ video {
 .flex-col {
   flex-direction: column;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+}
 .items-center {
   align-items: center;
 }
@@ -645,6 +654,9 @@ video {
 }
 .justify-around {
   justify-content: space-around;
+}
+.gap-\[1vw\] {
+  gap: 1vw;
 }
 .gap-\[3vw\] {
   gap: 3vw;
@@ -796,6 +808,37 @@ video {
   width: 25vw;
   left: 0;
   padding-bottom: 1.5vh;
+}
+
+.tagIngredients {
+  background: rgb(59, 130, 246);
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1vw;
+  border-radius: 6px;
+  color: white;
+}
+
+.tagAppliances {
+  background: rgb(134, 239, 172);
+  padding: 8px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1vw;
+  border-radius: 6px;
+}
+
+.tagUstensils {
+  background: rgb(248, 113, 113);
+  padding: 8px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1vw;
+  border-radius: 6px;
 }
 
 .inactive {
