@@ -85,6 +85,10 @@ export function sortingMethod() {
         const ustensilsList = document.querySelector(".ustensils");
         const appliancesList = document.querySelector(".appliances");
 
+        const inputIngredients = document.getElementById("inputIngredients");
+        const inputUstensiles = document.getElementById("inputUstensils");
+        const inputAppliances = document.getElementById("inputAppliances");
+
         const ingredientsWidth = ingredients.offsetWidth;
         const appliancesWidth = appliances.offsetWidth;
         const ustensilsWidth = ustensils.offsetWidth;
@@ -116,11 +120,15 @@ export function sortingMethod() {
         ingredients.addEventListener("click", makeIngredientsListVisible);
         ustensils.addEventListener("click", makeUstensilsListVisible);
         appliances.addEventListener("click", makeAppliancesListVisible);
+
         ingredients.addEventListener("blur", makeIngredientsListInvisible);
         ustensils.addEventListener("blur", makeUstensilsListInvisible);
         appliances.addEventListener("blur", makeAppliancesListInvisible);
-
-        // add event listener on focus out
+      
+       
+        // inputIngredients.addEventListener("blur", makeIngredientsListInvisible);
+        // inputUstensiles.addEventListener("blur", makeUstensilsListInvisible);
+        // inputAppliances.addEventListener("blur", makeAppliancesListInvisible);
 
         function makeIngredientsListVisible() {
           ingredientsList.style.display = "flex";
@@ -136,9 +144,6 @@ export function sortingMethod() {
 
           appliances.style.width = `${appliancesWidth}px`;
           ustensils.style.width = `${ustensilsWidth}px`;
-
-          // margin bottom to 10vh
-          // ingredients.style.marginBottom = "10vh";
         }
 
         function makeUstensilsListVisible() {
@@ -199,10 +204,6 @@ export function sortingMethod() {
           const mainSearch = document.querySelector("#mainSearch");
           const section = document.querySelector("section");
 
-          const inputIngredients = document.getElementById("inputIngredients");
-          const inputUstensiles = document.getElementById("inputUstensils");
-          const inputAppliances = document.getElementById("inputAppliances");
-
           // TAG RECIPE LISTENER
           inputIngredients.addEventListener("keyup", (e) => {
             console.time("ingredients");
@@ -220,6 +221,9 @@ export function sortingMethod() {
               p.innerText = ingredient;
               ingredientsList.appendChild(p);
             });
+
+            // only display appl
+
           });
 
           // USTENSILS RECIPE LISTENER
