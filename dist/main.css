@@ -762,7 +762,7 @@ video {
   flex-wrap: wrap;
   flex-direction: column;
   top: 5.5vh;
-  overflow-x: scroll;
+  overflow-x: auto;
   scrollbar-width: large;
   color: white;
   z-index: 3;
@@ -776,23 +776,26 @@ video {
 
 .ingredients {
   background: rgb(59, 130, 246);
-  height: 20vh;
+  max-height: 20vh;
   width: 25vw;
   left: 0;
+  padding-bottom: 1.5vh;
 }
 
 .appliances {
   background: rgb(134, 239, 172);
-  height: 20vh;
+  max-height: 20vh;
   width: 25vw;
   left: 0;
+  padding-bottom: 1.5vh;
 }
 
 .ustensils {
   background: rgb(248, 113, 113);
-  height: 20vh;
+  max-height: 20vh;
   width: 25vw;
   left: 0;
+  padding-bottom: 1.5vh;
 }
 
 .inactive {

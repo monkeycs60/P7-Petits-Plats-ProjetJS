@@ -116,9 +116,9 @@ export function sortingMethod() {
         ingredients.addEventListener("click", makeIngredientsListVisible);
         ustensils.addEventListener("click", makeUstensilsListVisible);
         appliances.addEventListener("click", makeAppliancesListVisible);
-        ingredients.addEventListener("focusout", makeIngredientsListInvisible);
-        ustensils.addEventListener("focusout", makeUstensilsListInvisible);
-        appliances.addEventListener("focusout", makeAppliancesListInvisible);
+        ingredients.addEventListener("blur", makeIngredientsListInvisible);
+        ustensils.addEventListener("blur", makeUstensilsListInvisible);
+        appliances.addEventListener("blur", makeAppliancesListInvisible);
 
         // add event listener on focus out
 
@@ -136,6 +136,9 @@ export function sortingMethod() {
 
           appliances.style.width = `${appliancesWidth}px`;
           ustensils.style.width = `${ustensilsWidth}px`;
+
+          // margin bottom to 10vh
+          // ingredients.style.marginBottom = "10vh";
         }
 
         function makeUstensilsListVisible() {
@@ -345,7 +348,6 @@ export function sortingMethod() {
                   });
 
                   ustensilsUpdate = [...new Set(ustensilsUpdate)];
-                  console.log(ustensilsUpdate);
 
                   // sort ustensilsUpdate
                   ustensilsUpdate.sort();
