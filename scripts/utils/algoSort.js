@@ -61,7 +61,7 @@ export function sortingMethod() {
         ingredients.appendChild(divIngredients);
         allIngredientsSimpleUnique.forEach((ingredient) => {
           divIngredients.innerHTML += `
-        <p class="cursor-pointer">${ingredient}</p>
+        <p class="cursor-pointer ingredientListListener">${ingredient}</p>
         `;
         });
 
@@ -220,7 +220,7 @@ export function sortingMethod() {
             ingredientsList.innerHTML = "";
             filteredIngredients.forEach((ingredient) => {
               const p = document.createElement("p");
-              p.classList.add("cursor-pointer");
+              p.classList.add("cursor-pointer", "ingredientListListener");
               p.innerText = ingredient;
               ingredientsList.appendChild(p);
             });
@@ -299,7 +299,7 @@ export function sortingMethod() {
                   // change ingredientsList innerHTML to display all child.textcontent of datasearch
                   ingredientsList.innerHTML = "";
                   ingredientsUpdate.forEach((element) => {
-                    ingredientsList.innerHTML += ` <p>${element}</p>`;
+                    ingredientsList.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
                   });
 
                   // APPLIANCES TAGS : actualiser les tags à la recherche simple
@@ -435,15 +435,14 @@ export function sortingMethod() {
           const applianceItems = document.querySelectorAll(".appliances p");
           const ustensilItems = document.querySelectorAll(".ustensils p");
 
-          ingredientItems.forEach((item) => {
+          ingredientListListener.forEach((item) => {
             item.addEventListener("click", (e) => {
-           console.log("cc");
+              console.log("cc");
               // create a span with the text of the clicked item
               const tag = document.createElement("span");
               tag.classList.add("tagIngredients");
               tag.innerHTML = item.textContent;
               tagArea.appendChild(tag);
-              item.remove();
               const icon = document.createElement("i");
               icon.classList.add("fa-regular", "fa-circle-xmark");
               tag.appendChild(icon);
@@ -475,12 +474,12 @@ export function sortingMethod() {
                   const dataSearch = document.querySelectorAll(
                     '[data-search="true"]'
                   );
-                  
+
                   let ingredientsUpdate = [];
                   dataSearch.forEach((child) => {
                     ingredientsUpdate.push(child.textContent.toLowerCase());
                   });
-   
+
                   ingredientsUpdate = [...new Set(ingredientsUpdate)];
                   // sort ingredientsUpdate
 
@@ -495,6 +494,18 @@ export function sortingMethod() {
                   ingredientsUpdate.forEach((element) => {
                     ingredientsList.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
                   });
+                 
+                  // if an element of ingredientslist is the same as the tag, remove it from the list
+                  const ingredientsListItems = Array.from(
+                    document.querySelectorAll(".ingredients p")
+                  );
+                  ingredientsListItems.forEach((item) => {
+                    if (item.textContent === tag.textContent) {
+                      item.remove();
+                    }
+                  });
+               
+                  
                 } else {
                   child.style.display = "none";
                   child.setAttribute("data-search", "false");
@@ -506,8 +517,6 @@ export function sortingMethod() {
                   });
                 }
               });
-
-          
             });
           });
 
@@ -515,6 +524,7 @@ export function sortingMethod() {
 
           applianceItems.forEach((item) => {
             item.addEventListener("click", (e) => {
+              console.log(document.querySelectorAll(".ingredientListListener"));
               e.preventDefault();
               // create a span with the text of the clicked item
               const tag = document.createElement("span");
@@ -526,7 +536,7 @@ export function sortingMethod() {
               icon.classList.add("fa-regular", "fa-circle-xmark");
               tag.appendChild(icon);
             });
-          });
+          } );
 
           // partie création des tags USTENSILS
 
