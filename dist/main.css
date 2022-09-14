@@ -577,6 +577,12 @@ video {
 .mb-\[4vh\] {
   margin-bottom: 4vh;
 }
+.mt-\[vh\] {
+  margin-top: vh;
+}
+.mt-\[2vh\] {
+  margin-top: 2vh;
+}
 .flex {
   display: flex;
 }

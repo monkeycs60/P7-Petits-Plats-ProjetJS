@@ -313,7 +313,6 @@ export function sortingMethod() {
                   const dataAppliance = document.querySelectorAll(
                     '[data-appliance="true"]'
                   );
-                  console.log(dataAppliance);
 
                   let appliancesUpdate = [];
                   dataAppliance.forEach((child) => {
@@ -393,7 +392,6 @@ export function sortingMethod() {
               });
 
               // APPLIANCES TAGS : actualiser les tags à la recherche simple
-              console.log(allApplicancesSimpleUnique);
             } else {
               // display all children of section
               Array.from(section.children).forEach((child) => {
@@ -428,6 +426,10 @@ export function sortingMethod() {
 
           // partie création des tags INGREDIENTS
 
+          const ingredientListListener = document.querySelectorAll(
+            ".ingredientListListener"
+          );
+
           const tagArea = document.querySelector(".tag-area");
           const ingredientItems = document.querySelectorAll(".ingredients p");
           const applianceItems = document.querySelectorAll(".appliances p");
@@ -435,7 +437,7 @@ export function sortingMethod() {
 
           ingredientItems.forEach((item) => {
             item.addEventListener("click", (e) => {
-              e.preventDefault();
+           console.log("cc");
               // create a span with the text of the clicked item
               const tag = document.createElement("span");
               tag.classList.add("tagIngredients");
@@ -445,6 +447,67 @@ export function sortingMethod() {
               const icon = document.createElement("i");
               icon.classList.add("fa-regular", "fa-circle-xmark");
               tag.appendChild(icon);
+
+              // Quand un élément p de la liste est cliqué, ajoute la classe tagIngredients
+              const tagIngredients = Array.from(
+                document.querySelectorAll(".tagIngredients")
+              );
+
+              Array.from(section.children).forEach((child) => {
+                // child.textcontent has to include every value of tagIngredients array
+                if (
+                  tagIngredients.every((tag) =>
+                    child.textContent
+                      .toLowerCase()
+                      .includes(tag.textContent.toLowerCase())
+                  )
+                ) {
+                  child.style.display = "flex";
+                  const listAttribute = Array.from(
+                    child.children[1].children[1].children[0].children
+                  );
+
+                  listAttribute.forEach((child) => {
+                    console.log(child.children[0]);
+                    child.children[0].setAttribute("data-search", "true");
+                  });
+
+                  const dataSearch = document.querySelectorAll(
+                    '[data-search="true"]'
+                  );
+                  
+                  let ingredientsUpdate = [];
+                  dataSearch.forEach((child) => {
+                    ingredientsUpdate.push(child.textContent.toLowerCase());
+                  });
+   
+                  ingredientsUpdate = [...new Set(ingredientsUpdate)];
+                  // sort ingredientsUpdate
+
+                  ingredientsUpdate.sort();
+                  // first letter of each word in uppercase
+                  ingredientsUpdate = ingredientsUpdate.map(
+                    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                  );
+
+                  // change ingredientsList innerHTML to display all child.textcontent of datasearch
+                  ingredientsList.innerHTML = "";
+                  ingredientsUpdate.forEach((element) => {
+                    ingredientsList.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
+                  });
+                } else {
+                  child.style.display = "none";
+                  child.setAttribute("data-search", "false");
+                  const listAttribute = Array.from(
+                    child.children[1].children[1].children[0].children
+                  );
+                  listAttribute.forEach((child) => {
+                    child.children[0].removeAttribute("data-search");
+                  });
+                }
+              });
+
+          
             });
           });
 
