@@ -434,7 +434,6 @@ export function sortingMethod() {
           const applianceItems = document.querySelectorAll(".appliances p");
           const ustensilItems = document.querySelectorAll(".ustensils p");
 
-       console.log(Array.from(divIngredients.children));
           const ingredientsTagsListener = Array.from(
             divIngredients.children
           );
