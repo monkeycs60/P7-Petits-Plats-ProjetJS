@@ -209,7 +209,6 @@ export function sortingMethod() {
 
           // TAG RECIPE LISTENER
           inputIngredients.addEventListener("keyup", (e) => {
-            console.time("ingredients");
             const { value } = e.target;
 
             const filteredIngredients = allIngredientsSimpleUnique.filter(
@@ -217,12 +216,12 @@ export function sortingMethod() {
                 ingredient.toLowerCase().includes(value.toLowerCase())
             );
 
-            ingredientsList.innerHTML = "";
+            divIngredients.innerHTML = "";
             filteredIngredients.forEach((ingredient) => {
               const p = document.createElement("p");
               p.classList.add("cursor-pointer", "ingredientListListener");
               p.innerText = ingredient;
-              ingredientsList.appendChild(p);
+              divIngredients.appendChild(p);
             });
           });
 
@@ -234,12 +233,12 @@ export function sortingMethod() {
               (ustensil) => ustensil.toLowerCase().includes(value.toLowerCase())
             );
 
-            ustensilsList.innerHTML = "";
+            divUstensils.innerHTML = "";
             filteredUstensils.forEach((ustensil) => {
               const p = document.createElement("p");
               p.classList.add("cursor-pointer");
               p.innerText = ustensil;
-              ustensilsList.appendChild(p);
+              divUstensils.appendChild(p);
             });
           });
 
@@ -252,12 +251,12 @@ export function sortingMethod() {
                 appliance.toLowerCase().includes(value.toLowerCase())
             );
 
-            appliancesList.innerHTML = "";
+            divApplicances.innerHTML = "";
             filteredAppliances.forEach((appliance) => {
               const p = document.createElement("p");
               p.classList.add("cursor-pointer");
               p.innerText = appliance;
-              appliancesList.appendChild(p);
+              divApplicances.appendChild(p);
             });
           });
 
@@ -297,9 +296,9 @@ export function sortingMethod() {
                   );
 
                   // change ingredientsList innerHTML to display all child.textcontent of datasearch
-                  ingredientsList.innerHTML = "";
+                  divIngredients.innerHTML = "";
                   ingredientsUpdate.forEach((element) => {
-                    ingredientsList.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
+                    divIngredients.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
                   });
 
                   // APPLIANCES TAGS : actualiser les tags à la recherche simple
@@ -330,9 +329,9 @@ export function sortingMethod() {
                   );
 
                   // change appliancesList innerHTML to display all child.textcontent of dataappliance
-                  appliancesList.innerHTML = "";
+                  divApplicances.innerHTML = "";
                   appliancesUpdate.forEach((element) => {
-                    appliancesList.innerHTML += ` <p>${element}</p>`;
+                    divApplicances.innerHTML += ` <p>${element}</p>`;
                   });
 
                   // USTEENSILS TAGS : actualiser les tags à la recherche simple
@@ -361,9 +360,9 @@ export function sortingMethod() {
                   );
 
                   // change ustensilsList innerHTML to display all child.textcontent of dataustensil
-                  ustensilsList.innerHTML = "";
+                  divUstensils.innerHTML = "";
                   ustensilsUpdate.forEach((element) => {
-                    ustensilsList.innerHTML += ` <p>${element}</p>`;
+                    divUstensils.innerHTML += ` <p>${element}</p>`;
                   });
                 } else {
                   child.style.display = "none";
@@ -397,17 +396,17 @@ export function sortingMethod() {
               Array.from(section.children).forEach((child) => {
                 child.style.display = "flex";
               });
-              ingredientsList.innerHTML = "";
+              divIngredients.innerHTML = "";
               allIngredientsSimpleUnique.forEach((element) => {
-                ingredientsList.innerHTML += `<p>${element}</p>`;
+                divIngredients.innerHTML += `<p>${element}</p>`;
               });
-              appliancesList.innerHTML = "";
+              divApplicances.innerHTML = "";
               allApplicancesSimpleUnique.forEach((element) => {
-                appliancesList.innerHTML += `<p>${element}</p>`;
+                divApplicances.innerHTML += `<p>${element}</p>`;
               });
-              ustensilsList.innerHTML = "";
+              divUstensils.innerHTML = "";
               allUstensilsSimpleUnique.forEach((element) => {
-                ustensilsList.innerHTML += `<p>${element}</p>`;
+                divUstensils.innerHTML += `<p>${element}</p>`;
               });
             }
 
@@ -415,9 +414,9 @@ export function sortingMethod() {
             if (section.innerText === "") {
               const noResult = document.querySelector(".no-result");
               noResult.style.display = "flex";
-              ingredientsList.innerHTML = "";
-              appliancesList.innerHTML = "";
-              ustensilsList.innerHTML = "";
+              divIngredients.innerHTML = "";
+              divApplicances.innerHTML = "";
+              divUstensils.innerHTML = "";
             } else {
               const noResult = document.querySelector(".no-result");
               noResult.style.display = "none";
@@ -435,18 +434,21 @@ export function sortingMethod() {
           const applianceItems = document.querySelectorAll(".appliances p");
           const ustensilItems = document.querySelectorAll(".ustensils p");
 
-          ingredientListListener.forEach((item) => {
-            item.addEventListener("click", (e) => {
-              e.preventDefault();
-              const tag = document.createElement("span");
-              tag.classList.add("tagIngredients");
-              tag.innerHTML = item.textContent;
+       console.log(Array.from(divIngredients.children));
+          const ingredientsTagsListener = Array.from(
+            divIngredients.children
+          );
+        
+          ingredientsTagsListener.forEach((element) => {
+            element.addEventListener("click", (e) => {
+              const tag = document.createElement("div");
+              tag.classList.add("tag");
+              tag.innerHTML = `<p>${e.target.textContent}</p><i class="fas fa-times"></i>`;
               tagArea.appendChild(tag);
-              const icon = document.createElement("i");
-              icon.classList.add("fa-regular", "fa-circle-xmark");
-              tag.appendChild(icon);
-
-              // Quand un élément p de la liste est cliqué, ajoute la classe tagIngredients
+              e.target.style.display = "none";
+              
+           
+                  // Quand un élément p de la liste est cliqué, ajoute la classe tagIngredients
               const tagIngredients = Array.from(
                 document.querySelectorAll(".tagIngredients")
               );
@@ -492,9 +494,6 @@ export function sortingMethod() {
                   ingredientsUpdate.forEach((element) => {
                     ingredientsList.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
                   });
-              
-               
-
 
                   // if an element of ingredientslist is the same as the tag, remove it from the list
                   const ingredientsListItems = Array.from(
@@ -520,6 +519,91 @@ export function sortingMethod() {
               });
             });
           });
+
+
+
+          // ingredientsTagsListener.forEach((child) => => {
+          //   child.addEventListener("click", (e) => {
+          //     e.preventDefault();
+          //     const tag = document.createElement("span");
+          //     tag.classList.add("tagIngredients");
+          //     tag.innerHTML = item.textContent;
+          //     tagArea.appendChild(tag);
+          //     const icon = document.createElement("i");
+          //     icon.classList.add("fa-regular", "fa-circle-xmark");
+          //     tag.appendChild(icon);
+
+          //     // Quand un élément p de la liste est cliqué, ajoute la classe tagIngredients
+          //     const tagIngredients = Array.from(
+          //       document.querySelectorAll(".tagIngredients")
+          //     );
+
+          //     Array.from(section.children).forEach((child) => {
+          //       // child.textcontent has to include every value of tagIngredients array
+          //       if (
+          //         tagIngredients.every((tag) =>
+          //           child.textContent
+          //             .toLowerCase()
+          //             .includes(tag.textContent.toLowerCase())
+          //         )
+          //       ) {
+          //         child.style.display = "flex";
+          //         const listAttribute = Array.from(
+          //           child.children[1].children[1].children[0].children
+          //         );
+
+          //         listAttribute.forEach((child) => {
+          //           child.children[0].setAttribute("data-search", "true");
+          //         });
+
+          //         const dataSearch = document.querySelectorAll(
+          //           '[data-search="true"]'
+          //         );
+
+          //         let ingredientsUpdate = [];
+          //         dataSearch.forEach((child) => {
+          //           ingredientsUpdate.push(child.textContent.toLowerCase());
+          //         });
+
+          //         ingredientsUpdate = [...new Set(ingredientsUpdate)];
+          //         // sort ingredientsUpdate
+
+          //         ingredientsUpdate.sort();
+          //         // first letter of each word in uppercase
+          //         ingredientsUpdate = ingredientsUpdate.map(
+          //           (word) => word.charAt(0).toUpperCase() + word.slice(1)
+          //         );
+
+          //         // change ingredientsList innerHTML to display all child.textcontent of datasearch
+          //         ingredientsList.innerHTML = "";
+          //         ingredientsUpdate.forEach((element) => {
+          //           ingredientsList.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
+          //         });
+
+          //         // if an element of ingredientslist is the same as the tag, remove it from the list
+          //         const ingredientsListItems = Array.from(
+          //           document.querySelectorAll(".ingredients p")
+          //         );
+          //         console.log(ingredientsListItems);
+          //         ingredientsListItems.forEach((item) => {
+          //           if (item.textContent === tag.textContent) {
+          //             item.remove();
+          //           }
+          //         });
+          //       } else {
+          //         child.style.display = "none";
+          //         child.setAttribute("data-search", "false");
+          //         const listAttribute = Array.from(
+          //           child.children[1].children[1].children[0].children
+          //         );
+          //         listAttribute.forEach((child) => {
+          //           child.children[0].removeAttribute("data-search");
+          //         });
+          //       }
+          //       console.log(divIngredients);
+          //     });
+          //   });
+          // });
 
           // partie création des tags APPLIANCES
 
