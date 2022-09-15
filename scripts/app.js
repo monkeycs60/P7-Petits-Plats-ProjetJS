@@ -1,6 +1,5 @@
 import { recipeCardFactory } from "./utils/recipeCardFactory.js";
-import { sortingMethod } from "./utils/algoSort.js";
-// import { sortSimpleSearch } from "./utils/sorterFunc.js";
+// import { sortingMethod } from "./utils/algoSort.js";
 
 function hideChevron() {
   const chevronUpIngredients = document.getElementById("chevronUpIngredients");
@@ -24,8 +23,8 @@ async function fetchRecipes() {
         const cardContent = recipeCard.createRecipeCard();
         document.getElementById("recipe-grid").appendChild(cardContent);
       });
+      console.log(data);
     });
 }
 
 fetchRecipes();
-sortingMethod();
