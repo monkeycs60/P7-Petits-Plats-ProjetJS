@@ -63,9 +63,9 @@ export function recipeCardFactory(recipe) {
 
     const UlAppliance = document.createElement("ul");
     const liAppliance = document.createElement("li");
-      liAppliance.innerHTML = `<span class="font-bold applianceTag">${appliance}</span>`;
-      UlAppliance.appendChild(liAppliance);
-      otherDatas.appendChild(UlAppliance);
+    liAppliance.innerHTML = `<span class="font-bold applianceTag">${appliance}</span>`;
+    UlAppliance.appendChild(liAppliance);
+    otherDatas.appendChild(UlAppliance);
 
     const UlUstensils = document.createElement("ul");
     recipe.ustensils.forEach((uniqueUstensil) => {
@@ -74,8 +74,6 @@ export function recipeCardFactory(recipe) {
       UlUstensils.appendChild(liUstensil);
     });
     otherDatas.appendChild(UlUstensils);
-    
-
 
     return article;
   }

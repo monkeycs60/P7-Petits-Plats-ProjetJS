@@ -437,8 +437,7 @@ export function sortingMethod() {
 
           ingredientListListener.forEach((item) => {
             item.addEventListener("click", (e) => {
-              console.log("cc");
-              // create a span with the text of the clicked item
+              e.preventDefault();
               const tag = document.createElement("span");
               tag.classList.add("tagIngredients");
               tag.innerHTML = item.textContent;
@@ -467,7 +466,6 @@ export function sortingMethod() {
                   );
 
                   listAttribute.forEach((child) => {
-                    console.log(child.children[0]);
                     child.children[0].setAttribute("data-search", "true");
                   });
 
@@ -494,18 +492,20 @@ export function sortingMethod() {
                   ingredientsUpdate.forEach((element) => {
                     ingredientsList.innerHTML += ` <p class="cursor-pointer ingredientListListener">${element}</p>`;
                   });
-                 
+              
+               
+
+
                   // if an element of ingredientslist is the same as the tag, remove it from the list
                   const ingredientsListItems = Array.from(
                     document.querySelectorAll(".ingredients p")
                   );
+                  console.log(ingredientsListItems);
                   ingredientsListItems.forEach((item) => {
                     if (item.textContent === tag.textContent) {
                       item.remove();
                     }
                   });
-               
-                  
                 } else {
                   child.style.display = "none";
                   child.setAttribute("data-search", "false");
@@ -516,6 +516,7 @@ export function sortingMethod() {
                     child.children[0].removeAttribute("data-search");
                   });
                 }
+                console.log(divIngredients);
               });
             });
           });
@@ -536,7 +537,7 @@ export function sortingMethod() {
               icon.classList.add("fa-regular", "fa-circle-xmark");
               tag.appendChild(icon);
             });
-          } );
+          });
 
           // partie création des tags USTENSILS
 

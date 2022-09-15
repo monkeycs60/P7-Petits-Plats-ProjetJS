@@ -565,8 +565,8 @@ video {
 .mt-\[4vh\] {
   margin-top: 4vh;
 }
-.mt-\[3vh\] {
-  margin-top: 3vh;
+.mt-\[2vh\] {
+  margin-top: 2vh;
 }
 .mt-\[8vh\] {
   margin-top: 8vh;
@@ -576,12 +576,6 @@ video {
 }
 .mb-\[4vh\] {
   margin-bottom: 4vh;
-}
-.mt-\[vh\] {
-  margin-top: vh;
-}
-.mt-\[2vh\] {
-  margin-top: 2vh;
 }
 .flex {
   display: flex;
