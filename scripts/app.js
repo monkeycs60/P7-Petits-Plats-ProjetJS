@@ -1,14 +1,13 @@
 import { hideChevron } from "./cosmetic/chevronHide.js";
-import { recipeCardFactory } from "./utils/recipeCardFactory.js";
+import { recipeCardFactory } from "./factory/recipeCardFactory.js";
 import {
   ingredientsTags,
   appliancesTags,
   ustensilsTags,
   creatingTagsArrays,
-} from "./utils/TagsArray.js";
-import { tagsListsContent } from "./cosmetic/tagsListsContent.js";
-import { handleTags } from "./cosmetic/displayTags.js";
-
+} from "./tags/TagsArray.js";
+import { tagsListsContent } from "./tags/tagsListsContent.js";
+import { handleTags } from "./tags/displayTags.js";
 
 // on cache les chevrons up en JS
 hideChevron();
@@ -44,7 +43,6 @@ async function* initGenerator() {
   yield 5;
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
-
 }
 
 // on initialise le générateur
