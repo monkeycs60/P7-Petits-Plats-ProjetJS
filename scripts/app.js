@@ -1,7 +1,11 @@
 import { hideChevron } from "./cosmetic/chevronHide.js";
 import { recipeCardFactory } from "./utils/recipeCardFactory.js";
-import { ingredientsTags, creatingTagsArrays } from "./utils/TagsArray.js";
-
+import {
+  ingredientsTags,
+  appliancesTags,
+  ustensilsTags,
+  creatingTagsArrays,
+} from "./utils/TagsArray.js";
 
 // déclaration des constantes et variables globales
 const allAppliances = [];
@@ -35,7 +39,14 @@ async function* initGenerator() {
   creatingTagsArrays(recipes);
 
   yield 4;
+  // log des trois tableaux TAGS
   console.log(ingredientsTags);
+  console.log(appliancesTags);
+  console.log(ustensilsTags);
+
+  yield 5;
+  
+
 }
 
 // on initialise le générateur
