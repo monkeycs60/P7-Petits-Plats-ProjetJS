@@ -6,10 +6,8 @@ import {
   ustensilsTags,
   creatingTagsArrays,
 } from "./utils/TagsArray.js";
+import { tagsListsContent } from "./cosmetic/displayTagsLists.js";
 
-// déclaration des constantes et variables globales
-const allAppliances = [];
-const allUstensils = [];
 
 // on cache les chevrons up en JS
 hideChevron();
@@ -45,7 +43,9 @@ async function* initGenerator() {
   console.log(ustensilsTags);
 
   yield 5;
-  
+  // gère le contenu des tags
+  tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
+
 
 }
 
