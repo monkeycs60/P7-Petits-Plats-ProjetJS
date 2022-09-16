@@ -3,9 +3,7 @@ export function sortingMethod() {
     await fetch("./../data/recipes.json")
       .then((response) => response.json())
       .then((data) => {
-        const tagIngredientsTable = [];
-        const tagApplicancesTable = [];
-        const tagUstensilsTable = [];
+        
 
         const { recipes } = data;
         const allIngredients = [];
