@@ -7,7 +7,7 @@ import {
   creatingTagsArrays,
 } from "./utils/TagsArray.js";
 import { tagsListsContent } from "./cosmetic/tagsListsContent.js";
-import { displayTagsDOM } from "./cosmetic/displayTags.js";
+import { handleTags } from "./cosmetic/displayTags.js";
 
 
 // on cache les chevrons up en JS
@@ -43,7 +43,7 @@ async function* initGenerator() {
 
   yield 5;
   // affiche les tags dans le DOM -/- les fait disparaître
-  displayTagsDOM();
+  handleTags();
 
 }
 

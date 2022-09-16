@@ -1,3 +1,5 @@
+export function handleTags() {
+
 // déclaration des constantes
 const ingredients = document.querySelector("#ingredients");
 const appliances = document.querySelector("#appareils");
@@ -26,10 +28,8 @@ const chevronUpUstensiles = document.querySelector("#chevronUpUstensils");
 const chevronUpAppliances = document.querySelector("#chevronUpAppliances");
 
 // Fonction PRINCIPALE qui règle l'apparition des Tags
-export function displayTagsDOM() {
+function displayTagsDOM() {
   // Par défaut, les listes sont invisibles
-  console.log(ingredientsList);
-  const ingredientsList = document.querySelector(".ingredients");
   ingredientsList.style.display = "none";
   ustensilsList.style.display = "none";
   appliancesList.style.display = "none";
@@ -113,4 +113,7 @@ function makeAppliancesListInvisible() {
   chevronDownAppliances.style.display = "block";
   chevronUpAppliances.style.display = "none";
   appliances.style.width = `${appliancesWidth}px`;
+}
+
+return displayTagsDOM();
 }
