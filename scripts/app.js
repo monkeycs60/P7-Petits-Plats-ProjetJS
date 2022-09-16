@@ -6,7 +6,8 @@ import {
   ustensilsTags,
   creatingTagsArrays,
 } from "./utils/TagsArray.js";
-import { tagsListsContent } from "./cosmetic/displayTagsLists.js";
+import { tagsListsContent } from "./cosmetic/tagsListsContent.js";
+import { displayTagsDOM } from "./cosmetic/displayTags.js";
 
 
 // on cache les chevrons up en JS
@@ -40,6 +41,9 @@ async function* initGenerator() {
   // gère le contenu des tags
   tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
 
+  yield 5;
+  // affiche les tags dans le DOM -/- les fait disparaître
+  displayTagsDOM();
 
 }
 

@@ -1,16 +1,5 @@
 
 
-        // remets la première lettre de chaque ustensile en majuscule
-        const allUstensilsSimpleUniqueUppercase = allUstensilsSimpleUnique.map(
-          (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
-        );
-
-        // sort ne prend pas en compte les accents donc on utilise la méthode locale compare
-        const allUstensilsSimpleUniqueUppercaseSorted =
-          allUstensilsSimpleUniqueUppercase.sort((a, b) =>
-            a.localeCompare(b, "fr", { sensitivity: "base" })
-          );
-
         // AJOUT DES TABLEAUX DANS LE DOM - Search pannel
         const searchPannel = document.getElementById("search-pannel");
 
