@@ -16,13 +16,13 @@ export function tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags)
 
   // the div content is the content of the array
   divIngredients.innerHTML = ingredientsTags
-    .map((ingredient) => `<div class="tag">${ingredient}</div>`)
+    .map((ingredient) => `<p class="cursor-pointer">${ingredient}</p>`)
     .join("");
   divAppliances.innerHTML = appliancesTags
-    .map((appliance) => `<div class="tag">${appliance}</div>`)
+    .map((appliance) => `<p class="cursor-pointer">${appliance}</p>`)
     .join("");
   divUstensils.innerHTML = ustensilsTags
-    .map((ustensil) => `<div class="tag">${ustensil}</div>`)
+    .map((ustensil) => `<p class="cursor-pointer">${ustensil}</p>`)
     .join("");
 
   // ajout des divs dans les divs encadrant les tags

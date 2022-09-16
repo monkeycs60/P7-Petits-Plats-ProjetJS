@@ -37,12 +37,6 @@ async function* initGenerator() {
   creatingTagsArrays(recipes);
 
   yield 4;
-  // log des trois tableaux TAGS
-  console.log(ingredientsTags);
-  console.log(appliancesTags);
-  console.log(ustensilsTags);
-
-  yield 5;
   // gère le contenu des tags
   tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
 

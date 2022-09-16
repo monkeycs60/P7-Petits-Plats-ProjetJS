@@ -1,43 +1,4 @@
-export function sortingMethod() {
-  async function displayAllTagItems() {
-    await fetch("./../data/recipes.json")
-      .then((response) => response.json())
-      .then((data) => {
-        
 
-        const { recipes } = data;
-        const allIngredients = [];
-        const ingredients = document.querySelector("#ingredients");
-        const appliances = document.querySelector("#appareils");
-        const ustensils = document.querySelector("#ustensiles");
-
-        recipes.forEach((recipe) => {
-          const { ingredients } = recipe;
-          allIngredients.push(ingredients);
-        });
-
-        // PARTIE INGREDIENTS
-        // applatit le tableau et renvoie tous les ingrédients dans un seul tableau d'objets
-        const allIngredientsSimple = allIngredients
-          .flat()
-          .map((ingredient) => ingredient.ingredient);
-        const allIngredientsSimpleUnique = [
-          ...new Set(allIngredientsSimple),
-        ].sort();
-
-        // PARTIE APPAREILS
-        // renvoie tous les appareils dans un tableau d'objets
-        const allApplicancesSimple = recipes.map((recipe) => recipe.appliance);
-        const allApplicancesSimpleUnique = [
-          ...new Set(allApplicancesSimple),
-        ].sort();
-
-        // PARTIE USTENSILES
-        // applatit le tableau et renvoie tous les ustensiles dans un seul tableau d'objets
-        const allUstensilsSimple = recipes.map((recipe) => recipe.ustensils);
-        const allUstensilsSimpleUnique = [
-          ...new Set(allUstensilsSimple.flat()),
-        ].sort();
 
         // remets la première lettre de chaque ustensile en majuscule
         const allUstensilsSimpleUniqueUppercase = allUstensilsSimpleUnique.map(
