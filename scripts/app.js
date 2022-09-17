@@ -24,6 +24,7 @@ async function* initGenerator() {
   yield 1;
   // récupération des recettes
   const { recipes } = data;
+  console.log(recipes);
 
   yield 2;
   // création des cartes recettes
@@ -46,7 +47,7 @@ async function* initGenerator() {
   handleTags();
 
   yield 6;
-  // tri des recettes dans la barre de recherche principale
+  // tri des recettes dans l'input barre de recherche principale
   recipes.forEach((recipe) => {
     simpleSearch(recipe);
   });
@@ -55,6 +56,6 @@ async function* initGenerator() {
 // on initialise le générateur
 const init = initGenerator();
 
-for (let index = 0; index < 8; index++) {
+for (let index = 0; index < 12; index++) {
   init.next();
 }
