@@ -9,6 +9,7 @@ import {
 import { tagsListsContent } from "./tags/tagsListsContent.js";
 import { handleTags } from "./tags/displayTags.js";
 import { simpleSearch } from "./utils/simpleSearch.js";
+import { tagsActualized } from "./tags/tagsActualized.js";
 
 // on cache les chevrons up en JS
 hideChevron();
