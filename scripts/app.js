@@ -28,7 +28,19 @@ async function* initGenerator() {
   console.log(recipes);
 
   yield 2;
-  // création des cartes recettes
+  // création des tags
+  creatingTagsArrays(recipes);
+
+  yield 3;
+  // gère le contenu des tags
+  tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
+
+  yield 4;
+  // affiche les tags dans le DOM -/- les fait disparaître
+  handleTags();
+
+  yield 5;
+  // création des cartes recettes & tri simple
   recipes.forEach((recipe) => {
     const recipeCard = recipeCardFactory(recipe);
     const cardContent = recipeCard.createRecipeCard();
@@ -36,19 +48,9 @@ async function* initGenerator() {
     simpleSearch(recipe);
   });
 
-  yield 3;
-  // création des tags
-  creatingTagsArrays(recipes);
-
-  yield 4;
-  // gère le contenu des tags
-  tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
-
-  yield 5;
-  // affiche les tags dans le DOM -/- les fait disparaître
-  handleTags();
-
- 
+  yield 6;
+  // actualisation dynamique des tags
+  tagsActualized(ingredientsTags, appliancesTags, ustensilsTags);
 }
 
 // on initialise le générateur
