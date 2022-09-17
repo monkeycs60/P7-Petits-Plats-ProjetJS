@@ -19,10 +19,10 @@ export function simpleSearch(recipe) {
    if (recipeContent.includes(searchInputValue)) {
      // si le contenu de la recette contient la valeur du champ de recherche
      // on affiche la div de la recette
-        document.getElementById(recipe.id).style.display = "block";
+        document.getElementById(recipe.id).style.display = "flex";
    } else {
      // sinon on la cache
-     recipe.style.display = "none";
+        document.getElementById(recipe.id).style.display = "none";
    }
  });
     
