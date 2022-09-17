@@ -1,5 +1,5 @@
 export function recipeCardFactory(recipe) {
-  const { name, time, ingredients, description, appliance } = recipe;
+  const { name, time, ingredients, description, appliance, id } = recipe;
 
   function createRecipeCard() {
     // card container
@@ -19,6 +19,7 @@ export function recipeCardFactory(recipe) {
       "2xl:h-[35vh]",
       "2xl:w-[26vw]"
     );
+    article.setAttribute("id", id);
     article.innerHTML = `
     <div id="article-image">
     <img class="w-[85vw] h-[19vh] rounded-lg rounded-b-none object-cover md:h-[14vh] 2xl:h-[17vh] 2xl:w-[26vw]" src="./../../assets/restaurantpreview.png" alt="restaurant card" />

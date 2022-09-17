@@ -8,6 +8,7 @@ import {
 } from "./tags/TagsArray.js";
 import { tagsListsContent } from "./tags/tagsListsContent.js";
 import { handleTags } from "./tags/displayTags.js";
+import { simpleSearch } from "./utils/simpleSearch.js";
 
 // on cache les chevrons up en JS
 hideChevron();
@@ -43,6 +44,12 @@ async function* initGenerator() {
   yield 5;
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
+
+  yield 6;
+  // tri des recettes dans la barre de recherche principale
+  recipes.forEach((recipe) => {
+    simpleSearch(recipe);
+  });
 }
 
 // on initialise le générateur
