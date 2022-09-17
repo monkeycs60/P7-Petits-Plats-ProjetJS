@@ -33,6 +33,7 @@ async function* initGenerator() {
     const recipeCard = recipeCardFactory(recipe);
     const cardContent = recipeCard.createRecipeCard();
     document.getElementById("recipe-grid").appendChild(cardContent);
+    simpleSearch(recipe);
   });
 
   yield 3;
@@ -47,11 +48,7 @@ async function* initGenerator() {
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
 
-  yield 6;
-  // tri des recettes dans l'input barre de recherche principale
-  recipes.forEach((recipe) => {
-    simpleSearch(recipe);
-  });
+ 
 }
 
 // on initialise le générateur
