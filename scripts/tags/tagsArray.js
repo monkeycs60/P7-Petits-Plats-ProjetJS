@@ -38,6 +38,9 @@ export { ingredientsTags, appliancesTags, ustensilsTags };
 
 
 
+
+
+
 // export function creatingTagsArrays() {
 
 //   // on définit les constantes pour récupérer les données tags à l'intérieur des cards recettes

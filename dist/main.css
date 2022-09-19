@@ -584,7 +584,7 @@ video {
   display: grid;
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 .h-\[8vh\] {
   height: 8vh;

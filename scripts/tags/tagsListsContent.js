@@ -1,7 +1,7 @@
 export function tagsListsContent(
-  ingredientsTags,
-  appliancesTags,
-  ustensilsTags
+  a,
+  b,
+  c
 ) {
   // déclaration des constantes correspondant aux divs encadrant les tags
   const ingredients = document.querySelector("#ingredients");
@@ -19,18 +19,18 @@ export function tagsListsContent(
   divUstensils.classList.add("full-list", "ustensils");
 
   // the div content is the content of the array
-  divIngredients.innerHTML = ingredientsTags
+  divIngredients.innerHTML = a
     .map(
       (ingredient) =>
         `<p class="cursor-pointer ingredientsList">${ingredient}</p>`
     )
     .join("");
-  divAppliances.innerHTML = appliancesTags
+  divAppliances.innerHTML = b
     .map(
       (appliance) => `<p class="cursor-pointer appliancesList">${appliance}</p>`
     )
     .join("");
-  divUstensils.innerHTML = ustensilsTags
+  divUstensils.innerHTML = c
     .map(
       (ustensil) => `<p class="cursor-pointer ustensilsList">${ustensil}</p>`
     )
