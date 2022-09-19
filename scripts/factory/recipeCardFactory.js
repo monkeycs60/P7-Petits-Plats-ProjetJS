@@ -26,7 +26,7 @@ export function recipeCardFactory(recipe) {
     </div>
     <div id="article-content" class="h-[21vh] w-full p-1 flex flex-col rounded-lg rounded-t-none md:h-[16vh] md:p-2 2xl:h-[18vh] 2xl:w-[26vw] 2xl:p-5 2xl:justify-center">
     <div id="card-top" class="h-[6vh] flex w-full justify-between items-center md:h-[5vh] 2xl:h-[6vh]">
-        <h2 class="text-base block-with-text 2xl:text-xl">${name}</h2>
+        <h2 class="text-base block-with-text 2xl:text-xl recipe-title">${name}</h2>
         <div id="clock-time" class="flex text-base w-1/6 justify-around items-center 2xl:text-xl" >
             <em class="fa-regular fa-clock"></em>
             <p class="font-bold">${time}</p>

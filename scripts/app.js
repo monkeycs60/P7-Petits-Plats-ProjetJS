@@ -1,21 +1,21 @@
 import { hideChevron } from "./cosmetic/chevronHide.js";
 import { recipeCardFactory } from "./factory/recipeCardFactory.js";
-import {
-  ingredientsTags,
-  appliancesTags,
-  ustensilsTags,
-  creatingTagsArrays,
-} from "./tags/TagsArray.js";
+import { ingredientsTags, 
+          appliancesTags,
+          ustensilsTags, 
+  creatingTagsArrays } from "./tags/TagsArray.js";
 import { tagsListsContent } from "./tags/tagsListsContent.js";
 import { handleTags } from "./tags/displayTags.js";
 import { simpleSearch } from "./utils/simpleSearch.js";
-import { tagsActualized } from "./tags/tagsActualized.js";
+// import { tagsActualized } from "./tags/tagsActualized.js";
 
 // on cache les chevrons up en JS
 hideChevron();
 
 // Generator Function
 async function* initGenerator() {
+  // on définit les tableaux contenant les tags
+
   console.log("cc");
 
   // le FETCH
@@ -38,7 +38,7 @@ async function* initGenerator() {
   yield 4;
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
-
+  
   yield 5;
   // création des cartes recettes & tri simple
   recipes.forEach((recipe) => {
@@ -47,10 +47,8 @@ async function* initGenerator() {
     document.getElementById("recipe-grid").appendChild(cardContent);
     simpleSearch(recipe);
   });
-
+  
   yield 6;
-  // actualisation dynamique des tags
-  tagsActualized(ingredientsTags, appliancesTags, ustensilsTags);
 }
 
 // on initialise le générateur
