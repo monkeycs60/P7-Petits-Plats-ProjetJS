@@ -27,7 +27,6 @@ async function* initGenerator() {
   yield 1;
   // récupération des recettes
   const { recipes } = data;
-  console.log(recipes);
 
   yield 2;
   // création des tags
@@ -40,10 +39,9 @@ async function* initGenerator() {
     const cardContent = recipeCard.createRecipeCard();
     document.getElementById("recipe-grid").appendChild(cardContent);
   });
-  
   yield 4;
   simpleSearch(recipes);
-
+  
   yield 5;
   // gère le contenu des tags
   tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
