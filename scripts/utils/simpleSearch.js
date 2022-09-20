@@ -112,17 +112,31 @@ export function simpleSearch(
             if (article.innerHTML.includes(tagValue)) {
               article.style.display = "flex";
               console.log(article);
-              const cool = article.querySelectorAll(".applianceTag");
-              console.log(cool);
-             // get element by classname
-              const oreo = article.getElementsByClassName("applianceTag");
-              console.log(oreo.innerContent);
+              const appliancesTagsLeft = article.getElementsByClassName("applianceTag");
+              console.log(appliancesTagsLeft);
+              // log textcontent of applianceTag
+             Array.from(appliancesTagsLeft).forEach((appliance) => {
+                console.log(appliance.textContent);
+              });
+
+              const ustensilsTagsLeft = article.getElementsByClassName("ustensilTag");
+              // log textcontent of ustensilTag
+              Array.from(ustensilsTagsLeft).forEach((ustensil) => {
+                console.log(ustensil.textContent);
+              });
+
+              const ingredientsTagsLeft = article.getElementsByClassName("ingredientTag");
+              console.log(ingredientsTagsLeft);
+              // log textcontent of ingredientTag
+              Array.from(ingredientsTagsLeft).forEach((ingredient) => {
+                console.log(ingredient.textContent);
+              });
+              
             } else {
               article.style.display = "none";
             }
           });
 
-       
         });
       });
 
@@ -135,6 +149,7 @@ export function simpleSearch(
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
+
     } else {
       // display all recipes
       recipes.forEach((recipe) => {
