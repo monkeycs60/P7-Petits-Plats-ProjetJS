@@ -40,7 +40,7 @@ async function* initGenerator() {
     document.getElementById("recipe-grid").appendChild(cardContent);
   });
   yield 4;
-  simpleSearch(recipes);
+  simpleSearch(recipes, ingredientsTags, appliancesTags, ustensilsTags);
   
   yield 5;
   // gère le contenu des tags

@@ -38,12 +38,14 @@ export function simpleSearch(
 
       // partie actualisation TAGS INGREDIENTS
       ingredientsTagsActualized = ingredientsTagsActualized.flat();
-     let flatIngredients = [];
+      const flatIngredients = [];
       ingredientsTagsActualized.forEach((ingredient) => {
         flatIngredients.push(ingredient.ingredient);
       });
       ingredientsTagsActualized = flatIngredients;
-      ingredientsTagsActualized = [...new Set(ingredientsTagsActualized)].sort();
+      ingredientsTagsActualized = [
+        ...new Set(ingredientsTagsActualized),
+      ].sort();
 
       // partie actualisation TAGS APPLIANCES
       appliancesTagsActualized = [...new Set(appliancesTagsActualized)].sort();
@@ -57,12 +59,6 @@ export function simpleSearch(
         (a, b) => a.localeCompare(b)
       );
 
-      console.log(
-        ingredientsTagsActualized,
-        appliancesTagsActualized,
-        ustensilsTagsActualized
-      );
-
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
@@ -74,28 +70,66 @@ export function simpleSearch(
 
       // on affiche les tags
       ingredientsTagsActualized.forEach((ingredient) => {
-          ingredientList.innerHTML += `<p class="cursor-pointer ingredientsList">${ingredient}</p>`;
+        ingredientList.innerHTML += `<p class="cursor-pointer ingredientsList">${ingredient}</p>`;
       });
       appliancesTagsActualized.forEach((appliance) => {
-          applianceList.innerHTML += `<p class="cursor-pointer appliancesList">${appliance}</p>`;
+        applianceList.innerHTML += `<p class="cursor-pointer appliancesList">${appliance}</p>`;
       });
       ustensilsTagsActualized.forEach((ustensil) => {
-          ustensilList.innerHTML += `<p class="cursor-pointer ustensilsList">${ustensil}</p>`;
+        ustensilList.innerHTML += `<p class="cursor-pointer ustensilsList">${ustensil}</p>`;
       });
-   
-      // on vide les listes de tags
 
+      // listeners clic TAGS
+      const tagArea = document.querySelector(".tag-area");
+
+      const ingredientsTagsBar = document.querySelectorAll(".ingredientsList");
+      const appliancesTagsBar = document.querySelectorAll(".appliancesList");
+      const ustensilsTagsBar = document.querySelectorAll(".ustensilsList");
+
+
+      // on écoute les tags INGREDIENTS
+      ingredientsTagsBar.forEach((ingredient) => {
+        ingredient.addEventListener("click", (event) => {
+          // on récupère la valeur du tag
+          const tagValue = event.target.innerHTML;
+          console.log(tagValue);
+          // on l'affiche dans un span child de tagarea
+          tagArea.innerHTML += `<span class="tag cursor-pointer">${tagValue}<i class="fas fa-times"></i></span>`;
+          // on supprime le tag de la liste
+          event.target.style.display = "none";
+
+          // if article has display flex, it's a match
+          const article = document.querySelectorAll("article");
+          const tabArticleDisplayed = [];
+
+          article.forEach((article) => {
+            if (article.style.display === "flex") {
+              tabArticleDisplayed.push(article);
+            }
+          });
+
+          tabArticleDisplayed.forEach((article) => {
+            if (article.innerHTML.includes(tagValue)) {
+              article.style.display = "flex";
+              console.log(article);
+            } else {
+              article.style.display = "none";
+            }
+          });
+
+       
+        });
+      });
+
+      // on vide les tableaux de tags
+      ingredientsTags = ingredientsTagsActualized;
+      appliancesTags = appliancesTagsActualized;
+      ustensilsTags = ustensilsTagsActualized;
 
       // on vide les tableaux pour la prochaine recherche
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
-
-      // on vide les tableaux de tags
-      ingredientsTags = [];
-      appliancesTags = [];
-      ustensilsTags = [];
- 
     } else {
       // display all recipes
       recipes.forEach((recipe) => {
@@ -115,11 +149,13 @@ export function simpleSearch(
     } else {
       noCard.style.display = "none";
     }
+
   });
+
 }
 
 export {
   ingredientsTagsActualized,
   appliancesTagsActualized,
-  ustensilsTagsActualized,
+  ustensilsTagsActualized
 };
