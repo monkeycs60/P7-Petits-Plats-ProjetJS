@@ -34,21 +34,21 @@ async function* initGenerator() {
   creatingTagsArrays(recipes);
   
   yield 3;
-  // création des cartes recettes & tri simple
+  // création des cartes recettes
   recipes.forEach((recipe) => {
     const recipeCard = recipeCardFactory(recipe);
     const cardContent = recipeCard.createRecipeCard();
     document.getElementById("recipe-grid").appendChild(cardContent);
-    simpleSearch(recipe);
-    // filtrer le tableau des tags actualisés
-    // tout affecter à ingredientsTags (=)
   });
-
+  
   yield 4;
+  simpleSearch(recipes);
+
+  yield 5;
   // gère le contenu des tags
   tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
 
-  yield 5;
+  yield 6;
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
 
