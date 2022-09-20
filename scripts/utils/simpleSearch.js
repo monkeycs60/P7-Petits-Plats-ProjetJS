@@ -112,6 +112,11 @@ export function simpleSearch(
             if (article.innerHTML.includes(tagValue)) {
               article.style.display = "flex";
               console.log(article);
+              const cool = article.querySelectorAll(".applianceTag");
+              console.log(cool);
+             // get element by classname
+              const oreo = article.getElementsByClassName("applianceTag");
+              console.log(oreo.innerContent);
             } else {
               article.style.display = "none";
             }
