@@ -125,7 +125,7 @@ export function simpleSearch(
                 console.log(ustensil.textContent);
               });
 
-              const ingredientsTagsLeft = article.getElementsByClassName("ingredientTag");
+              const ingredientsTagsLeft = article.getElementsByClassName("preciseIngredient");
               console.log(ingredientsTagsLeft);
               // log textcontent of ingredientTag
               Array.from(ingredientsTagsLeft).forEach((ingredient) => {
