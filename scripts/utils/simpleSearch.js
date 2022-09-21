@@ -10,9 +10,10 @@ export function simpleSearch(
 ) {
   // on écoute la barre de recherche principale
   const searchInput = document.querySelector("#mainSearch");
-
+  
   // event listener sur le champ de recherche
   searchInput.addEventListener("keyup", (event) => {
+    console.log(ingredientsTags);
     // on récupère la valeur du champ de recherche
     const searchInputValue = event.target.value.toLowerCase();
 
@@ -49,7 +50,7 @@ export function simpleSearch(
 
       // partie actualisation TAGS APPLIANCES
       appliancesTagsActualized = [...new Set(appliancesTagsActualized)].sort();
-
+      
       // partie actualisation TAGS USTENSILS
       ustensilsTagsActualized = ustensilsTagsActualized.flat();
       ustensilsTagsActualized = ustensilsTagsActualized.map(
@@ -79,6 +80,8 @@ export function simpleSearch(
         ustensilList.innerHTML += `<p class="cursor-pointer ustensilsList">${ustensil}</p>`;
       });
 
+console.log(ingredientsTagsActualized);
+
       // listeners clic TAGS
       const tagArea = document.querySelector(".tag-area");
 
@@ -90,6 +93,7 @@ export function simpleSearch(
       // on écoute les tags INGREDIENTS
       ingredientsTagsBar.forEach((ingredient) => {
         ingredient.addEventListener("click", (event) => {
+          console.log(ingredientsTags);
           // on récupère la valeur du tag
           const tagValue = event.target.innerHTML;
           console.log(tagValue);
@@ -135,6 +139,7 @@ export function simpleSearch(
             } else {
               article.style.display = "none";
             }
+            
           });
 
         });
