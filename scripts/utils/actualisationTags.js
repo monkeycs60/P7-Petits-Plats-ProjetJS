@@ -62,17 +62,6 @@ export function tagsActualized(
       });
 
 
-      // on actualise la liste d'ingrédients
-      // ingredientsTags = ingredientsTags.filter(
-      //   (ingredient) => ingredient === tagValue
-      //   );
-      //   console.log(ingredientsTags);
-      //   ingredientsFull[0].innerHTML = "";
-      //   ingredientsTags.forEach((ingredient) => {
-      //     ingredientsFull[0].innerHTML += `<p class="cursor-pointer ingredientsTagsList">${ingredient}</p>`;
-      //   }
-      //   );
-
       // if article is display block, then log it
       articleArray.forEach((article) => {
         if (article.style.display === "flex") {

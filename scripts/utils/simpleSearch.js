@@ -64,20 +64,13 @@ export function simpleSearch(
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
 
-      // on vide les listes de tags
-      ingredientList.innerHTML = "";
-      applianceList.innerHTML = "";
-      ustensilList.innerHTML = "";
-
-      // on affiche les tags
-      ingredientsTagsActualized.forEach((ingredient) => {
-        ingredientList.innerHTML += `<p class="cursor-pointer ingredientsTagsList">${ingredient}</p>`;
-      });
-      appliancesTagsActualized.forEach((appliance) => {
-        applianceList.innerHTML += `<p class="cursor-pointer appliancesTagsList">${appliance}</p>`;
-      });
-      ustensilsTagsActualized.forEach((ustensil) => {
-        ustensilList.innerHTML += `<p class="cursor-pointer ustensilsTagsList">${ustensil}</p>`;
+      //display none for ingredientList children textcontent if they are not in ingredientsTagsActualized
+      ingredientList.childNodes.forEach((child) => {
+        if (!ingredientsTagsActualized.includes(child.textContent)) {
+          child.style.display = "none";
+        } else {
+          child.style.display = "block";
+        }
       });
 
       // on vide les tableaux de tags
