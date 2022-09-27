@@ -38,13 +38,16 @@ export function tagsActualized(
       // on supprime le tag de la liste
       event.target.style.display = "none";
 
-      //
+     
 
       const article = document.querySelectorAll("article");
       const articleArray = Array.from(article);
-
+   
       // for each article, if its textContent doesn't contain the tagValue, we hide it
       articleArray.forEach((article) => {
+        //if article is displayed
+          if (article.style.display === "none") {
+          } else {
         if (!article.textContent.includes(tagValue)) {
           article.style.display = "none";
         } else {
@@ -55,7 +58,9 @@ export function tagsActualized(
           });
           filteredAppliances.push(article.querySelectorAll("applianceTag"));
         }
+      }
       });
+
 
       // on actualise la liste d'ingrédients
       // ingredientsTags = ingredientsTags.filter(
@@ -97,5 +102,4 @@ export function tagsActualized(
       console.log(ingredientsTags);
     });
   });
-  console.log(ingredientsTags);
 }
