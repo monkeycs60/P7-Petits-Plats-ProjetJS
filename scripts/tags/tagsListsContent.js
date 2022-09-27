@@ -22,17 +22,17 @@ export function tagsListsContent(
   divIngredients.innerHTML = a
     .map(
       (ingredient) =>
-        `<p class="cursor-pointer ingredientsList">${ingredient}</p>`
+        `<p class="cursor-pointer ingredientsTagsList">${ingredient}</p>`
     )
     .join("");
   divAppliances.innerHTML = b
     .map(
-      (appliance) => `<p class="cursor-pointer appliancesList">${appliance}</p>`
+      (appliance) => `<p class="cursor-pointer appliancesTagsList">${appliance}</p>`
     )
     .join("");
   divUstensils.innerHTML = c
     .map(
-      (ustensil) => `<p class="cursor-pointer ustensilsList">${ustensil}</p>`
+      (ustensil) => `<p class="cursor-pointer ustensilsTagsList">${ustensil}</p>`
     )
     .join("");
 

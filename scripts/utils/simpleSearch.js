@@ -10,10 +10,10 @@ export function simpleSearch(
 ) {
   // on écoute la barre de recherche principale
   const searchInput = document.querySelector("#mainSearch");
-  
+
   // event listener sur le champ de recherche
   searchInput.addEventListener("keyup", (event) => {
-    console.log(ingredientsTags);
+    
     // on récupère la valeur du champ de recherche
     const searchInputValue = event.target.value.toLowerCase();
 
@@ -50,7 +50,7 @@ export function simpleSearch(
 
       // partie actualisation TAGS APPLIANCES
       appliancesTagsActualized = [...new Set(appliancesTagsActualized)].sort();
-      
+
       // partie actualisation TAGS USTENSILS
       ustensilsTagsActualized = ustensilsTagsActualized.flat();
       ustensilsTagsActualized = ustensilsTagsActualized.map(
@@ -71,78 +71,13 @@ export function simpleSearch(
 
       // on affiche les tags
       ingredientsTagsActualized.forEach((ingredient) => {
-        ingredientList.innerHTML += `<p class="cursor-pointer ingredientsList">${ingredient}</p>`;
+        ingredientList.innerHTML += `<p class="cursor-pointer ingredientsTagsList">${ingredient}</p>`;
       });
       appliancesTagsActualized.forEach((appliance) => {
-        applianceList.innerHTML += `<p class="cursor-pointer appliancesList">${appliance}</p>`;
+        applianceList.innerHTML += `<p class="cursor-pointer appliancesTagsList">${appliance}</p>`;
       });
       ustensilsTagsActualized.forEach((ustensil) => {
-        ustensilList.innerHTML += `<p class="cursor-pointer ustensilsList">${ustensil}</p>`;
-      });
-
-console.log(ingredientsTagsActualized);
-
-      // listeners clic TAGS
-      const tagArea = document.querySelector(".tag-area");
-
-      const ingredientsTagsBar = document.querySelectorAll(".ingredientsList");
-      const appliancesTagsBar = document.querySelectorAll(".appliancesList");
-      const ustensilsTagsBar = document.querySelectorAll(".ustensilsList");
-
-
-      // on écoute les tags INGREDIENTS
-      ingredientsTagsBar.forEach((ingredient) => {
-        ingredient.addEventListener("click", (event) => {
-          console.log(ingredientsTags);
-          // on récupère la valeur du tag
-          const tagValue = event.target.innerHTML;
-          console.log(tagValue);
-          // on l'affiche dans un span child de tagarea
-          tagArea.innerHTML += `<span class="tag cursor-pointer">${tagValue}<i class="fas fa-times"></i></span>`;
-          // on supprime le tag de la liste
-          event.target.style.display = "none";
-
-          // if article has display flex, it's a match
-          const article = document.querySelectorAll("article");
-          const tabArticleDisplayed = [];
-
-          article.forEach((article) => {
-            if (article.style.display === "flex") {
-              tabArticleDisplayed.push(article);
-            }
-          });
-
-          tabArticleDisplayed.forEach((article) => {
-            if (article.innerHTML.includes(tagValue)) {
-              article.style.display = "flex";
-              console.log(article);
-              const appliancesTagsLeft = article.getElementsByClassName("applianceTag");
-              console.log(appliancesTagsLeft);
-              // log textcontent of applianceTag
-             Array.from(appliancesTagsLeft).forEach((appliance) => {
-                console.log(appliance.textContent);
-              });
-
-              const ustensilsTagsLeft = article.getElementsByClassName("ustensilTag");
-              // log textcontent of ustensilTag
-              Array.from(ustensilsTagsLeft).forEach((ustensil) => {
-                console.log(ustensil.textContent);
-              });
-
-              const ingredientsTagsLeft = article.getElementsByClassName("preciseIngredient");
-              console.log(ingredientsTagsLeft);
-              // log textcontent of ingredientTag
-              Array.from(ingredientsTagsLeft).forEach((ingredient) => {
-                console.log(ingredient.textContent);
-              });
-              
-            } else {
-              article.style.display = "none";
-            }
-            
-          });
-
-        });
+        ustensilList.innerHTML += `<p class="cursor-pointer ustensilsTagsList">${ustensil}</p>`;
       });
 
       // on vide les tableaux de tags
@@ -154,7 +89,6 @@ console.log(ingredientsTagsActualized);
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
-
     } else {
       // display all recipes
       recipes.forEach((recipe) => {
@@ -174,9 +108,9 @@ console.log(ingredientsTagsActualized);
     } else {
       noCard.style.display = "none";
     }
-
   });
 
+  
 }
 
 export {

@@ -13,6 +13,8 @@ import {
   ustensilsTagsActualized,
   simpleSearch,
 } from "./utils/simpleSearch.js";
+import { tagsActualized } from "./utils/actualisationTags.js";
+import { searchTags } from "./utils/searchTags.js";
 
 
 
@@ -43,14 +45,20 @@ async function* initGenerator() {
   simpleSearch(recipes, ingredientsTags, appliancesTags, ustensilsTags);
   
   yield 5;
+  // on gère la recherche avancée des tags 
+  searchTags();
+  
+  yield 6;
   // gère le contenu des tags
   tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
-
-  yield 6;
+  
+  yield 7;
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
-
-
+  
+  yield 8;
+  // gère l'actualisation des bars de tags
+  tagsActualized(recipes, ingredientsTags, appliancesTags, ustensilsTags);
 }
 
 // on initialise le générateur
