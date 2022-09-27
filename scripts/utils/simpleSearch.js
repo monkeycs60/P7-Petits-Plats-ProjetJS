@@ -73,6 +73,26 @@ export function simpleSearch(
         }
       });
 
+      //display none for applianceList children textcontent if they are not in appliancesTagsActualized
+      applianceList.childNodes.forEach((child) => {
+        if (!appliancesTagsActualized.includes(child.textContent)) {
+          child.style.display = "none";
+        } else {
+          child.style.display = "block";
+        }
+      });
+
+      //display none for ustensilList children textcontent if they are not in ustensilsTagsActualized
+      ustensilList.childNodes.forEach((child) => {
+        if (!ustensilsTagsActualized.includes(child.textContent)) {
+          child.style.display = "none";
+        } else {
+          child.style.display = "block";
+        }
+      });
+   
+
+
       // on vide les tableaux de tags
       ingredientsTags = ingredientsTagsActualized;
       appliancesTags = appliancesTagsActualized;
