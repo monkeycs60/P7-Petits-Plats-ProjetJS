@@ -2,7 +2,6 @@ let ingredientsTags = [];
 let appliancesTags = [];
 let ustensilsTags = [];
 
-
 export function creatingTagsArrays(recipes) {
   // construction des 3 tableaux de tags
 
@@ -11,8 +10,12 @@ export function creatingTagsArrays(recipes) {
   const allIngredientsArray = recipes
     .map((recipe) => recipe.ingredients)
     .flat()
-    .map((ingredient) => ingredient.ingredient)
-    .sort();
+    // map ingredient with first letter uppercase
+    .map((ingredient) => {
+      return    ingredient.ingredient.charAt(0).toUpperCase() +
+        ingredient.ingredient.slice(1);
+    })
+    .sort((a, b) => a.localeCompare(b));
   const allUniqueIngredientsArray = [...new Set(allIngredientsArray)];
   ingredientsTags = allUniqueIngredientsArray;
 
@@ -35,44 +38,3 @@ export function creatingTagsArrays(recipes) {
     .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
 }
 export { ingredientsTags, appliancesTags, ustensilsTags };
-
-
-
-
-
-
-// export function creatingTagsArrays() {
-
-//   // on définit les constantes pour récupérer les données tags à l'intérieur des cards recettes
-//   const ingredientsInArticle = document.querySelectorAll(".preciseIngredient");
-//   const appliancesInArticle = document.querySelectorAll(".applianceTag");
-//   const ustensilsInArticle = document.querySelectorAll(".ustensilTag");
-
-//   ingredientsInArticle.forEach((ingredient) => {
-//     ingredientsTags.push(ingredient.textContent);
-//   });
-//   appliancesInArticle.forEach((appliance) => {
-//     appliancesTags.push(appliance.textContent);
-//   });
-//   ustensilsInArticle.forEach((ustensil) => {
-//     ustensilsTags.push(ustensil.textContent);
-//   });
-
-//   // on enlève les doublons
-//   ingredientsTags = [...new Set(ingredientsTags)];
-//   appliancesTags = [...new Set(appliancesTags)];
-//   ustensilsTags = [...new Set(ustensilsTags)];
-//   // on classe les tags par ordre alphabétique
-//   ingredientsTags.sort();
-//   appliancesTags.sort();
-//   // on met la première lettre en majuscule ustensiles
-//   ustensilsTags = ustensilsTags.map(
-//     (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
-//   );
-//   // on sort les ustensiles avec localeCompare
-//   ustensilsTags.sort((a, b) => a.localeCompare(b));
-  
-//   return ingredientsTags, appliancesTags, ustensilsTags;
-// }
-
-// export { ingredientsTags, appliancesTags, ustensilsTags };

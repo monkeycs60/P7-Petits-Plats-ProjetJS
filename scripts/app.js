@@ -29,7 +29,7 @@ async function* initGenerator() {
   yield 1;
   // récupération des recettes
   const { recipes } = data;
-
+  
   yield 2;
   // création des tags
   creatingTagsArrays(recipes);

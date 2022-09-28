@@ -22,18 +22,34 @@ export function simpleSearch(
       // on compare la valeur du champ de recherche avec le contenu de la recette
       recipes.forEach((recipe) => {
         // on affiche la recette
-        if (
-          recipe.name.includes(searchInputValue) ||
-          recipe.description.includes(searchInputValue) ||
-          recipe.ingredients.includes(searchInputValue)
-        ) {
-          document.getElementById(recipe.id).style.display = "flex";
-          // push its tags in the tags arrays
-          ingredientsTagsActualized.push(recipe.ingredients);
-          appliancesTagsActualized.push(recipe.appliance);
-          ustensilsTagsActualized.push(recipe.ustensils);
+        if (document.getElementById(recipe.id).style.display === "flex") {
+          if (
+            recipe.name.includes(searchInputValue) ||
+            recipe.description.includes(searchInputValue) ||
+            recipe.ingredients.includes(searchInputValue)
+          ) {
+            document.getElementById(recipe.id).style.display = "flex";
+            // push its tags in the tags arrays
+            ingredientsTagsActualized.push(recipe.ingredients);
+            appliancesTagsActualized.push(recipe.appliance);
+            ustensilsTagsActualized.push(recipe.ustensils);
+          } else {
+            document.getElementById(recipe.id).style.display = "none";
+          }
         } else {
-          document.getElementById(recipe.id).style.display = "none";
+          if (
+            recipe.name.includes(searchInputValue) ||
+            recipe.description.includes(searchInputValue) ||
+            recipe.ingredients.includes(searchInputValue)
+          )
+          {
+            document.getElementById(recipe.id).style.display = "flex";
+            // push its tags in the tags arrays
+            ingredientsTagsActualized.push(recipe.ingredients);
+            appliancesTagsActualized.push(recipe.appliance);
+            ustensilsTagsActualized.push(recipe.ustensils);
+          }
+
         }
       });
 
