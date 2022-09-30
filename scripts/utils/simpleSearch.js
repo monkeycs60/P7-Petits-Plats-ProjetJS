@@ -26,7 +26,7 @@ export function simpleSearch(
       // on compare la valeur du champ de recherche avec le contenu de la recette
       recipes.forEach((recipe) => {
         // on affiche la recette
-
+        console.log(recipe);
         if (
           recipe.name.includes(searchInputValue) ||
           recipe.description.includes(searchInputValue) ||

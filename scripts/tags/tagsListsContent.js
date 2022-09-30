@@ -1,4 +1,4 @@
-let tagsArrayFilter = [];
+const tagsArrayFilter = [];
 
 export function tagsListsContent(
   ingredientsTags,
@@ -73,29 +73,22 @@ export function tagsListsContent(
 
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
-      
-      // on filtre les recettes affichées
-     console.log(articleArray);
-     // if each article of articleArray includes each tagValue of tagsValues then display the article
-      // else hide the article
+
+      // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
-        if (tagsValues.every((tagValue) => article.textContent.includes(tagValue))) {
+        if (
+          tagsValues.every((tagValue) => article.textContent.includes(tagValue))
+        ) {
           article.style.display = "flex";
         } else {
           article.style.display = "none";
         }
       });
 
-
-   //push the tagValue in the array
+      // push the tagValue in the array
       tagsArrayFilter.push(tagValue);
-
-
-
     });
   });
-  
 }
-
 
 export { tagsArrayFilter };
