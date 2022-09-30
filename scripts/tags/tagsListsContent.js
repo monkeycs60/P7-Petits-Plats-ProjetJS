@@ -76,7 +76,7 @@ export function tagsListsContent(
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
         if (
-          tagsValues.every((tagValue) => article.textContent.includes(tagValue))
+          tagsValues.every((tagValue) => article.textContent.includes(tagValue.toLowerCase()))
         ) {
           article.style.display = "flex";
         } else {
