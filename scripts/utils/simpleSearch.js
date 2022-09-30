@@ -38,8 +38,10 @@ export function simpleSearch(
           recipe.description.toLowerCase().includes(searchInputValue) ||
           recipeIngredientList.includes(searchInputValue)
           ) {
+            console.log("début de la recherche");
           // console.log(recipe.name);
           document.getElementById(recipe.id).style.display = "flex";
+          console.log(recipe);
           // push its tags in the tags arrays
           ingredientsTagsActualized.push(recipe.ingredients);
           appliancesTagsActualized.push(recipe.appliance);
@@ -47,13 +49,20 @@ export function simpleSearch(
 
           // if tagsArrayFilter.length > 0, display none the recipes that don't have the tags in the tagsArrayFilter
           if (tagsArrayFilter.length > 0) {
+            console.log("milieu de la recherche");
+            console.log(tagsArrayFilter);
+           let filteredRecipesIng = [];
+           recipe.ingredients.forEach((ingredient) => {
+              filteredRecipesIng.push(ingredient.ingredient.toLowerCase());
+            });
             tagsArrayFilter.forEach((tag) => {
               if (
-                !recipe.name.includes(tag) &&
-                !recipe.description.includes(tag) &&
-                !recipe.ingredients.includes(tag)
+                !recipe.name.toLowerCase().includes(tag.toLowerCase()) &&
+                !recipe.description.toLowerCase().includes(tag.toLowerCase()) &&
+                !filteredRecipesIng.includes(tag.toLowerCase())
               ) {
                 document.getElementById(recipe.id).style.display = "none";
+                console.log("fin de la recherche");
               }
             });
           }
@@ -148,8 +157,9 @@ export function simpleSearch(
       
 
         if (tagsArrayFilter.length > 0) {
+          console.log("ccz");
           const article = document.querySelectorAll("article");
-          console.log(article);
+        
           const articleArray = Array.from(article);
 
            articleArray.forEach((article) => {
@@ -163,33 +173,10 @@ export function simpleSearch(
                article.style.display = "none";
              }
            });
-          // article.forEach((article) => {
-          //   if (article.textContent.includes(tagsArrayFilter)) {
-          //     article.style.display = "flex";
-          //     console.log(article);
-          //   } else {
-          //     console.log(article.textContent);
-          //     article.style.display = "none";
-          //   }
-          // });
+       
         }
 
-//  if (tagsArrayFilter.length > 0) {
-//         console.log(tagsArrayFilter);
-// let recipesFiltered = [];
-//         recipes.forEach((recipe) => {
-//           //on récupère tous les ingrédients de la recette en question
-//           let recipeIngredientListTags = [];
-//           recipe.ingredients.forEach((ingredient) => {
-//             recipeIngredientListTags.push(ingredient.ingredient.toLowerCase());
-//           });
-//         console.log("coucoudrfsre");
-//           // for each tags , to lower case
-//           const tagsArrayFilterNew = tagsArrayFilter.map((tag) => tag.toLowerCase());
-        
-//           console.log(tagsArrayFilterNew);
-//          console.log(recipeIngredientListTags);
-//          console.log(tagsArrayFilterNew.includes(recipeIngredientListTags));
+
 
           
 

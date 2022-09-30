@@ -54,7 +54,6 @@ export function tagsListsContent(
   const ingredientsTagsList = document.querySelectorAll(".ingredientsTagsList");
   ingredientsTagsList.forEach((ingredientTags) => {
     ingredientTags.addEventListener("click", (event) => {
-      console.log("coucou");
       // on récupère la valeur du tag
       const tagValue = event.target.innerHTML;
 
