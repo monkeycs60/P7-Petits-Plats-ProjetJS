@@ -5,7 +5,7 @@ import {
   ustensilsTags,
   creatingTagsArrays,
 } from "./tags/TagsArray.js";
-import { tagsListsContent } from "./tags/tagsListsContent.js";
+import { tagsListsContent, tagsArrayFilter } from "./tags/tagsListsContent.js";
 import { handleTags } from "./tags/displayTags.js";
 import {
   ingredientsTagsActualized,
@@ -13,8 +13,8 @@ import {
   ustensilsTagsActualized,
   simpleSearch,
 } from "./utils/simpleSearch.js";
-import { tagsActualized } from "./utils/actualisationTags.js";
-import { searchTags } from "./utils/searchTags.js";
+import { tagsActualized } from "./utils/refreshTags.js";
+import { autocompleteTags } from "./utils/autocompleteTags.js";
 
 
 
@@ -41,24 +41,29 @@ async function* initGenerator() {
     const cardContent = recipeCard.createRecipeCard();
     document.getElementById("recipe-grid").appendChild(cardContent);
   });
+  
   yield 4;
-  simpleSearch(recipes, ingredientsTags, appliancesTags, ustensilsTags);
+  // gère le contenu des tags
+  tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags, recipes, ingredientsTagsActualized, appliancesTagsActualized, ustensilsTagsActualized);
   
   yield 5;
-  // on gère la recherche avancée des tags 
-  searchTags();
+  simpleSearch(
+    recipes,
+    ingredientsTags,
+    appliancesTags,
+    ustensilsTags,
+    tagsArrayFilter
+  );
   
   yield 6;
-  // gère le contenu des tags
-  tagsListsContent(ingredientsTags, appliancesTags, ustensilsTags);
-  
+  // on gère la recherche avancée des tags 
+  autocompleteTags(recipes, ingredientsTags, appliancesTags, ustensilsTags, ingredientsTagsActualized, appliancesTagsActualized, ustensilsTagsActualized);
+ 
   yield 7;
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
   
-  yield 8;
-  // gère l'actualisation des bars de tags
-  tagsActualized(recipes, ingredientsTags, appliancesTags, ustensilsTags);
+ 
 }
 
 // on initialise le générateur

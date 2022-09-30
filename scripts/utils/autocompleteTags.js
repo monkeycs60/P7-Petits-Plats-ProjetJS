@@ -1,5 +1,7 @@
-export function searchTags() {
+export function autocompleteTags() {
 
+
+  
 const inputIngredients = document.querySelector("#inputIngredients");
 const inputAppliances = document.querySelector("#inputAppliances");
 const inputUstensils = document.querySelector("#inputUstensils");
@@ -10,13 +12,15 @@ inputIngredients.addEventListener("keyup", (e) => {
   console.log(inputValue);
   const ingredientsTagsList = document.querySelectorAll(".ingredientsTagsList");
   // create a const for ingredientsTagsList that are display block
- 
+  
   ingredientsTagsList.forEach((ing) => {
-    if (ing.style.display === "block") {
-     //add a data attribute to each ingredientTagsList that is display block
+    if (ing.style.display === "none") {
+    } else {
+      //add a data attribute to each ingredientTagsList that is display block
       ing.setAttribute("data-display", "true");
     }
   });
+  console.log(ingredientsTagsList);
   // create a const for ingredientsTagsList that are display block
   const ingredientsTagsListDisplay = document.querySelectorAll(
     '[data-display="true"]'
@@ -31,6 +35,7 @@ inputIngredients.addEventListener("keyup", (e) => {
       tag.style.display = "none";
     }
   });
+
 });
 
 inputAppliances.addEventListener("keyup", (e) => {

@@ -1,3 +1,6 @@
+import { tagsActualized } from "./refreshTags.js";
+
+
 let ingredientsTagsActualized = [];
 let appliancesTagsActualized = [];
 let ustensilsTagsActualized = [];
@@ -6,50 +9,36 @@ export function simpleSearch(
   recipes,
   ingredientsTags,
   appliancesTags,
-  ustensilsTags
+  ustensilsTags,
+  tagsArrayFilter
 ) {
   // on écoute la barre de recherche principale
   const searchInput = document.querySelector("#mainSearch");
 
   // event listener sur le champ de recherche
   searchInput.addEventListener("keyup", (event) => {
-    
     // on récupère la valeur du champ de recherche
     const searchInputValue = event.target.value.toLowerCase();
 
     // la recherche commence à partir de 3 caractères - 1er CONDITION
     if (searchInputValue.length > 2) {
+      console.log(tagsArrayFilter);
       // on compare la valeur du champ de recherche avec le contenu de la recette
       recipes.forEach((recipe) => {
         // on affiche la recette
-        if (document.getElementById(recipe.id).style.display === "flex") {
-          if (
-            recipe.name.includes(searchInputValue) ||
-            recipe.description.includes(searchInputValue) ||
-            recipe.ingredients.includes(searchInputValue)
-          ) {
-            document.getElementById(recipe.id).style.display = "flex";
-            // push its tags in the tags arrays
-            ingredientsTagsActualized.push(recipe.ingredients);
-            appliancesTagsActualized.push(recipe.appliance);
-            ustensilsTagsActualized.push(recipe.ustensils);
-          } else {
-            document.getElementById(recipe.id).style.display = "none";
-          }
-        } else {
-          if (
-            recipe.name.includes(searchInputValue) ||
-            recipe.description.includes(searchInputValue) ||
-            recipe.ingredients.includes(searchInputValue)
-          )
-          {
-            document.getElementById(recipe.id).style.display = "flex";
-            // push its tags in the tags arrays
-            ingredientsTagsActualized.push(recipe.ingredients);
-            appliancesTagsActualized.push(recipe.appliance);
-            ustensilsTagsActualized.push(recipe.ustensils);
-          }
 
+        if (
+          recipe.name.includes(searchInputValue) ||
+          recipe.description.includes(searchInputValue) ||
+          recipe.ingredients.includes(searchInputValue)
+        ) {
+          document.getElementById(recipe.id).style.display = "flex";
+          // push its tags in the tags arrays
+          ingredientsTagsActualized.push(recipe.ingredients);
+          appliancesTagsActualized.push(recipe.appliance);
+          ustensilsTagsActualized.push(recipe.ustensils);
+        } else {
+          document.getElementById(recipe.id).style.display = "none";
         }
       });
 
@@ -80,7 +69,7 @@ export function simpleSearch(
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
 
-      //display none for ingredientList children textcontent if they are not in ingredientsTagsActualized
+      // display none for ingredientList children textcontent if they are not in ingredientsTagsActualized
       ingredientList.childNodes.forEach((child) => {
         if (!ingredientsTagsActualized.includes(child.textContent)) {
           child.style.display = "none";
@@ -89,7 +78,7 @@ export function simpleSearch(
         }
       });
 
-      //display none for applianceList children textcontent if they are not in appliancesTagsActualized
+      // display none for applianceList children textcontent if they are not in appliancesTagsActualized
       applianceList.childNodes.forEach((child) => {
         if (!appliancesTagsActualized.includes(child.textContent)) {
           child.style.display = "none";
@@ -98,7 +87,7 @@ export function simpleSearch(
         }
       });
 
-      //display none for ustensilList children textcontent if they are not in ustensilsTagsActualized
+      // display none for ustensilList children textcontent if they are not in ustensilsTagsActualized
       ustensilList.childNodes.forEach((child) => {
         if (!ustensilsTagsActualized.includes(child.textContent)) {
           child.style.display = "none";
@@ -106,22 +95,34 @@ export function simpleSearch(
           child.style.display = "block";
         }
       });
-   
 
+      // on insère les fonctions TAGS ici (avec le tableau de tags actualisé en paramètre)
 
-      // on vide les tableaux de tags
-      ingredientsTags = ingredientsTagsActualized;
-      appliancesTags = appliancesTagsActualized;
-      ustensilsTags = ustensilsTagsActualized;
+      // tagsActualized(recipes, ingredientsTagsActualized, appliancesTagsActualized, ustensilsTagsActualized, ingredientsTags, appliancesTags, ustensilsTags);
 
       // on vide les tableaux pour la prochaine recherche
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
     } else {
-      // display all recipes
+      // RESET LE CHAMP DES TAGS quand la recherche < 3 caractères
+
+      // on affiche toutes les recettes
       recipes.forEach((recipe) => {
         document.getElementById(recipe.id).style.display = "flex";
+      });
+
+      const ingredientList = document.querySelector(".ingredients");
+      const applianceList = document.querySelector(".appliances");
+      const ustensilList = document.querySelector(".ustensils");
+      ingredientList.childNodes.forEach((child) => {
+        child.style.display = "block";
+      });
+      applianceList.childNodes.forEach((child) => {
+        child.style.display = "block";
+      });
+      ustensilList.childNodes.forEach((child) => {
+        child.style.display = "block";
       });
     }
 
@@ -138,12 +139,10 @@ export function simpleSearch(
       noCard.style.display = "none";
     }
   });
-
-  
 }
 
 export {
   ingredientsTagsActualized,
   appliancesTagsActualized,
-  ustensilsTagsActualized
+  ustensilsTagsActualized,
 };

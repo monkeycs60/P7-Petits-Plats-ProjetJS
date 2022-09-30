@@ -1,11 +1,14 @@
 export function tagsActualized(
   recipes,
+  ingredientsTagsActualized,
+  appliancesTagsActualized,
+  ustensilsTagsActualized,
   ingredientsTags,
   appliancesTags,
   ustensilsTags
 ) {
   // TAGLISTS CHIANTES
-
+console.log(ingredientsTagsActualized, appliancesTagsActualized, ustensilsTagsActualized);
   // listeners clic TAGS
   const tagArea = document.querySelector(".tag-area");
 
@@ -29,7 +32,7 @@ export function tagsActualized(
   // on écoute les tags INGREDIENTS
   ingredientsTagsList.forEach((ingredientTags) => {
     ingredientTags.addEventListener("click", (event) => {
-      console.log("click");
+      console.log("hello");
       // on récupère la valeur du tag
       const tagValue = event.target.innerHTML;
 
@@ -83,12 +86,12 @@ export function tagsActualized(
           ing.style.display = "none";
         }
       });
-      console.log(ingredientsTags);
+      
       //  ingredientsTags = filter filteredIngredients;
-      ingredientsTags = filteredIngredients.sort();
-      ingredientTags = new Set(ingredientsTags);
-      ingredientsTags = Array.from(ingredientTags);
-      console.log(ingredientsTags);
+      // ingredientsTags = filteredIngredients.sort();
+      // ingredientTags = new Set(ingredientsTags);
+      // ingredientsTags = Array.from(ingredientTags);
+      // console.log(ingredientsTags);
     });
   });
 }
