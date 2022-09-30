@@ -32,14 +32,13 @@ export function simpleSearch(
         recipeIngredientList = recipeIngredientList.map((ingredient) =>
           ingredient.toLowerCase()
         );
-
-
         // si la valeur saisie dans l'input est présente dans la card recette, alors l'affiche 
         if (
-          recipe.name.includes(searchInputValue) ||
-          recipe.description.includes(searchInputValue) ||
+          recipe.name.toLowerCase().includes(searchInputValue) ||
+          recipe.description.toLowerCase().includes(searchInputValue) ||
           recipeIngredientList.includes(searchInputValue)
-        ) {
+          ) {
+          // console.log(recipe.name);
           document.getElementById(recipe.id).style.display = "flex";
           // push its tags in the tags arrays
           ingredientsTagsActualized.push(recipe.ingredients);
@@ -150,13 +149,29 @@ export function simpleSearch(
 
         if (tagsArrayFilter.length > 0) {
           const article = document.querySelectorAll("article");
-          article.forEach((article) => {
-            if (article.textContent.includes(tagsArrayFilter)) {
-              article.style.display = "flex";
-            } else {
-              article.style.display = "none";
-            }
-          });
+          console.log(article);
+          const articleArray = Array.from(article);
+
+           articleArray.forEach((article) => {
+             if (
+               tagsArrayFilter.every((tagValue) =>
+                 article.textContent.includes(tagValue)
+               )
+             ) {
+               article.style.display = "flex";
+             } else {
+               article.style.display = "none";
+             }
+           });
+          // article.forEach((article) => {
+          //   if (article.textContent.includes(tagsArrayFilter)) {
+          //     article.style.display = "flex";
+          //     console.log(article);
+          //   } else {
+          //     console.log(article.textContent);
+          //     article.style.display = "none";
+          //   }
+          // });
         }
 
 //  if (tagsArrayFilter.length > 0) {
