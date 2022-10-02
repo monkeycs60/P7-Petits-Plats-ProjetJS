@@ -1,6 +1,6 @@
 import { tagsActualized } from "./refreshTags.js";
 
-const ingredientsTagsActualized = [];
+let ingredientsTagsActualized = [];
 let appliancesTagsActualized = [];
 let ustensilsTagsActualized = [];
 
@@ -14,6 +14,9 @@ export function simpleSearch(
 ) {
   // on écoute la barre de recherche principale
   const searchInput = document.querySelector("#mainSearch");
+
+  // création d'un nouveau tableau pour les ingrédients filtrés
+  let ingredientsTagsActualizedSecond = [];
 
   // event listener sur le champ de recherche
   searchInput.addEventListener("keyup", (event) => {
@@ -55,8 +58,6 @@ export function simpleSearch(
             });
             console.log(filteredRecipesIng);
 
-            // reset du tableau des ingrédients
-            ingredientsTagsActualized = [];
             tagsArrayFilter.forEach((tag) => {
               if (
                 !recipe.name.toLowerCase().includes(tag.toLowerCase()) &&
@@ -68,24 +69,15 @@ export function simpleSearch(
               } else {
                 // push les tags dans le tableau des tags
                 recipe.ingredients.forEach((ingredient) => {
-                  ingredientsTagsActualized.push(
+                  ingredientsTagsActualizedSecond.push(
                     ingredient.ingredient.toLowerCase()
                   );
                 });
-
+                console.log(ingredientsTagsActualizedSecond);
                 console.log(ingredientsTagsActualized);
                 const ingredientsTagslist = document.querySelectorAll(
                   ".ingredientsTagsList"
                 );
-
-                // ingredientsTagslist.forEach((tag) => {
-                //   if(!ingredientsTagsActualized.includes(tag.textContent.toLowerCase())){
-                //     tag.style.display = "none";
-                //   } else {
-                //     console.log(tag.textContent.toLowerCase());
-                //     console.log(ingredientsTagsActualized);
-                //   }
-                // });
               }
             });
           }
@@ -93,6 +85,7 @@ export function simpleSearch(
           document.getElementById(recipe.id).style.display = "none";
         }
       });
+      console.log(ingredientsTagsActualizedSecond);
 
       // partie actualisation TAGS INGREDIENTS
       ingredientsTagsActualized = ingredientsTagsActualized.flat();
@@ -148,10 +141,46 @@ export function simpleSearch(
         }
       });
 
+      if (tagsArrayFilter.length > 0) {
+        const tagArea = document.querySelector(".tag-area");
+        // On actualise le tableau en retirant les tags déjà cliqués
+        ingredientsTagsActualizedSecond.forEach((tag) => {
+          tagArea.childNodes.forEach((child) => {
+            if (child.textContent.toLocaleLowerCase() === tag.toLocaleLowerCase()) {
+              ingredientsTagsActualizedSecond.splice(
+                ingredientsTagsActualizedSecond.indexOf(tag),
+                1
+              );
+            }
+          });
+        });
+        // display none for ingredientList children textcontent if they are not in ingredientsTagsActualizedSecond
+        ingredientList.childNodes.forEach((child) => {
+          if (
+            !ingredientsTagsActualizedSecond.includes(
+              child.textContent.toLocaleLowerCase()
+            )
+          ) {
+            child.style.display = "none";
+          }
+        });
+        tagArea.childNodes.forEach((tagAlreadyUsed) => {
+          if (
+            ingredientsTagsActualizedSecond.includes(
+              tagAlreadyUsed.textContent.toLocaleLowerCase()
+            )
+          ) {
+            //display none for the tag for the ingredient if it is already used
+          }
+        });
+      }
       // on vide les tableaux pour la prochaine recherche
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
+      ingredientsTagsActualizedSecond = [];
+     
+
     } else {
       // Si la saisie est < 2 caractères, alors on n'affiche que les recettes filtrées par tags SINON on affiche tout
 
