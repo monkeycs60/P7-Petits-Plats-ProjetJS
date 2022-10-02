@@ -73,11 +73,6 @@ export function simpleSearch(
                     ingredient.ingredient.toLowerCase()
                   );
                 });
-                console.log(ingredientsTagsActualizedSecond);
-                console.log(ingredientsTagsActualized);
-                const ingredientsTagslist = document.querySelectorAll(
-                  ".ingredientsTagsList"
-                );
               }
             });
           }
@@ -220,6 +215,7 @@ export function simpleSearch(
             article.style.display = "none";
           }
         });
+        console.log(ingredientsTagsActualizedSecond);
       }
     }
 
