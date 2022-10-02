@@ -52,7 +52,8 @@ async function* initGenerator() {
     ingredientsTags,
     appliancesTags,
     ustensilsTags,
-    tagsArrayFilter
+    tagsArrayFilter,
+    ingredientsTagsActualized
   );
   
   yield 6;

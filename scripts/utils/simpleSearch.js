@@ -1,6 +1,6 @@
 import { tagsActualized } from "./refreshTags.js";
 
-let ingredientsTagsActualized = [];
+const ingredientsTagsActualized = [];
 let appliancesTagsActualized = [];
 let ustensilsTagsActualized = [];
 
@@ -9,7 +9,8 @@ export function simpleSearch(
   ingredientsTags,
   appliancesTags,
   ustensilsTags,
-  tagsArrayFilter
+  tagsArrayFilter,
+  ingredientsTagsActualized
 ) {
   // on écoute la barre de recherche principale
   const searchInput = document.querySelector("#mainSearch");
@@ -23,22 +24,19 @@ export function simpleSearch(
     if (searchInputValue.length > 2) {
       // on compare la valeur du champ de recherche avec le contenu de la recette
       recipes.forEach((recipe) => {
-
-        //on récupère tous les ingrédients de la recette en question
-        let recipeIngredientList = [];
+        // on récupère tous les ingrédients de la recette en question
+        const recipeIngredientList = [];
         recipe.ingredients.forEach((ingredient) => {
-          recipeIngredientList.push(ingredient.ingredient);
+          recipeIngredientList.push(ingredient.ingredient.toLowerCase());
         });
-        recipeIngredientList = recipeIngredientList.map((ingredient) =>
-          ingredient.toLowerCase()
-        );
-        // si la valeur saisie dans l'input est présente dans la card recette, alors l'affiche 
+
+        // si la valeur saisie dans l'input est présente dans la card recette, alors l'affiche
         if (
           recipe.name.toLowerCase().includes(searchInputValue) ||
           recipe.description.toLowerCase().includes(searchInputValue) ||
           recipeIngredientList.includes(searchInputValue)
-          ) {
-            console.log("début de la recherche");
+        ) {
+          console.log("début de la recherche");
           // console.log(recipe.name);
           document.getElementById(recipe.id).style.display = "flex";
           console.log(recipe);
@@ -51,10 +49,14 @@ export function simpleSearch(
           if (tagsArrayFilter.length > 0) {
             console.log("milieu de la recherche");
             console.log(tagsArrayFilter);
-           let filteredRecipesIng = [];
-           recipe.ingredients.forEach((ingredient) => {
+            const filteredRecipesIng = [];
+            recipe.ingredients.forEach((ingredient) => {
               filteredRecipesIng.push(ingredient.ingredient.toLowerCase());
             });
+            console.log(filteredRecipesIng);
+
+            // reset du tableau des ingrédients
+            ingredientsTagsActualized = [];
             tagsArrayFilter.forEach((tag) => {
               if (
                 !recipe.name.toLowerCase().includes(tag.toLowerCase()) &&
@@ -63,6 +65,27 @@ export function simpleSearch(
               ) {
                 document.getElementById(recipe.id).style.display = "none";
                 console.log("fin de la recherche");
+              } else {
+                // push les tags dans le tableau des tags
+                recipe.ingredients.forEach((ingredient) => {
+                  ingredientsTagsActualized.push(
+                    ingredient.ingredient.toLowerCase()
+                  );
+                });
+
+                console.log(ingredientsTagsActualized);
+                const ingredientsTagslist = document.querySelectorAll(
+                  ".ingredientsTagsList"
+                );
+
+                // ingredientsTagslist.forEach((tag) => {
+                //   if(!ingredientsTagsActualized.includes(tag.textContent.toLowerCase())){
+                //     tag.style.display = "none";
+                //   } else {
+                //     console.log(tag.textContent.toLowerCase());
+                //     console.log(ingredientsTagsActualized);
+                //   }
+                // });
               }
             });
           }
@@ -125,64 +148,50 @@ export function simpleSearch(
         }
       });
 
-      // on insère les fonctions TAGS ici (avec le tableau de tags actualisé en paramètre)
-
-      // tagsActualized(recipes, ingredientsTagsActualized, appliancesTagsActualized, ustensilsTagsActualized, ingredientsTags, appliancesTags, ustensilsTags);
-
       // on vide les tableaux pour la prochaine recherche
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
     } else {
       // Si la saisie est < 2 caractères, alors on n'affiche que les recettes filtrées par tags SINON on affiche tout
-   
-        // RESET LE CHAMP DES TAGS quand la recherche < 3 caractères
-        // on affiche toutes les recettes
-        recipes.forEach((recipe) => {
-          document.getElementById(recipe.id).style.display = "flex";
+
+      // RESET LE CHAMP DES TAGS quand la recherche < 3 caractères
+      // on affiche toutes les recettes
+      recipes.forEach((recipe) => {
+        document.getElementById(recipe.id).style.display = "flex";
+      });
+
+      const ingredientList = document.querySelector(".ingredients");
+      const applianceList = document.querySelector(".appliances");
+      const ustensilList = document.querySelector(".ustensils");
+      ingredientList.childNodes.forEach((child) => {
+        child.style.display = "block";
+      });
+      applianceList.childNodes.forEach((child) => {
+        child.style.display = "block";
+      });
+      ustensilList.childNodes.forEach((child) => {
+        child.style.display = "block";
+      });
+
+      if (tagsArrayFilter.length > 0) {
+        console.log("ccz");
+        const article = document.querySelectorAll("article");
+
+        const articleArray = Array.from(article);
+
+        articleArray.forEach((article) => {
+          if (
+            tagsArrayFilter.every((tagValue) =>
+              article.textContent.includes(tagValue)
+            )
+          ) {
+            article.style.display = "flex";
+          } else {
+            article.style.display = "none";
+          }
         });
-
-        const ingredientList = document.querySelector(".ingredients");
-        const applianceList = document.querySelector(".appliances");
-        const ustensilList = document.querySelector(".ustensils");
-        ingredientList.childNodes.forEach((child) => {
-          child.style.display = "block";
-        });
-        applianceList.childNodes.forEach((child) => {
-          child.style.display = "block";
-        });
-        ustensilList.childNodes.forEach((child) => {
-          child.style.display = "block";
-        });
-      
-
-        if (tagsArrayFilter.length > 0) {
-          console.log("ccz");
-          const article = document.querySelectorAll("article");
-        
-          const articleArray = Array.from(article);
-
-           articleArray.forEach((article) => {
-             if (
-               tagsArrayFilter.every((tagValue) =>
-                 article.textContent.includes(tagValue)
-               )
-             ) {
-               article.style.display = "flex";
-             } else {
-               article.style.display = "none";
-             }
-           });
-       
-        }
-
-
-
-          
-
-
-
-
+      }
     }
 
     // On gère l'affichage du message d'erreur si aucune card correspond à la recherche

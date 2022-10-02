@@ -73,15 +73,53 @@ export function tagsListsContent(
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
 
+      // on récupère les ingrédients des articles affichés
+      let ingredientsDisplayed = [];
+
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
         if (
-          tagsValues.every((tagValue) => article.textContent.toLowerCase().includes(tagValue.toLowerCase()))
+          article.style.display !== "none" &&
+          tagsValues.every((tagValue) =>
+            article.textContent.toLowerCase().includes(tagValue.toLowerCase())
+          )
         ) {
           article.style.display = "flex";
+          article
+            .querySelectorAll(".preciseIngredient")
+            .forEach((ingredient) => {
+              ingredientsDisplayed.push(ingredient.textContent);
+            });
         } else {
           article.style.display = "none";
         }
+      });
+
+      // On enlève les doublons du tableau
+      ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
+
+      // // on actualise la liste des tags
+      // ingredientsTagsActualized = [];
+
+      // on affiche uniquement les tags qui correspondent aux ingrédients affichés
+      ingredientsTagsList.forEach((ingredientTags) => {
+        if (ingredientsDisplayed.includes(ingredientTags.textContent)) {
+          ingredientTags.style.display = "block";
+          ingredientsTagsActualized.push(ingredientTags.textContent);
+          console.log(ingredientTags.textContent);
+        } else {
+          ingredientTags.style.display = "none";
+        }
+      });
+      console.log(ingredientsTagsActualized);
+
+      // on supprime le tag déjà sélectionné de la liste des tags
+      tagsValues.forEach((tagValue) => {
+        ingredientsTagsList.forEach((ingr) => {
+          if (ingr.textContent === tagValue) {
+            ingr.style.display = "none";
+          }
+        });
       });
 
       // push the tagValue in the array
