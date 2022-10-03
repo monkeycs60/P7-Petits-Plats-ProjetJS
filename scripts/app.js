@@ -17,7 +17,6 @@ import {
   ustensilsTagsActualized,
   simpleSearch,
 } from "./utils/simpleSearch.js";
-import { tagsActualized } from "./utils/refreshTags.js";
 import { autocompleteTags } from "./utils/autocompleteTags.js";
 
 

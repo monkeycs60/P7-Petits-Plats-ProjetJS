@@ -15,6 +15,7 @@ export function simpleSearch(
 ) {
   // on écoute la barre de recherche principale
   const searchInput = document.querySelector("#mainSearch");
+  const allArticlesInArray = Array.from(document.querySelectorAll("article"));
 
   // création d'un nouveau tableau pour les ingrédients filtrés
   let ingredientsTagsActualizedSecond = [];
@@ -23,64 +24,116 @@ export function simpleSearch(
   searchInput.addEventListener("keyup", (event) => {
     // on récupère la valeur du champ de recherche
     const searchInputValue = event.target.value.toLowerCase();
-
+console.log(document.querySelectorAll(".preciseIngredient"));
     // la recherche commence à partir de 3 caractères - 1er CONDITION
     if (searchInputValue.length > 2) {
-      // on compare la valeur du champ de recherche avec le contenu de la recette
-      recipes.forEach((recipe) => {
-        // on récupère tous les ingrédients de la recette en question
-        const recipeIngredientList = [];
-        recipe.ingredients.forEach((ingredient) => {
-          recipeIngredientList.push(ingredient.ingredient.toLowerCase());
+
+      allArticlesInArray.forEach((article) => {
+        const articleTitle = article.querySelector("h2").textContent;
+        let ingredientsArrayArticle = [];
+        const articleIngredients = article.querySelectorAll(".preciseIngredient");
+        articleIngredients.forEach((ingredient) => {
+          ingredientsArrayArticle.push(ingredient.textContent);
         });
+        const articleDescription = article.querySelector(".description").textContent;
 
-        // si la valeur saisie dans l'input est présente dans la card recette, alors l'affiche
+        // hidden datas
+        const articleAppliance = article.querySelector(".applianceTag").textContent;
+        const articleUstensils = article.querySelectorAll(".ustensilTag");
+        
+
         if (
-          recipe.name.toLowerCase().includes(searchInputValue) ||
-          recipe.description.toLowerCase().includes(searchInputValue) ||
-          recipeIngredientList.includes(searchInputValue)
+          articleTitle.toLowerCase().includes(searchInputValue.toLowerCase()) ||
+          ingredientsArrayArticle.some((ingredient) =>
+            ingredient.toLowerCase().includes(searchInputValue.toLowerCase())
+          ) ||
+          articleDescription
+            .toLowerCase()
+            .includes(searchInputValue.toLowerCase()) 
         ) {
-          console.log("début de la recherche");
-          // console.log(recipe.name);
-          document.getElementById(recipe.id).style.display = "flex";
-          console.log(recipe);
-          // push its tags in the tags arrays
-          ingredientsTagsActualized.push(recipe.ingredients);
-          appliancesTagsActualized.push(recipe.appliance);
-          ustensilsTagsActualized.push(recipe.ustensils);
+          article.style.display = "flex";
 
-          // if tagsArrayFilter.length > 0, display none the recipes that don't have the tags in the tagsArrayFilter
-          if (tagsArrayFilter.length > 0) {
-            console.log("milieu de la recherche");
-            console.log(tagsArrayFilter);
-            const filteredRecipesIng = [];
-            recipe.ingredients.forEach((ingredient) => {
-              filteredRecipesIng.push(ingredient.ingredient.toLowerCase());
-            });
-            console.log(filteredRecipesIng);
-
-            tagsArrayFilter.forEach((tag) => {
-              if (
-                !recipe.name.toLowerCase().includes(tag.toLowerCase()) &&
-                !recipe.description.toLowerCase().includes(tag.toLowerCase()) &&
-                !filteredRecipesIng.includes(tag.toLowerCase())
-              ) {
-                document.getElementById(recipe.id).style.display = "none";
-                console.log("fin de la recherche");
-              } else {
-                // push les tags dans le tableau des tags
-                recipe.ingredients.forEach((ingredient) => {
-                  ingredientsTagsActualizedSecond.push(
-                    ingredient.ingredient.toLowerCase()
-                  );
-                });
-              }
-            });
-          }
+          // on push les ingrédients dans ingredientsTagsActualized
+          ingredientsArrayArticle.forEach((ingredient) => {
+            ingredientsTagsActualized.push(ingredient);
+          });
+          // on push les appareils dans appliancesTagsActualized
+          appliancesTagsActualized.push(articleAppliance);
+          // on push les ustensiles dans ustensilsTagsActualized
+          articleUstensils.forEach((ustensil) => {
+            ustensilsTagsActualized.push(ustensil.textContent);
+          });
+          console.log(appliancesTagsActualized);
+          console.log(ustensilsTagsActualized);
+          console.log(ingredientsTagsActualized);
         } else {
-          document.getElementById(recipe.id).style.display = "none";
+          article.style.display = "none";
         }
+
       });
+   
+console.log(appliancesTagsActualized);
+console.log(ustensilsTagsActualized);
+console.log(ingredientsTagsActualized);
+
+
+
+      // on compare la valeur du champ de recherche avec le contenu de la recette
+      // recipes.forEach((recipe) => {
+      //   // on récupère tous les ingrédients de la recette en question
+      //   const recipeIngredientList = [];
+      //   recipe.ingredients.forEach((ingredient) => {
+      //     recipeIngredientList.push(ingredient.ingredient.toLowerCase());
+      //   });
+
+      //   console.log(recipeIngredientList);
+      //   // si la valeur saisie dans l'input est présente dans la card recette, alors l'affiche
+      //   if (
+      //     recipe.name.toLowerCase().includes(searchInputValue) ||
+      //     recipe.description.toLowerCase().includes(searchInputValue) ||
+      //     recipeIngredientList.includes(searchInputValue)
+      //   ) {
+      //     console.log("début de la recherche");
+      //     // console.log(recipe.name);
+      //     document.getElementById(recipe.id).style.display = "flex";
+      //     console.log(recipe);
+      //     // push its tags in the tags arrays
+      //     ingredientsTagsActualized.push(recipe.ingredients);
+      //     appliancesTagsActualized.push(recipe.appliance);
+      //     ustensilsTagsActualized.push(recipe.ustensils);
+
+      //     // if tagsArrayFilter.length > 0, display none the recipes that don't have the tags in the tagsArrayFilter
+      //     if (tagsArrayFilter.length > 0) {
+      //       console.log("milieu de la recherche");
+      //       console.log(tagsArrayFilter);
+      //       const filteredRecipesIng = [];
+      //       recipe.ingredients.forEach((ingredient) => {
+      //         filteredRecipesIng.push(ingredient.ingredient.toLowerCase());
+      //       });
+      //       console.log(filteredRecipesIng);
+
+      //       tagsArrayFilter.forEach((tag) => {
+      //         if (
+      //           !recipe.name.toLowerCase().includes(tag.toLowerCase()) &&
+      //           !recipe.description.toLowerCase().includes(tag.toLowerCase()) &&
+      //           !filteredRecipesIng.includes(tag.toLowerCase())
+      //         ) {
+      //           document.getElementById(recipe.id).style.display = "none";
+      //           console.log("fin de la recherche");
+      //         } else {
+      //           // push les tags dans le tableau des tags
+      //           recipe.ingredients.forEach((ingredient) => {
+      //             ingredientsTagsActualizedSecond.push(
+      //               ingredient.ingredient.toLowerCase()
+      //             );
+      //           });
+      //         }
+      //       });
+      //     }
+      //   } else {
+      //     document.getElementById(recipe.id).style.display = "none";
+      //   }
+      // });
       console.log(ingredientsTagsActualizedSecond);
 
       // partie actualisation TAGS INGREDIENTS

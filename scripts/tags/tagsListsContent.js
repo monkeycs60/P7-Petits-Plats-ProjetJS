@@ -102,6 +102,7 @@ export function tagsListsContent(
 
       // // on actualise la liste des tags
       // ingredientsTagsActualized = [];
+      console.log(ingredientsDisplayed);
 
       // on affiche uniquement les tags qui correspondent aux ingrédients affichés
       ingredientsTagsList.forEach((ingredientTags) => {
@@ -113,8 +114,11 @@ export function tagsListsContent(
           ingredientTags.style.display = "none";
         }
       });
-      console.log(ingredientsTagsActualized);
-
+  
+      // on reset les tableaux
+      ingredientsTagsActualized = [];
+      ingredientsDisplayed = [];
+      
       // on supprime le tag déjà sélectionné de la liste des tags
       tagsValues.forEach((tagValue) => {
         ingredientsTagsList.forEach((ingr) => {
