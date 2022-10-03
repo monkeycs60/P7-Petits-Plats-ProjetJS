@@ -63,11 +63,6 @@ export function simpleSearch(
           articleUstensils.forEach((ustensil) => {
             ustensilsTagsActualized.push(ustensil.textContent);
           });
-          console.log(appliancesTagsActualized);
-          console.log(ustensilsTagsActualized);
-          console.log(ingredientsTagsActualized);
-
-          console.log(tagsArrayFilter);
 
           if (tagsArrayFilter.length > 0) {
 
@@ -80,84 +75,28 @@ export function simpleSearch(
             ) 
             ) {
               console.log("on cache l'article");
-              console.log(article);
               article.style.display = "none";
-              console.log(article.textContent);
             }
           }
           }
         
-        //     // if tag is not include in the article, we hide it
-        //     tagsArrayFilter.forEach((tag) => {
-        //     if (
-        //       !tagsArrayFilter.some((tag) =>
-        //         articleTitle.toLowerCase().includes(tag.toLowerCase())
-        //       ) &&
-        //       !tagsArrayFilter.some((tag) =>
-        //         ingredientsArrayArticle.some((ingredient) =>
-        //           ingredient.toLowerCase().includes(tag.toLowerCase())
-        //         )
-        //       ) &&
-        //       !tagsArrayFilter.some((tag) =>
-        //         articleDescription.toLowerCase().includes(tag.toLowerCase())
-        //       )
-        //     ) {
-        //       console.log("on cache l'article");
-        //       console.log(article);
-        //       article.style.display = "none";
-        //     }
-        //   }
-        // } else {
-        //   article.style.display = "none";
-        // }
+        else {
+          article.style.display = "none";
+        }
+
       });
       console.log(appliancesTagsActualized);
       console.log(ustensilsTagsActualized);
       console.log(ingredientsTagsActualized);
 
-      // on compare la valeur du champ de recherche avec le contenu de la recette
-      // recipes.forEach((recipe) => {
-      //   // on récupère tous les ingrédients de la recette en question
-
-      //     // if tagsArrayFilter.length > 0, display none the recipes that don't have the tags in the tagsArrayFilter
-      //     if (tagsArrayFilter.length > 0) {
-      //       console.log("milieu de la recherche");
-      //       console.log(tagsArrayFilter);
-      //       const filteredRecipesIng = [];
-      //       recipe.ingredients.forEach((ingredient) => {
-      //         filteredRecipesIng.push(ingredient.ingredient.toLowerCase());
-      //       });
-      //       console.log(filteredRecipesIng);
-
-      //       tagsArrayFilter.forEach((tag) => {
-      //         if (
-      //           !recipe.name.toLowerCase().includes(tag.toLowerCase()) &&
-      //           !recipe.description.toLowerCase().includes(tag.toLowerCase()) &&
-      //           !filteredRecipesIng.includes(tag.toLowerCase())
-      //         ) {
-      //           document.getElementById(recipe.id).style.display = "none";
-      //           console.log("fin de la recherche");
-      //         } else {
-      //           // push les tags dans le tableau des tags
-      //           recipe.ingredients.forEach((ingredient) => {
-      //             ingredientsTagsActualizedSecond.push(
-      //               ingredient.ingredient.toLowerCase()
-      //             );
-      //           });
-      //         }
-      //       });
-      //     }
-      //   } else {
-      //     document.getElementById(recipe.id).style.display = "none";
-      //   }
-      // });
+    
       console.log(ingredientsTagsActualizedSecond);
 
       // partie actualisation TAGS INGREDIENTS
       ingredientsTagsActualized = ingredientsTagsActualized.flat();
       const flatIngredients = [];
       ingredientsTagsActualized.forEach((ingredient) => {
-        flatIngredients.push(ingredient.ingredient);
+        flatIngredients.push(ingredient);
       });
       ingredientsTagsActualized = flatIngredients;
       ingredientsTagsActualized = [
@@ -208,6 +147,7 @@ export function simpleSearch(
       });
 
       if (tagsArrayFilter.length > 0) {
+        console.log(ingredientsDisplayed);
         const tagArea = document.querySelector(".tag-area");
         // On actualise le tableau en retirant les tags déjà cliqués
         ingredientsTagsActualizedSecond.forEach((tag) => {
@@ -222,16 +162,16 @@ export function simpleSearch(
             }
           });
         });
-        // display none for ingredientList children textcontent if they are not in ingredientsTagsActualizedSecond
-        ingredientList.childNodes.forEach((child) => {
-          if (
-            !ingredientsTagsActualizedSecond.includes(
-              child.textContent.toLocaleLowerCase()
-            )
-          ) {
-            child.style.display = "none";
-          }
-        });
+        // // display none for ingredientList children textcontent if they are not in ingredientsTagsActualizedSecond
+        // ingredientList.childNodes.forEach((child) => {
+        //   if (
+        //     !ingredientsTagsActualizedSecond.includes(
+        //       child.textContent.toLocaleLowerCase()
+        //     )
+        //   ) {
+        //     child.style.display = "none";
+        //   }
+        // });
         tagArea.childNodes.forEach((tagAlreadyUsed) => {
           if (
             ingredientsTagsActualizedSecond.includes(
@@ -242,6 +182,8 @@ export function simpleSearch(
           }
         });
       }
+      console.log(ingredientsTagsActualizedSecond);
+      console.log(ingredientsTagsActualized);
       // on vide les tableaux pour la prochaine recherche
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
@@ -303,21 +245,20 @@ export function simpleSearch(
             }
           });
         });
-        ingredientsDisplayed.forEach((itemsTag) => {
-          // tolocaleLowerCase
-          itemsTag = itemsTag.toLocaleLowerCase();
-          console.log(itemsTag);
-          // display none for the tag for the ingredient if it is already used
+        console.log(ingredientsDisplayed);
+        console.log(ingredientsEntiers);
 
-          ingredientsEntiers.forEach((child) => {
-            if (
-              itemsTag.toLocaleLowerCase() ===
-              child.textContent.toLocaleLowerCase()
-            ) {
-            } else {
-              child.style.display = "none";
-            }
-          });
+// n'affiche que les tags qui correspondent aux tags filtrés + recherche simple
+        ingredientsEntiers.forEach((ingredient) => {
+          if (
+            !ingredientsDisplayed.includes(
+              ingredient.textContent
+            )
+          ) {
+            ingredient.style.display = "none";
+          } else {
+            ingredient.style.display = "block";
+          }
         });
       }
     }

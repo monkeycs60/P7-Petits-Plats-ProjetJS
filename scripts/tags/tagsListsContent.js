@@ -60,7 +60,7 @@ export function tagsListsContent(
       const tagValue = event.target.innerHTML;
 
       // on l'affiche dans un span child de tagarea
-      tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fas fa-times"></i></span>`;
+      tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
       // on supprime le tag de la liste
       event.target.style.display = "none";
 
