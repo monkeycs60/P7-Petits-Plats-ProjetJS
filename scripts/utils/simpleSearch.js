@@ -10,7 +10,8 @@ export function simpleSearch(
   appliancesTags,
   ustensilsTags,
   tagsArrayFilter,
-  ingredientsTagsActualized
+  ingredientsTagsActualized,
+  ingredientsDisplayed
 ) {
   // on écoute la barre de recherche principale
   const searchInput = document.querySelector("#mainSearch");
@@ -141,7 +142,9 @@ export function simpleSearch(
         // On actualise le tableau en retirant les tags déjà cliqués
         ingredientsTagsActualizedSecond.forEach((tag) => {
           tagArea.childNodes.forEach((child) => {
-            if (child.textContent.toLocaleLowerCase() === tag.toLocaleLowerCase()) {
+            if (
+              child.textContent.toLocaleLowerCase() === tag.toLocaleLowerCase()
+            ) {
               ingredientsTagsActualizedSecond.splice(
                 ingredientsTagsActualizedSecond.indexOf(tag),
                 1
@@ -174,8 +177,6 @@ export function simpleSearch(
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
       ingredientsTagsActualizedSecond = [];
-     
-
     } else {
       // Si la saisie est < 2 caractères, alors on n'affiche que les recettes filtrées par tags SINON on affiche tout
 
@@ -199,7 +200,7 @@ export function simpleSearch(
       });
 
       if (tagsArrayFilter.length > 0) {
-        console.log("ccz");
+        console.log(ingredientsDisplayed);
         const article = document.querySelectorAll("article");
 
         const articleArray = Array.from(article);
@@ -215,7 +216,41 @@ export function simpleSearch(
             article.style.display = "none";
           }
         });
-        console.log(ingredientsTagsActualizedSecond);
+
+        // on actualise les tags
+        const tagArea = document.querySelector(".tag-area");
+        const ingredientsEntiers = document.querySelectorAll(".ingredientsTagsList");
+        // On actualise le tableau en retirant les tags déjà cliqués
+        ingredientsDisplayed.forEach((tag) => {
+          tagArea.childNodes.forEach((child) => {
+            if (
+              child.textContent.toLocaleLowerCase() === tag.toLocaleLowerCase()
+            ) {
+              ingredientsDisplayed.splice(
+                ingredientsDisplayed.indexOf(tag),
+                1
+              );
+            }
+          });
+        });
+        ingredientsDisplayed.forEach((itemsTag) => {
+          //tolocaleLowerCase
+          itemsTag = itemsTag.toLocaleLowerCase();
+          console.log(itemsTag);
+          //display none for the tag for the ingredient if it is already used
+          
+          ingredientsEntiers.forEach((child) => {
+            console.log(itemsTag.toLocaleLowerCase(),
+              child.textContent.toLocaleLowerCase());
+            if (
+              itemsTag.toLocaleLowerCase() ===
+              child.textContent.toLocaleLowerCase()
+            ) {
+            } else {
+              child.style.display = "none";
+            }
+          });
+        });
       }
     }
 

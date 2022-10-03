@@ -5,7 +5,11 @@ import {
   ustensilsTags,
   creatingTagsArrays,
 } from "./tags/TagsArray.js";
-import { tagsListsContent, tagsArrayFilter } from "./tags/tagsListsContent.js";
+import {
+  tagsListsContent,
+  tagsArrayFilter,
+  ingredientsDisplayed,
+} from "./tags/tagsListsContent.js";
 import { handleTags } from "./tags/displayTags.js";
 import {
   ingredientsTagsActualized,
@@ -53,7 +57,8 @@ async function* initGenerator() {
     appliancesTags,
     ustensilsTags,
     tagsArrayFilter,
-    ingredientsTagsActualized
+    ingredientsTagsActualized,
+    ingredientsDisplayed
   );
   
   yield 6;

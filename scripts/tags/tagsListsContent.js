@@ -1,4 +1,6 @@
 const tagsArrayFilter = [];
+  // on récupère les ingrédients des articles affichés
+      let ingredientsDisplayed = [];
 
 export function tagsListsContent(
   ingredientsTags,
@@ -73,8 +75,8 @@ export function tagsListsContent(
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
 
-      // on récupère les ingrédients des articles affichés
-      let ingredientsDisplayed = [];
+      // // on récupère les ingrédients des articles affichés
+      // let ingredientsDisplayed = [];
 
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
@@ -128,4 +130,4 @@ export function tagsListsContent(
   });
 }
 
-export { tagsArrayFilter };
+export { tagsArrayFilter, ingredientsDisplayed };
