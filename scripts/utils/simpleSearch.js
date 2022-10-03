@@ -24,23 +24,23 @@ export function simpleSearch(
   searchInput.addEventListener("keyup", (event) => {
     // on récupère la valeur du champ de recherche
     const searchInputValue = event.target.value.toLowerCase();
-console.log(document.querySelectorAll(".preciseIngredient"));
     // la recherche commence à partir de 3 caractères - 1er CONDITION
     if (searchInputValue.length > 2) {
-
       allArticlesInArray.forEach((article) => {
         const articleTitle = article.querySelector("h2").textContent;
-        let ingredientsArrayArticle = [];
-        const articleIngredients = article.querySelectorAll(".preciseIngredient");
+        const ingredientsArrayArticle = [];
+        const articleIngredients =
+          article.querySelectorAll(".preciseIngredient");
         articleIngredients.forEach((ingredient) => {
           ingredientsArrayArticle.push(ingredient.textContent);
         });
-        const articleDescription = article.querySelector(".description").textContent;
+        const articleDescription =
+          article.querySelector(".description").textContent;
 
         // hidden datas
-        const articleAppliance = article.querySelector(".applianceTag").textContent;
+        const articleAppliance =
+          article.querySelector(".applianceTag").textContent;
         const articleUstensils = article.querySelectorAll(".ustensilTag");
-        
 
         if (
           articleTitle.toLowerCase().includes(searchInputValue.toLowerCase()) ||
@@ -49,7 +49,7 @@ console.log(document.querySelectorAll(".preciseIngredient"));
           ) ||
           articleDescription
             .toLowerCase()
-            .includes(searchInputValue.toLowerCase()) 
+            .includes(searchInputValue.toLowerCase())
         ) {
           article.style.display = "flex";
 
@@ -66,41 +66,58 @@ console.log(document.querySelectorAll(".preciseIngredient"));
           console.log(appliancesTagsActualized);
           console.log(ustensilsTagsActualized);
           console.log(ingredientsTagsActualized);
-        } else {
-          article.style.display = "none";
-        }
 
+          console.log(tagsArrayFilter);
+
+          if (tagsArrayFilter.length > 0) {
+
+            console.log("il y a des tags");
+
+          if (
+             // article textcontent does not contain all the tags
+            !tagsArrayFilter.every((tag) =>
+              article.textContent.toLocaleLowerCase().includes(tag.toLowerCase())
+            ) 
+            ) {
+              console.log("on cache l'article");
+              console.log(article);
+              article.style.display = "none";
+              console.log(article.textContent);
+            }
+          }
+          }
+        
+        //     // if tag is not include in the article, we hide it
+        //     tagsArrayFilter.forEach((tag) => {
+        //     if (
+        //       !tagsArrayFilter.some((tag) =>
+        //         articleTitle.toLowerCase().includes(tag.toLowerCase())
+        //       ) &&
+        //       !tagsArrayFilter.some((tag) =>
+        //         ingredientsArrayArticle.some((ingredient) =>
+        //           ingredient.toLowerCase().includes(tag.toLowerCase())
+        //         )
+        //       ) &&
+        //       !tagsArrayFilter.some((tag) =>
+        //         articleDescription.toLowerCase().includes(tag.toLowerCase())
+        //       )
+        //     ) {
+        //       console.log("on cache l'article");
+        //       console.log(article);
+        //       article.style.display = "none";
+        //     }
+        //   }
+        // } else {
+        //   article.style.display = "none";
+        // }
       });
-   
-console.log(appliancesTagsActualized);
-console.log(ustensilsTagsActualized);
-console.log(ingredientsTagsActualized);
-
-
+      console.log(appliancesTagsActualized);
+      console.log(ustensilsTagsActualized);
+      console.log(ingredientsTagsActualized);
 
       // on compare la valeur du champ de recherche avec le contenu de la recette
       // recipes.forEach((recipe) => {
       //   // on récupère tous les ingrédients de la recette en question
-      //   const recipeIngredientList = [];
-      //   recipe.ingredients.forEach((ingredient) => {
-      //     recipeIngredientList.push(ingredient.ingredient.toLowerCase());
-      //   });
-
-      //   console.log(recipeIngredientList);
-      //   // si la valeur saisie dans l'input est présente dans la card recette, alors l'affiche
-      //   if (
-      //     recipe.name.toLowerCase().includes(searchInputValue) ||
-      //     recipe.description.toLowerCase().includes(searchInputValue) ||
-      //     recipeIngredientList.includes(searchInputValue)
-      //   ) {
-      //     console.log("début de la recherche");
-      //     // console.log(recipe.name);
-      //     document.getElementById(recipe.id).style.display = "flex";
-      //     console.log(recipe);
-      //     // push its tags in the tags arrays
-      //     ingredientsTagsActualized.push(recipe.ingredients);
-      //     appliancesTagsActualized.push(recipe.appliance);
-      //     ustensilsTagsActualized.push(recipe.ustensils);
 
       //     // if tagsArrayFilter.length > 0, display none the recipes that don't have the tags in the tagsArrayFilter
       //     if (tagsArrayFilter.length > 0) {
@@ -221,7 +238,7 @@ console.log(ingredientsTagsActualized);
               tagAlreadyUsed.textContent.toLocaleLowerCase()
             )
           ) {
-            //display none for the tag for the ingredient if it is already used
+            // display none for the tag for the ingredient if it is already used
           }
         });
       }
@@ -257,6 +274,7 @@ console.log(ingredientsTagsActualized);
         const article = document.querySelectorAll("article");
 
         const articleArray = Array.from(article);
+        console.log("on lance l'autre boucle");
 
         articleArray.forEach((article) => {
           if (
@@ -272,29 +290,26 @@ console.log(ingredientsTagsActualized);
 
         // on actualise les tags
         const tagArea = document.querySelector(".tag-area");
-        const ingredientsEntiers = document.querySelectorAll(".ingredientsTagsList");
+        const ingredientsEntiers = document.querySelectorAll(
+          ".ingredientsTagsList"
+        );
         // On actualise le tableau en retirant les tags déjà cliqués
         ingredientsDisplayed.forEach((tag) => {
           tagArea.childNodes.forEach((child) => {
             if (
               child.textContent.toLocaleLowerCase() === tag.toLocaleLowerCase()
             ) {
-              ingredientsDisplayed.splice(
-                ingredientsDisplayed.indexOf(tag),
-                1
-              );
+              ingredientsDisplayed.splice(ingredientsDisplayed.indexOf(tag), 1);
             }
           });
         });
         ingredientsDisplayed.forEach((itemsTag) => {
-          //tolocaleLowerCase
+          // tolocaleLowerCase
           itemsTag = itemsTag.toLocaleLowerCase();
           console.log(itemsTag);
-          //display none for the tag for the ingredient if it is already used
-          
+          // display none for the tag for the ingredient if it is already used
+
           ingredientsEntiers.forEach((child) => {
-            console.log(itemsTag.toLocaleLowerCase(),
-              child.textContent.toLocaleLowerCase());
             if (
               itemsTag.toLocaleLowerCase() ===
               child.textContent.toLocaleLowerCase()

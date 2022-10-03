@@ -109,7 +109,6 @@ export function tagsListsContent(
         if (ingredientsDisplayed.includes(ingredientTags.textContent)) {
           ingredientTags.style.display = "block";
           ingredientsTagsActualized.push(ingredientTags.textContent);
-          console.log(ingredientTags.textContent);
         } else {
           ingredientTags.style.display = "none";
         }
