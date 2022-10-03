@@ -81,7 +81,7 @@ export function simpleSearch(
           }
         
         else {
-          article.style.display = "none";
+          article.style.display = "none";          
         }
 
       });
@@ -149,38 +149,45 @@ export function simpleSearch(
       if (tagsArrayFilter.length > 0) {
         console.log(ingredientsDisplayed);
         const tagArea = document.querySelector(".tag-area");
+        const ingredientsEntiers = document.querySelectorAll(
+          ".ingredientsTagsList"
+        );
         // On actualise le tableau en retirant les tags déjà cliqués
-        ingredientsTagsActualizedSecond.forEach((tag) => {
-          tagArea.childNodes.forEach((child) => {
-            if (
-              child.textContent.toLocaleLowerCase() === tag.toLocaleLowerCase()
-            ) {
-              ingredientsTagsActualizedSecond.splice(
-                ingredientsTagsActualizedSecond.indexOf(tag),
-                1
+      console.log(ingredientsDisplayed);
+      ingredientsTagsActualizedSecond = [];
+      //for each article with not displat none,
+      //we check if the textcontent of the article contains the tag
+allArticlesInArray.forEach((article) => {
+  if (article.style.display !== "none") {
+    //on push les ingrédients dans ingredientsDisplayed
+    const articleIngredients = article.querySelectorAll(".preciseIngredient");
+    articleIngredients.forEach((ingredient) => {
+      ingredientsTagsActualizedSecond.push(ingredient.textContent);
+    });
+  }});
+console.log(ingredientsTagsActualizedSecond);
+// remove the clicked tag from the tag area
+        tagArea.childNodes.forEach((child) => {
+          if (ingredientsTagsActualizedSecond.includes(child.textContent)) {
+            //remove it from ingredientsDisplayed
+            ingredientsTagsActualizedSecond =
+              ingredientsTagsActualizedSecond.filter(
+                (ingredient) => ingredient !== child.textContent
               );
-            }
-          });
-        });
-        // // display none for ingredientList children textcontent if they are not in ingredientsTagsActualizedSecond
-        // ingredientList.childNodes.forEach((child) => {
-        //   if (
-        //     !ingredientsTagsActualizedSecond.includes(
-        //       child.textContent.toLocaleLowerCase()
-        //     )
-        //   ) {
-        //     child.style.display = "none";
-        //   }
-        // });
-        tagArea.childNodes.forEach((tagAlreadyUsed) => {
-          if (
-            ingredientsTagsActualizedSecond.includes(
-              tagAlreadyUsed.textContent.toLocaleLowerCase()
-            )
-          ) {
-            // display none for the tag for the ingredient if it is already used
           }
         });
+        console.log(ingredientsTagsActualizedSecond);
+        // only display the tags that are in the ingredientsDisplayed array
+        ingredientsEntiers.forEach((ingredient) => {
+          if (
+            !ingredientsTagsActualizedSecond.includes(ingredient.textContent)
+          ) {
+            ingredient.style.display = "none";
+          } else {
+            ingredient.style.display = "block";
+          }
+        });
+
       }
       console.log(ingredientsTagsActualizedSecond);
       console.log(ingredientsTagsActualized);
