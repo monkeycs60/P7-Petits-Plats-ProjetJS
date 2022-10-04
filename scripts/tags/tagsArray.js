@@ -36,5 +36,6 @@ export function creatingTagsArrays(recipes) {
   ustensilsTags = allUniqueUstensilsArray
     .map((ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1))
     .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+    ustensilsTags = [...new Set(ustensilsTags)];
 }
 export { ingredientsTags, appliancesTags, ustensilsTags };

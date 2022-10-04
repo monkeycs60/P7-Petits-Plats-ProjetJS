@@ -127,6 +127,20 @@ export function tagsListsContent(
           article.style.display = "none";
         }
       });
+
+      articleArray.forEach((article) => {
+        if (
+          article.style.display !== "none" &&
+          tagsValues.every((tagValue) =>
+            article.textContent.toLowerCase().includes(tagValue.toLowerCase())
+          )
+        ) {
+
+        }
+      });
+
+
+
 console.log(ingredientsDisplayed);
 console.log(appliancesTagsActualized);
 console.log(ustensilsTagsActualized);
@@ -162,6 +176,7 @@ console.log(ustensilsTagsActualized);
         }
       });
 
+      console.log(tagsValues);
       // on supprime le tag déjà sélectionné de la liste des tags
       tagsValues.forEach((tagValue) => {
         ingredientsTagsList.forEach((ingr) => {
@@ -169,6 +184,17 @@ console.log(ustensilsTagsActualized);
             ingr.style.display = "none";
           }
         });
+        appliancesTagsList.forEach((appliance) => {
+          if (appliance.textContent === tagValue) {
+            appliance.style.display = "none";
+          }
+        });
+        ustensilsTagsList.forEach((ustensil) => {
+          if (ustensil.textContent === tagValue) {
+            ustensil.style.display = "none";
+          }
+        }
+        );
       });
 
       // push the tagValue in the array
