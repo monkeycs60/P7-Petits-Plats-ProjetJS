@@ -55,17 +55,23 @@ export function tagsListsContent(
   // on écoute les tags INGREDIENTS
   const itemsToListen = document.querySelectorAll(".itemsToListen");
 
+  // on déclare les différentes listes de tags par catégorie
   const ingredientsTagsList = document.querySelectorAll(".ingredientsTagsList");
+  const appliancesTagsList = document.querySelectorAll(".appliancesTagsList");
+  const ustensilsTagsList = document.querySelectorAll(".ustensilsTagsList");
+
+  // on écoute TOUS les tags
   itemsToListen.forEach((ingredientTags) => {
     ingredientTags.addEventListener("click", (event) => {
       // on reset les tableaux
       ingredientsTagsActualized = [];
       ingredientsDisplayed = [];
+      appliancesTagsActualized = [];
+      ustensilsTagsActualized = [];
 
       // on récupère la valeur du tag
       const tagValue = event.target.innerHTML;
 
-  
       if (event.target.classList.contains("ingredientsTagsList")) {
              tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
       } else if (event.target.classList.contains("appliancesTagsList")) {
@@ -73,8 +79,6 @@ export function tagsListsContent(
       } else if (event.target.classList.contains("ustensilsTagsList")) {
         tagArea.innerHTML += `<span class="tag cursor-pointer tagUstensils">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
       }
-
-
 
       // on supprime le tag de la liste
       event.target.style.display = "none";
@@ -90,8 +94,7 @@ export function tagsListsContent(
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
 
-      // // on récupère les ingrédients des articles affichés
-      // let ingredientsDisplayed = [];
+
 
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
@@ -107,13 +110,31 @@ export function tagsListsContent(
             .forEach((ingredient) => {
               ingredientsDisplayed.push(ingredient.textContent);
             });
+            // on récupère les appliances
+         console.log(article);
+         article
+            .querySelectorAll(".applianceTag")
+            .forEach((appliance) => {
+              appliancesTagsActualized.push(appliance.textContent);
+            });
+            // on récupère les ustensils
+          article
+            .querySelectorAll(".ustensilTag")
+            .forEach((ustensil) => {
+              ustensilsTagsActualized.push(ustensil.textContent);
+            });
         } else {
           article.style.display = "none";
         }
       });
+console.log(ingredientsDisplayed);
+console.log(appliancesTagsActualized);
+console.log(ustensilsTagsActualized);
 
       // On enlève les doublons du tableau
       ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
+      appliancesTagsActualized = [...new Set(appliancesTagsActualized)];
+      ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)];
 
       // on affiche uniquement les tags qui correspondent aux ingrédients affichés
       ingredientsTagsList.forEach((ingredientTags) => {
@@ -122,6 +143,22 @@ export function tagsListsContent(
           ingredientsTagsActualized.push(ingredientTags.textContent);
         } else {
           ingredientTags.style.display = "none";
+        }
+      });
+      // on affiche uniquement les tags qui correspondent aux appareils affichés
+      appliancesTagsList.forEach((applianceTags) => {
+        if (appliancesTagsActualized.includes(applianceTags.textContent)) {
+          applianceTags.style.display = "block";
+        } else {
+          applianceTags.style.display = "none";
+        }
+      });
+      // on affiche uniquement les tags qui correspondent aux ustensiles affichés
+      ustensilsTagsList.forEach((ustensilTags) => {
+        if (ustensilsTagsActualized.includes(ustensilTags.textContent.toLocaleLowerCase())) {
+          ustensilTags.style.display = "block";
+        } else {
+          ustensilTags.style.display = "none";
         }
       });
 
