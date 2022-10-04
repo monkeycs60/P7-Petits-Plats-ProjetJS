@@ -140,8 +140,6 @@ export function simpleSearch(
       });
 
       if (tagsArrayFilter.length > 0) {
-        console.log(ustensilsDisplayed);
-        console.log(appliancesDisplayed);
         const tagArea = document.querySelector(".tag-area");
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
@@ -181,8 +179,6 @@ export function simpleSearch(
               });
           }
         });
-        console.log(ustensilsDisplayed);
-        console.log(appliancesDisplayed);
 
         // remove the clicked tag from the tag area
         tagArea.childNodes.forEach((child) => {

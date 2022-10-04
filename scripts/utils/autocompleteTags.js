@@ -8,34 +8,30 @@ const inputUstensils = document.querySelector("#inputUstensils");
 
 inputIngredients.addEventListener("keyup", (e) => {
   
-  const inputValue = e.target.value;
+  const inputValue = e.target.value.toLocaleLowerCase();
   console.log(inputValue);
+  let filteredIngredients = [];
   const ingredientsTagsList = document.querySelectorAll(".ingredientsTagsList");
-  // create a const for ingredientsTagsList that are display block
-  
+  // for each ingredientTagList that are not display none, push it in filteredIngredients
   ingredientsTagsList.forEach((ing) => {
-    if (ing.style.display === "none") {
-    } else {
-      //add a data attribute to each ingredientTagsList that is display block
-      ing.setAttribute("data-display", "true");
+    if (ing.style.display !== "none") {
+      filteredIngredients.push(ing.textContent.toLocaleLowerCase());
     }
   });
-  console.log(ingredientsTagsList);
-  // create a const for ingredientsTagsList that are display block
-  const ingredientsTagsListDisplay = document.querySelectorAll(
-    '[data-display="true"]'
-  );
-
-  ingredientsTagsListDisplay.forEach((tag) => {
-    //if display none, we don't check
-
-    if (tag.innerText.toLowerCase().includes(inputValue.toLowerCase())) {
-      tag.style.display = "block";
-    } else {
-      tag.style.display = "none";
+  console.log(filteredIngredients);
+  // élimine les valeurs qui ne commencent pas par la valeur de l'input
+  const filteredIngredients2 = filteredIngredients.filter((ing) => {
+    return ing.includes(inputValue);
+  });
+ 
+  // on affiche les tags qui correspondent à la valeur de l'input
+  ingredientsTagsList.forEach((ing) => {
+    if (!filteredIngredients2.includes(ing.textContent.toLocaleLowerCase())) {
+        ing.style.display = "none";
     }
   });
 
+  
 });
 
 inputAppliances.addEventListener("keyup", (e) => {
