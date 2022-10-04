@@ -56,6 +56,10 @@ export function tagsListsContent(
   const ingredientsTagsList = document.querySelectorAll(".ingredientsTagsList");
   ingredientsTagsList.forEach((ingredientTags) => {
     ingredientTags.addEventListener("click", (event) => {
+      // on reset les tableaux
+      ingredientsTagsActualized = [];
+      ingredientsDisplayed = [];
+
       // on récupère la valeur du tag
       const tagValue = event.target.innerHTML;
 
@@ -100,8 +104,6 @@ export function tagsListsContent(
       // On enlève les doublons du tableau
       ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
 
-      // // on actualise la liste des tags
-      // ingredientsTagsActualized = [];
       console.log(ingredientsDisplayed);
 
       // on affiche uniquement les tags qui correspondent aux ingrédients affichés
@@ -113,11 +115,8 @@ export function tagsListsContent(
           ingredientTags.style.display = "none";
         }
       });
-  
-      // on reset les tableaux
-      ingredientsTagsActualized = [];
-      ingredientsDisplayed = [];
-      
+      console.log(ingredientsTagsActualized);
+
       // on supprime le tag déjà sélectionné de la liste des tags
       tagsValues.forEach((tagValue) => {
         ingredientsTagsList.forEach((ingr) => {

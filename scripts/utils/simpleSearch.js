@@ -1,4 +1,4 @@
-import { tagsActualized } from "./refreshTags.js";
+// import { tagsActualized } from "./refreshTags.js";
 
 let ingredientsTagsActualized = [];
 let appliancesTagsActualized = [];
@@ -220,6 +220,8 @@ console.log(ingredientsTagsActualizedSecond);
 
       if (tagsArrayFilter.length > 0) {
         console.log(ingredientsDisplayed);
+        console.log(ingredientsTagsActualized);
+        console.log(ingredientsTagsActualizedSecond);
         const article = document.querySelectorAll("article");
 
         const articleArray = Array.from(article);
@@ -232,29 +234,33 @@ console.log(ingredientsTagsActualizedSecond);
             )
           ) {
             article.style.display = "flex";
+            //push its ingredients in the ingredientsDisplayed array
+            const articleIngredients = article.querySelectorAll(
+              ".preciseIngredient"
+            );
+            articleIngredients.forEach((ingredient) => {
+              ingredientsDisplayed.push(ingredient.textContent);
+            });
           } else {
             article.style.display = "none";
           }
         });
+        ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
+        console.log(ingredientsDisplayed);
 
         // on actualise les tags
         const tagArea = document.querySelector(".tag-area");
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
         );
-        // On actualise le tableau en retirant les tags déjà cliqués
-        ingredientsDisplayed.forEach((tag) => {
-          tagArea.childNodes.forEach((child) => {
-            if (
-              child.textContent.toLocaleLowerCase() === tag.toLocaleLowerCase()
-            ) {
-              ingredientsDisplayed.splice(ingredientsDisplayed.indexOf(tag), 1);
-            }
-          });
-        });
-        console.log(ingredientsDisplayed);
-        console.log(ingredientsEntiers);
 
+// remove elements of Tagsarrayfilter from ingredientsDisplayed
+        ingredientsDisplayed = ingredientsDisplayed.filter(
+          (ingredient) => !tagsArrayFilter.includes(ingredient)
+        );
+        console.log(ingredientsDisplayed);
+
+   
 // n'affiche que les tags qui correspondent aux tags filtrés + recherche simple
         ingredientsEntiers.forEach((ingredient) => {
           if (
