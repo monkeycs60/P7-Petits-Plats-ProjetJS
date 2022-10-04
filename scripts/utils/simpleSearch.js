@@ -147,13 +147,13 @@ export function simpleSearch(
       });
 
       if (tagsArrayFilter.length > 0) {
-        console.log(ingredientsDisplayed);
+
         const tagArea = document.querySelector(".tag-area");
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
         );
         // On actualise le tableau en retirant les tags déjà cliqués
-      console.log(ingredientsDisplayed);
+  
       ingredientsTagsActualizedSecond = [];
       //for each article with not displat none,
       //we check if the textcontent of the article contains the tag
@@ -165,7 +165,7 @@ allArticlesInArray.forEach((article) => {
       ingredientsTagsActualizedSecond.push(ingredient.textContent);
     });
   }});
-console.log(ingredientsTagsActualizedSecond);
+
 // remove the clicked tag from the tag area
         tagArea.childNodes.forEach((child) => {
           if (ingredientsTagsActualizedSecond.includes(child.textContent)) {
@@ -176,7 +176,7 @@ console.log(ingredientsTagsActualizedSecond);
               );
           }
         });
-        console.log(ingredientsTagsActualizedSecond);
+
         // only display the tags that are in the ingredientsDisplayed array
         ingredientsEntiers.forEach((ingredient) => {
           if (
@@ -189,8 +189,7 @@ console.log(ingredientsTagsActualizedSecond);
         });
 
       }
-      console.log(ingredientsTagsActualizedSecond);
-      console.log(ingredientsTagsActualized);
+
       // on vide les tableaux pour la prochaine recherche
       ingredientsTagsActualized = [];
       appliancesTagsActualized = [];
@@ -219,9 +218,6 @@ console.log(ingredientsTagsActualizedSecond);
       });
 
       if (tagsArrayFilter.length > 0) {
-        console.log(ingredientsDisplayed);
-        console.log(ingredientsTagsActualized);
-        console.log(ingredientsTagsActualizedSecond);
         const article = document.querySelectorAll("article");
 
         const articleArray = Array.from(article);
@@ -246,7 +242,6 @@ console.log(ingredientsTagsActualizedSecond);
           }
         });
         ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
-        console.log(ingredientsDisplayed);
 
         // on actualise les tags
         const tagArea = document.querySelector(".tag-area");
@@ -258,8 +253,7 @@ console.log(ingredientsTagsActualizedSecond);
         ingredientsDisplayed = ingredientsDisplayed.filter(
           (ingredient) => !tagsArrayFilter.includes(ingredient)
         );
-        console.log(ingredientsDisplayed);
-
+    
    
 // n'affiche que les tags qui correspondent aux tags filtrés + recherche simple
         ingredientsEntiers.forEach((ingredient) => {

@@ -30,19 +30,19 @@ export function tagsListsContent(
   divIngredients.innerHTML = ingredientsTags
     .map(
       (ingredient) =>
-        `<p class="cursor-pointer ingredientsTagsList">${ingredient}</p>`
+        `<p class="cursor-pointer ingredientsTagsList itemsToListen">${ingredient}</p>`
     )
     .join("");
   divAppliances.innerHTML = appliancesTags
     .map(
       (appliance) =>
-        `<p class="cursor-pointer appliancesTagsList">${appliance}</p>`
+        `<p class="cursor-pointer appliancesTagsList itemsToListen">${appliance}</p>`
     )
     .join("");
   divUstensils.innerHTML = ustensilsTags
     .map(
       (ustensil) =>
-        `<p class="cursor-pointer ustensilsTagsList">${ustensil}</p>`
+        `<p class="cursor-pointer ustensilsTagsList itemsToListen">${ustensil}</p>`
     )
     .join("");
 
@@ -53,8 +53,10 @@ export function tagsListsContent(
 
   const tagArea = document.querySelector(".tag-area");
   // on écoute les tags INGREDIENTS
+  const itemsToListen = document.querySelectorAll(".itemsToListen");
+
   const ingredientsTagsList = document.querySelectorAll(".ingredientsTagsList");
-  ingredientsTagsList.forEach((ingredientTags) => {
+  itemsToListen.forEach((ingredientTags) => {
     ingredientTags.addEventListener("click", (event) => {
       // on reset les tableaux
       ingredientsTagsActualized = [];
@@ -63,8 +65,17 @@ export function tagsListsContent(
       // on récupère la valeur du tag
       const tagValue = event.target.innerHTML;
 
-      // on l'affiche dans un span child de tagarea
-      tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+  
+      if (event.target.classList.contains("ingredientsTagsList")) {
+             tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+      } else if (event.target.classList.contains("appliancesTagsList")) {
+        tagArea.innerHTML += `<span class="tag cursor-pointer tagAppliances">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+      } else if (event.target.classList.contains("ustensilsTagsList")) {
+        tagArea.innerHTML += `<span class="tag cursor-pointer tagUstensils">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+      }
+
+
+
       // on supprime le tag de la liste
       event.target.style.display = "none";
 
@@ -104,8 +115,6 @@ export function tagsListsContent(
       // On enlève les doublons du tableau
       ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
 
-      console.log(ingredientsDisplayed);
-
       // on affiche uniquement les tags qui correspondent aux ingrédients affichés
       ingredientsTagsList.forEach((ingredientTags) => {
         if (ingredientsDisplayed.includes(ingredientTags.textContent)) {
@@ -115,7 +124,6 @@ export function tagsListsContent(
           ingredientTags.style.display = "none";
         }
       });
-      console.log(ingredientsTagsActualized);
 
       // on supprime le tag déjà sélectionné de la liste des tags
       tagsValues.forEach((tagValue) => {
