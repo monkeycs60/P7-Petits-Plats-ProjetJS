@@ -1,6 +1,8 @@
 const tagsArrayFilter = [];
   // on récupère les ingrédients des articles affichés
       let ingredientsDisplayed = [];
+      let appliancesDisplayed = [];
+      let ustensilsDisplayed = [];
 
 export function tagsListsContent(
   ingredientsTags,
@@ -73,7 +75,7 @@ export function tagsListsContent(
       const tagValue = event.target.innerHTML;
 
       if (event.target.classList.contains("ingredientsTagsList")) {
-             tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+        tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
       } else if (event.target.classList.contains("appliancesTagsList")) {
         tagArea.innerHTML += `<span class="tag cursor-pointer tagAppliances">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
       } else if (event.target.classList.contains("ustensilsTagsList")) {
@@ -94,8 +96,6 @@ export function tagsListsContent(
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
 
-
-
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
         if (
@@ -110,47 +110,26 @@ export function tagsListsContent(
             .forEach((ingredient) => {
               ingredientsDisplayed.push(ingredient.textContent);
             });
-            // on récupère les appliances
-         console.log(article);
-         article
-            .querySelectorAll(".applianceTag")
-            .forEach((appliance) => {
-              appliancesTagsActualized.push(appliance.textContent);
-            });
-            // on récupère les ustensils
-          article
-            .querySelectorAll(".ustensilTag")
-            .forEach((ustensil) => {
-              ustensilsTagsActualized.push(ustensil.textContent);
-            });
+          // on récupère les appliances
+          article.querySelectorAll(".applianceTag").forEach((appliance) => {
+            appliancesTagsActualized.push(appliance.textContent);
+          });
+          // on récupère les ustensils
+          article.querySelectorAll(".ustensilTag").forEach((ustensil) => {
+            ustensilsTagsActualized.push(ustensil.textContent);
+          });
         } else {
           article.style.display = "none";
         }
       });
 
-      articleArray.forEach((article) => {
-        if (
-          article.style.display !== "none" &&
-          tagsValues.every((tagValue) =>
-            article.textContent.toLowerCase().includes(tagValue.toLowerCase())
-          )
-        ) {
-
-        }
-      });
-
-
-
-console.log(ingredientsDisplayed);
-console.log(appliancesTagsActualized);
-console.log(ustensilsTagsActualized);
 
       // On enlève les doublons du tableau
       ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
       appliancesTagsActualized = [...new Set(appliancesTagsActualized)];
       ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)];
 
-      // on affiche uniquement les tags qui correspondent aux ingrédients affichés
+      // on affiche uniquement les tags ingrédients qui correspondent aux aux recettes affichées
       ingredientsTagsList.forEach((ingredientTags) => {
         if (ingredientsDisplayed.includes(ingredientTags.textContent)) {
           ingredientTags.style.display = "block";
@@ -159,24 +138,35 @@ console.log(ustensilsTagsActualized);
           ingredientTags.style.display = "none";
         }
       });
-      // on affiche uniquement les tags qui correspondent aux appareils affichés
+      // on affiche uniquement les tags appliances qui correspondent aux recettes affichées
       appliancesTagsList.forEach((applianceTags) => {
-        if (appliancesTagsActualized.includes(applianceTags.textContent)) {
-          applianceTags.style.display = "block";
-        } else {
+        if (!appliancesTagsActualized.includes(applianceTags.textContent)) {
           applianceTags.style.display = "none";
         }
       });
-      // on affiche uniquement les tags qui correspondent aux ustensiles affichés
+
+      // Quand un tag appliance est sélectionné, cache tous les autres (car 1 recette = 1 appliance)
+      const applianceTagsDisplayed =
+        document.querySelectorAll(".tagAppliances");
+      if (applianceTagsDisplayed.length > 0) {
+        appliancesTagsList.forEach((applianceTags) => {
+          applianceTags.style.display = "none";
+        });
+      }
+
+      // on affiche uniquement les tags ustensiles qui correspondent aux aux recettes affichées
       ustensilsTagsList.forEach((ustensilTags) => {
-        if (ustensilsTagsActualized.includes(ustensilTags.textContent.toLocaleLowerCase())) {
+        if (
+          ustensilsTagsActualized.includes(
+            ustensilTags.textContent.toLocaleLowerCase()
+          )
+        ) {
           ustensilTags.style.display = "block";
         } else {
           ustensilTags.style.display = "none";
         }
       });
 
-      console.log(tagsValues);
       // on supprime le tag déjà sélectionné de la liste des tags
       tagsValues.forEach((tagValue) => {
         ingredientsTagsList.forEach((ingr) => {
@@ -193,14 +183,29 @@ console.log(ustensilsTagsActualized);
           if (ustensil.textContent === tagValue) {
             ustensil.style.display = "none";
           }
-        }
-        );
+        });
       });
 
       // push the tagValue in the array
       tagsArrayFilter.push(tagValue);
+
+
+
+      //push all elements of ustensilsTagsActualized in the array
+      ustensilsTagsActualized.forEach((ustensil) => {
+        ustensilsDisplayed.push(ustensil);
+      });
+      //push all elements of appliancesTagsActualized in the array
+      appliancesTagsActualized.forEach((appliance) => {
+        appliancesDisplayed.push(appliance);
+      });
     });
   });
 }
 
-export { tagsArrayFilter, ingredientsDisplayed };
+export {
+  tagsArrayFilter,
+  ingredientsDisplayed,
+  ustensilsDisplayed,
+  appliancesDisplayed,
+};
