@@ -67,8 +67,6 @@ export function simpleSearch(
           });
 
           if (tagsArrayFilter.length > 0) {
-            console.log("il y a des tags");
-
             if (
               // article textcontent does not contain all the tags
               !tagsArrayFilter.every((tag) =>
@@ -77,7 +75,6 @@ export function simpleSearch(
                   .includes(tag.toLowerCase())
               )
             ) {
-              console.log("on cache l'article");
               article.style.display = "none";
             }
           }
@@ -85,9 +82,7 @@ export function simpleSearch(
           article.style.display = "none";
         }
       });
-      console.log(appliancesTagsActualized);
-      console.log(ustensilsTagsActualized);
-      console.log(ingredientsTagsActualized);
+     
 
 
       // partie actualisation TAGS INGREDIENTS
@@ -145,13 +140,25 @@ export function simpleSearch(
       });
 
       if (tagsArrayFilter.length > 0) {
+        console.log(ustensilsDisplayed);
+        console.log(appliancesDisplayed);
         const tagArea = document.querySelector(".tag-area");
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
         );
+        const ustensilsEntiers = document.querySelectorAll(".ustensilsTagsList");
+        const appliancesEntiers = document.querySelectorAll(
+          ".appliancesTagsList"
+        );
+
         // On actualise le tableau en retirant les tags déjà cliqués
 
         ingredientsTagsActualizedSecond = [];
+
+        // reset des tableaux 
+        appliancesDisplayed = [];
+        ustensilsDisplayed = [];
+
         //for each article with not displat none,
         //we check if the textcontent of the article contains the tag
         allArticlesInArray.forEach((article) => {
@@ -162,8 +169,20 @@ export function simpleSearch(
             articleIngredients.forEach((ingredient) => {
               ingredientsTagsActualizedSecond.push(ingredient.textContent);
             });
+            const articleAppliance =
+              article.querySelectorAll(".applianceTag");
+              articleAppliance.forEach((appliance) => {
+                appliancesDisplayed.push(appliance.textContent);
+              });
+            const articleUstensils =
+              article.querySelectorAll(".ustensilTag");
+              articleUstensils.forEach((ustensil) => {
+                ustensilsDisplayed.push(ustensil.textContent);
+              });
           }
         });
+        console.log(ustensilsDisplayed);
+        console.log(appliancesDisplayed);
 
         // remove the clicked tag from the tag area
         tagArea.childNodes.forEach((child) => {
@@ -184,6 +203,22 @@ export function simpleSearch(
             ingredient.style.display = "none";
           } else {
             ingredient.style.display = "block";
+          }
+        });
+  
+
+        ustensilsEntiers.forEach((ustensil) => {
+          if (!ustensilsDisplayed.includes(ustensil.textContent.toLocaleLowerCase())) {
+            ustensil.style.display = "none";
+          } else {
+            ustensil.style.display = "block";
+          }
+        });
+        appliancesEntiers.forEach((appliance) => {
+          if (!appliancesDisplayed.includes(appliance.textContent)) {
+            appliance.style.display = "none";
+          } else {
+            appliance.style.display = "block";
           }
         });
       }
@@ -220,7 +255,6 @@ export function simpleSearch(
         const article = document.querySelectorAll("article");
 
         const articleArray = Array.from(article);
-        console.log("on lance l'autre boucle");
 
         articleArray.forEach((article) => {
           if (
@@ -263,16 +297,14 @@ export function simpleSearch(
         appliancesDisplayed = appliancesDisplayed.filter(
           (appliance) => !tagsArrayFilter.includes(appliance)
         );
-        console.log(appliancesDisplayed);
+
         // remove elements of tagsArrayFilter from ustensilsDisplayed
-        console.log(tagsArrayFilter);
         ustensilsDisplayed = ustensilsDisplayed.filter(
           //ustensil include ustensil first letter capital
           (ustensil) =>
             !tagsArrayFilter.includes(ustensil) &&
             !tagsArrayFilter.includes(ustensil[0].toUpperCase() + ustensil.slice(1))
         );
-        console.log(ustensilsDisplayed);
 
         // n'affiche que les tags qui correspondent aux tags filtrés + recherche simple
         ingredientsEntiers.forEach((ingredient) => {
