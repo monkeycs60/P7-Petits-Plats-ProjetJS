@@ -806,7 +806,7 @@
                 "quantity": 3
             },
             {
-                "ingredient": "Crème Fraîche",
+                "ingredient": "Crème fraîche",
                 "quantity": 20,
                 "unit": "cl"
             },
@@ -1611,7 +1611,7 @@
                 "unit": "grammes"
             },
             {
-                "ingredient": "Crème Fraîche",
+                "ingredient": "Crème fraîche",
                 "quantity": 20,
                 "unit":"cl"
             }

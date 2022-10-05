@@ -66,7 +66,15 @@ async function* initGenerator() {
   
   yield 6;
   // on gère la recherche avancée des tags 
-  autocompleteTags(recipes, ingredientsTags, appliancesTags, ustensilsTags, ingredientsTagsActualized, appliancesTagsActualized, ustensilsTagsActualized);
+  autocompleteTags(
+    recipes,
+    ingredientsTags,
+    appliancesTags,
+    ustensilsTags,
+    ingredientsTagsActualized,
+    appliancesTagsActualized,
+    ustensilsTagsActualized
+  );
  
   yield 7;
   // affiche les tags dans le DOM -/- les fait disparaître
