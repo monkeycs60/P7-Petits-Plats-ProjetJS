@@ -1,3 +1,5 @@
+import { killTags } from "../utils/killTags.js";
+
 const tagsArrayFilter = [];
 // on récupère les ingrédients des articles affichés
 let ingredientsDisplayed = [];
@@ -91,11 +93,11 @@ export function tagsListsContent(
       const tagValue = event.target.innerHTML;
 
       if (event.target.classList.contains("ingredientsTagsList")) {
-        tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+        tagArea.innerHTML += `<span class="tag cursor-pointer tagIngredients">${tagValue}<i class="fa-regular fa-circle-xmark killcross"></i></span>`;
       } else if (event.target.classList.contains("appliancesTagsList")) {
-        tagArea.innerHTML += `<span class="tag cursor-pointer tagAppliances">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+        tagArea.innerHTML += `<span class="tag cursor-pointer tagAppliances">${tagValue}<i class="fa-regular fa-circle-xmark killcross"></i></span>`;
       } else if (event.target.classList.contains("ustensilsTagsList")) {
-        tagArea.innerHTML += `<span class="tag cursor-pointer tagUstensils">${tagValue}<i class="fa-regular fa-circle-xmark"></i></span>`;
+        tagArea.innerHTML += `<span class="tag cursor-pointer tagUstensils">${tagValue}<i class="fa-regular fa-circle-xmark killcross"></i></span>`;
       }
 
       // on supprime le tag de la liste
@@ -111,11 +113,9 @@ export function tagsListsContent(
 
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
-      console.log(tagsValues);
 
       // always take the last value of the array
       const lastTagValue = tagsValues[tagsValues.length - 1];
-      console.log(lastTagValue);
 
       // select last child of tag area
       const lastTag = tagArea.lastChild;
@@ -133,7 +133,6 @@ export function tagsListsContent(
           article
             .querySelectorAll(".ustensilTag")
             .forEach((ustensil) => ustensils.push(ustensil.textContent));
-            console.log(ustensils);
 
           if (
             lastTag.classList.contains("tagIngredients") &&
@@ -242,6 +241,17 @@ export function tagsListsContent(
       appliancesTagsActualized.forEach((appliance) => {
         appliancesDisplayed.push(appliance);
       });
+
+      killTags(
+        ingredientsTags,
+        appliancesTags,
+        ustensilsTags,
+        recipes,
+        ingredientsTagsActualized,
+        appliancesTagsActualized,
+        ustensilsTagsActualized,
+        tagsArrayFilter
+      );
     });
   });
 }

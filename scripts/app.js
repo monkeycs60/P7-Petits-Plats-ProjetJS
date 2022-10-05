@@ -20,6 +20,7 @@ import {
   simpleSearch,
 } from "./utils/simpleSearch.js";
 import { autocompleteTags } from "./utils/autocompleteTags.js";
+import { killTags } from "./utils/killTags.js";
 
 
 
@@ -75,7 +76,7 @@ async function* initGenerator() {
     appliancesTagsActualized,
     ustensilsTagsActualized
   );
- 
+
   yield 7;
   // affiche les tags dans le DOM -/- les fait disparaître
   handleTags();
