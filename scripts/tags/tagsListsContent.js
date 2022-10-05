@@ -101,6 +101,10 @@ export function tagsListsContent(
       const lastTagValue = tagsValues[tagsValues.length - 1];
       console.log(lastTagValue);
 
+      //select last child of tag area
+      const lastTag = tagArea.lastChild;
+      console.log(lastTag);
+
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
         if (
