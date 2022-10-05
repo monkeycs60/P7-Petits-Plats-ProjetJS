@@ -203,6 +203,15 @@ export function simpleSearch(
         });
   
 
+        // remove from ustensilsDisplayed the tags that are already in the tag area
+        ustensilsDisplayed = ustensilsDisplayed.filter(
+          (ustensil) =>
+            !tagsArrayFilter.includes(
+              ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
+            )
+        );
+          
+
         ustensilsEntiers.forEach((ustensil) => {
           if (!ustensilsDisplayed.includes(ustensil.textContent.toLocaleLowerCase())) {
             ustensil.style.display = "none";
@@ -210,6 +219,16 @@ export function simpleSearch(
             ustensil.style.display = "block";
           }
         });
+
+
+        // remove from appliancesDisplayed the tags that are already in the tag area
+        appliancesDisplayed = appliancesDisplayed.filter(
+          (appliance) => !tagsArrayFilter.includes(
+            appliance.charAt(0).toUpperCase() + appliance.slice(1)
+          )
+        );
+
+
         appliancesEntiers.forEach((appliance) => {
           if (!appliancesDisplayed.includes(appliance.textContent)) {
             appliance.style.display = "none";
