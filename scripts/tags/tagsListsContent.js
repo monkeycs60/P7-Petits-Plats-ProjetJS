@@ -4,6 +4,22 @@ let ingredientsDisplayed = [];
 const appliancesDisplayed = [];
 const ustensilsDisplayed = [];
 
+function displayFilteredArticles(article, appliancesTagsActualized, ustensilsTagsActualized) {
+  article.style.display = "flex";
+  article.querySelectorAll(".preciseIngredient").forEach((ingredient) => {
+    ingredientsDisplayed.push(ingredient.textContent);
+  });
+  // on récupère les appliances
+  article.querySelectorAll(".applianceTag").forEach((appliance) => {
+    appliancesTagsActualized.push(appliance.textContent);
+  });
+  // on récupère les ustensils
+  article.querySelectorAll(".ustensilTag").forEach((ustensil) => {
+    ustensilsTagsActualized.push(ustensil.textContent);
+  });
+}
+
+
 export function tagsListsContent(
   ingredientsTags,
   appliancesTags,
@@ -103,7 +119,6 @@ export function tagsListsContent(
 
       // select last child of tag area
       const lastTag = tagArea.lastChild;
-      console.log(lastTag);
 
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
@@ -124,58 +139,28 @@ export function tagsListsContent(
             lastTag.classList.contains("tagIngredients") &&
             ingredients.includes(lastTagValue)
           ) {
-            console.log("ca a marché");
-            article.style.display = "flex";
-            article
-              .querySelectorAll(".preciseIngredient")
-              .forEach((ingredient) => {
-                ingredientsDisplayed.push(ingredient.textContent);
-              });
-            // on récupère les appliances
-            article.querySelectorAll(".applianceTag").forEach((appliance) => {
-              appliancesTagsActualized.push(appliance.textContent);
-            });
-            // on récupère les ustensils
-            article.querySelectorAll(".ustensilTag").forEach((ustensil) => {
-              ustensilsTagsActualized.push(ustensil.textContent);
-            });
+            displayFilteredArticles(
+              article,
+              appliancesTagsActualized,
+              ustensilsTagsActualized
+            );
           } else if ( lastTag.classList.contains("tagUstensils") && 
           ustensils.includes(lastTagValue.toLocaleLowerCase())
           ) {
-            console.log("ca a marché");
-            article.style.display = "flex";
-            article
-              .querySelectorAll(".preciseIngredient")
-              .forEach((ingredient) => {
-                ingredientsDisplayed.push(ingredient.textContent);
-              });
-            // on récupère les appliances
-            article.querySelectorAll(".applianceTag").forEach((appliance) => {
-              appliancesTagsActualized.push(appliance.textContent);
-            });
-            // on récupère les ustensils
-            article.querySelectorAll(".ustensilTag").forEach((ustensil) => {
-              ustensilsTagsActualized.push(ustensil.textContent);
-            });
+            displayFilteredArticles(
+              article,
+              appliancesTagsActualized,
+              ustensilsTagsActualized
+            );
           } else if ( lastTag.classList.contains("tagAppliances") &&
           article.querySelector(".applianceTag").textContent === lastTagValue  
           ) {
-            article.style.display = "flex";
-            article
-              .querySelectorAll(".preciseIngredient")
-              .forEach((ingredient) => {
-                ingredientsDisplayed.push(ingredient.textContent);
-              });
-            // on récupère les appliances
-            article.querySelectorAll(".applianceTag").forEach((appliance) => {
-              appliancesTagsActualized.push(appliance.textContent);
-            });
-            // on récupère les ustensils
-            article.querySelectorAll(".ustensilTag").forEach((ustensil) => {
-              ustensilsTagsActualized.push(ustensil.textContent);
-            });
+           displayFilteredArticles(
+             article,
+             appliancesTagsActualized,
+             ustensilsTagsActualized
+           );
           }
-          
           else {
             article.style.display = "none";
           }
