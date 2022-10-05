@@ -140,8 +140,5 @@ inputUstensils.addEventListener("keyup", (e) => {
           ing.style.display = "block";
         }
       });
-      
-
-
 });
 }

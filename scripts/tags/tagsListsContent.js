@@ -95,6 +95,11 @@ export function tagsListsContent(
 
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
+      console.log(tagsValues);
+
+      //always take the last value of the array
+      const lastTagValue = tagsValues[tagsValues.length - 1];
+      console.log(lastTagValue);
 
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
