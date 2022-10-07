@@ -121,7 +121,6 @@ export function killTags(
           if (tagsArrayFilter.length > 0) {
               
               tagsArrayFilter.every((tag) => {
-                console.log(tag);
                 if (
                   allIngredients.includes(tag.toLocaleLowerCase()) ||
                   allUstensils.includes(tag.toLocaleLowerCase()) ||
@@ -313,16 +312,79 @@ export function killTags(
         console.log("appliancesFilteredTags", appliancesFilteredTags);
 
         if (tagsArrayFilter.length > 0) {
-          // allArticles.forEach((article) => {
-          //   tagsArrayFilter.every((tag) => {
-          //     if (article.ingredients.includes(tag)) {
-          //       article.style.display = "flex";
-          //     } else {
-          //       article.style.display = "none";
-          //     }
-          //   });
+         console.log(ingredientsFilteredTags);
 
-          // });
+          ingredientsFilteredTags = [
+            ...new Set(ingredientsFilteredTags),
+          ].sort();
+          appliancesFilteredTags = [...new Set(appliancesFilteredTags)].sort();
+          ustensilsFilteredTags = [...new Set(ustensilsFilteredTags)].sort(
+            (a, b) => a.localeCompare(b)
+          );
+          
+          ingredientsFilteredTags.forEach((ingredient) => {
+            ingredient.toLowerCase();
+          }
+          );
+
+          appliancesFilteredTags.forEach((appliance) => {
+            appliance.toLowerCase();
+          });
+
+          ustensilsFilteredTags.forEach((ustensil) => {
+            ustensil.toLowerCase();
+          });
+
+          ingredientsFilteredTags = ingredientsFilteredTags.map(
+            (ingredient) => {
+              return ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
+            } 
+          );
+
+          ustensilsFilteredTags = ustensilsFilteredTags.map((ustensil) => {
+
+            return ustensil.charAt(0).toUpperCase() + ustensil.slice(1);
+          });
+
+          appliancesFilteredTags = appliancesFilteredTags.map((appliance) => {
+            return appliance.charAt(0).toUpperCase() + appliance.slice(1);
+          });
+
+          const ingredientsTagsList = Array.from(
+            document.querySelectorAll(".ingredientsTagsList")
+          );
+          const appliancesTagsList = Array.from(
+            document.querySelectorAll(".appliancesTagsList")
+          );
+          const ustensilsTagsList = Array.from(
+            document.querySelectorAll(".ustensilsTagsList")
+          );
+
+          ingredientsTagsList.forEach((ingredient) => {
+            if (ingredientsFilteredTags.includes(ingredient.textContent)) {
+              ingredient.style.display = "block";
+            } else {
+              ingredient.style.display = "none";
+            }
+          });
+
+          appliancesTagsList.forEach((appliance) => {
+            if (appliancesFilteredTags.includes(appliance.textContent)) {
+              appliance.style.display = "block";
+            } else {
+              appliance.style.display = "none";
+            }
+          });
+
+          ustensilsTagsList.forEach((ustensil) => {
+            if (ustensilsFilteredTags.includes(ustensil.textContent)) {
+              ustensil.style.display = "block";
+            } else {
+              ustensil.style.display = "none";
+            }
+          });
+
+          
         
         }
       }
