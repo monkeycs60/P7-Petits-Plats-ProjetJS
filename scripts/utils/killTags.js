@@ -60,7 +60,6 @@ export function killTags(
 
         // il faut montrer les articles qui correspondent à l'input de 3 lettres, puis filtrer
         const inputValue = document.getElementById("mainSearch").value;
-        console.log(inputValue);
 
         // Le cas où l'INPUT est déjà rempli
         if (inputValue.length > 2) {
@@ -71,7 +70,6 @@ export function killTags(
             allIngredients.includes(inputValue)
           ) {
             article.style.display = "flex";
-            console.log("input > 2 ET article affiché");
             // on push articleIndividualIngredients dans le tableau actualisé
             articleIndividualIngredients.forEach((ingredient) => {
               ingredientsTagsActualized.push(ingredient.textContent);
@@ -82,19 +80,39 @@ export function killTags(
             });
             // on push articleApplianceTag dans le tableau actualisé
             appliancesTagsActualized.push(articleApplianceTag.textContent);
+
+           if (tagsArrayFilter.length > 0) {
+            console.log(allIngredients);
+            console.log(allUstensils);
+            console.log(articleAppliance);
+
+            // use EVERY method in tagsArrayFilter to check if allIngredients includes it or allUstensils includes it or articleAppliance includes it 
+            // if it's true, we keep the article, if it's false, we hide it
+            tagsArrayFilter.every((tag) => {
+              console.log(tag);
+              if (
+                allIngredients.includes(tag.toLocaleLowerCase()) ||
+                allUstensils.includes(tag.toLocaleLowerCase()) ||
+                articleAppliance.includes(tag.toLocaleLowerCase())
+              ) {
+                article.style.display = "flex";
+              } else {
+                article.style.display = "none";
+              }
+            });
+
+
+          }
           } else {
-            console.log("input > 2 mais ne correspond pas");
             article.style.display = "none";
           }
         } else {
-          console.log("input COURT < 2");
           // on affiche tous les articles
           article.style.display = "flex";
         }
       });
 
       const inputValue = document.getElementById("mainSearch").value;
-      console.log(inputValue);
 
       // Le cas où l'INPUT est déjà rempli
       if (inputValue.length > 2) {
@@ -191,47 +209,49 @@ export function killTags(
 
  
       // if tagsArrayFilter length > 0
-      if (tagsArrayFilter.length > 0) {
-        allArticles.forEach((article) => {
-          if (article.style.display !== "none") {
-            console.log("valide");
-            let ingredientsOfFiltered = [];
-            let ustensilsOfFiltered = [];
+      // if (tagsArrayFilter.length > 0) {
+      //   allArticles.forEach((article) => {
+      //     if (article.style.display === "none") {
+      //       console.log("cet article est ELIMINADO");
+      //     } else {
+      //       console.log("cet article est un survivant");
+      //       console.log(article);
+      //       let ingredientsOfFiltered = [];
+      //       let ustensilsOfFiltered = [];
 
-          const articleDescription =
-            article.querySelector(".recipe-title").textContent;
-          const articleTitle = article.querySelector(".description").textContent;
-          const articleIndividualIngredients = Array.from(
-            article.querySelectorAll(".preciseIngredient")
-          );
-          const articleUstensilTag = Array.from(
-            article.querySelectorAll(".ustensilTag")
-          );
-          const articleApplianceTag = article.querySelector(".applianceTag");
+      //     const articleDescription =
+      //       article.querySelector(".recipe-title").textContent;
+      //     const articleTitle = article.querySelector(".description").textContent;
+      //     const articleIndividualIngredients = Array.from(
+      //       article.querySelectorAll(".preciseIngredient")
+      //     );
+      //     const articleUstensilTag = Array.from(
+      //       article.querySelectorAll(".ustensilTag")
+      //     );
+      //     const articleApplianceTag = article.querySelector(".applianceTag");
 
-          articleIndividualIngredients.forEach((ingredient) => {
-            ingredientsOfFiltered.push(ingredient.textContent);
-          });
-          articleUstensilTag.forEach((ustensil) => {
-            ustensilsOfFiltered.push(ustensil.textContent);
-          });
+      //     articleIndividualIngredients.forEach((ingredient) => {
+      //       ingredientsOfFiltered.push(ingredient.textContent);
+      //     });
+      //     articleUstensilTag.forEach((ustensil) => {
+      //       ustensilsOfFiltered.push(ustensil.textContent);
+      //     });
 
-          // on affiche les articles qui correspondent aux tags
-          if (
-            tagsArrayFilter.includes(articleApplianceTag) ||
-            tagsArrayFilter.includes(ingredientsOfFiltered) ||
-            tagsArrayFilter.includes(ustensilsOfFiltered)
-          ) {
-            article.style.display = "flex";
-          } else {
-            article.style.display = "none";
-          }
-        }
-        });
-      }
-
-
-
+      //     // on affiche les articles qui correspondent aux tags
+      //     if (
+      //       tagsArrayFilter.includes(articleApplianceTag) ||
+      //       tagsArrayFilter.includes(ingredientsOfFiltered) ||
+      //       tagsArrayFilter.includes(ustensilsOfFiltered)
+      //     ) {
+      //       article.style.display = "flex";
+      //       console.log("AFFICHAGE TEST");
+      //     } else {
+      //       article.style.display = "none";
+      //       console.log("ELIMINATION TEST");
+      //     }
+      //   }
+      //   });
+      // }
     });
   });
 }
