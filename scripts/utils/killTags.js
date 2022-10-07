@@ -117,6 +117,31 @@ export function killTags(
         } else {
           // on affiche tous les articles
           article.style.display = "flex";
+
+          if (tagsArrayFilter.length > 0) {
+              
+              tagsArrayFilter.every((tag) => {
+                console.log(tag);
+                if (
+                  allIngredients.includes(tag.toLocaleLowerCase()) ||
+                  allUstensils.includes(tag.toLocaleLowerCase()) ||
+                  articleAppliance.includes(tag.toLocaleLowerCase())
+                ) {
+                  article.style.display = "flex";
+                  //push des tags dans les tableaux filtered tags
+                  articleIndividualIngredients.forEach((ingredient) => {
+                    ingredientsFilteredTags.push(ingredient.textContent);
+                  });
+                  articleUstensilTag.forEach((ustensil) => {
+                    ustensilsFilteredTags.push(ustensil.textContent);
+                  });
+                  appliancesFilteredTags.push(articleApplianceTag.textContent);
+  
+                } else {
+                  article.style.display = "none";
+                }
+              });
+            }
         }
       });
 
@@ -192,10 +217,6 @@ export function killTags(
         });
 
         if (tagsArrayFilter.length > 0) {
-          console.log("tagsArrayFilter", tagsArrayFilter);
-          console.log("ingredientsFilteredTags", ingredientsFilteredTags);
-          console.log("ustensilsFilteredTags", ustensilsFilteredTags);
-          console.log("appliancesFilteredTags", appliancesFilteredTags);
 
           ingredientsFilteredTags = [
             ...new Set(ingredientsFilteredTags),
@@ -285,6 +306,25 @@ export function killTags(
         ustensilsTags.forEach((ustensil) => {
           ustensil.style.display = "block";
         });
+
+        console.log("tagsArrayFilter", tagsArrayFilter);
+        console.log("ingredientsFilteredTags", ingredientsFilteredTags);
+        console.log("ustensilsFilteredTags", ustensilsFilteredTags);
+        console.log("appliancesFilteredTags", appliancesFilteredTags);
+
+        if (tagsArrayFilter.length > 0) {
+          // allArticles.forEach((article) => {
+          //   tagsArrayFilter.every((tag) => {
+          //     if (article.ingredients.includes(tag)) {
+          //       article.style.display = "flex";
+          //     } else {
+          //       article.style.display = "none";
+          //     }
+          //   });
+
+          // });
+        
+        }
       }
     });
   });
