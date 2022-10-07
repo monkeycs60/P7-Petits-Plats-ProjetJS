@@ -16,14 +16,11 @@ export function killTags(
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
 
-      console.log(tagsArrayFilter);
-
       // on supprime le tag du tableau des tags sélectionnés
       tagsArrayFilter.splice(
         tagsArrayFilter.indexOf(cross.previousSibling.textContent),
         1
       );
-      console.log(tagsArrayFilter);
 
       // on supprime le tag du DOM
       cross.parentNode.remove();
@@ -96,95 +93,148 @@ export function killTags(
         }
       });
 
-const inputValue = document.getElementById("mainSearch").value;
-console.log(inputValue);
+      const inputValue = document.getElementById("mainSearch").value;
+      console.log(inputValue);
 
-// Le cas où l'INPUT est déjà rempli
-if (inputValue.length > 2) {
+      // Le cas où l'INPUT est déjà rempli
+      if (inputValue.length > 2) {
+        // on supprime les doublons et on trie les tableaux
+        ingredientsTagsActualized = [
+          ...new Set(ingredientsTagsActualized),
+        ].sort();
+        appliancesTagsActualized = [
+          ...new Set(appliancesTagsActualized),
+        ].sort();
+        ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)].sort(
+          (a, b) => a.localeCompare(b)
+        );
 
+        ingredientsTagsActualized.forEach((ingredient) => {
+          ingredient.toLowerCase();
+        });
+        appliancesTagsActualized.forEach((appliance) => {
+          appliance.toLowerCase();
+        });
+        ustensilsTagsActualized.forEach((ustensil) => {
+          ustensil.toLowerCase();
+        });
 
-      // on supprime les doublons et on trie les tableaux
-      ingredientsTagsActualized = [
-        ...new Set(ingredientsTagsActualized),
-      ].sort();
-      appliancesTagsActualized = [...new Set(appliancesTagsActualized)].sort();
-      ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)].sort(
-        (a, b) => a.localeCompare(b)
-      );
+        ingredientsTagsActualized = ingredientsTagsActualized.map(
+          (ingredient) => {
+            return ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
+          }
+        );
+        ustensilsTagsActualized = ustensilsTagsActualized.map((ustensil) => {
+          return ustensil.charAt(0).toUpperCase() + ustensil.slice(1);
+        });
+        //same for appliance
+        appliancesTagsActualized = appliancesTagsActualized.map((appliance) => {
+          return appliance.charAt(0).toUpperCase() + appliance.slice(1);
+        });
 
-      ingredientsTagsActualized.forEach((ingredient) => {
-        ingredient.toLowerCase();
-      });
-      appliancesTagsActualized.forEach((appliance) => {
-        appliance.toLowerCase();
-      });
-      ustensilsTagsActualized.forEach((ustensil) => {
-        ustensil.toLowerCase();
-      });
+        const ingredientsTags = Array.from(
+          document.querySelectorAll(".ingredientsTagsList")
+        );
+        const appliancesTags = Array.from(
+          document.querySelectorAll(".appliancesTagsList")
+        );
+        const ustensilsTags = Array.from(
+          document.querySelectorAll(".ustensilsTagsList")
+        );
 
-      
-      ingredientsTagsActualized = ingredientsTagsActualized.map((ingredient) => {
-        return ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
-      });
-      ustensilsTagsActualized = ustensilsTagsActualized.map((ustensil) => {
-        return ustensil.charAt(0).toUpperCase() + ustensil.slice(1);
-      });
-      //same for appliance
-      appliancesTagsActualized = appliancesTagsActualized.map((appliance) => {
-        return appliance.charAt(0).toUpperCase() + appliance.slice(1);
-      });
-      
-
-      const ingredientsTags = Array.from(
-        document.querySelectorAll(".ingredientsTagsList")
-      );
-      const appliancesTags = Array.from(document.querySelectorAll(".appliancesTagsList"));
-      const ustensilsTags = Array.from(document.querySelectorAll(".ustensilsTagsList"));
-
-      // on ne display pas les tags qui ne correspondent pas à la recherche
-      ingredientsTags.forEach((ingredient) => {
-        if (ingredientsTagsActualized.includes(ingredient.textContent)) {
+        // on ne display pas les tags qui ne correspondent pas à la recherche
+        ingredientsTags.forEach((ingredient) => {
+          if (ingredientsTagsActualized.includes(ingredient.textContent)) {
+            ingredient.style.display = "block";
+          } else {
+            ingredient.style.display = "none";
+          }
+        });
+        appliancesTags.forEach((appliance) => {
+          if (appliancesTagsActualized.includes(appliance.textContent)) {
+            appliance.style.display = "block";
+          } else {
+            appliance.style.display = "none";
+          }
+        });
+        ustensilsTags.forEach((ustensil) => {
+          if (ustensilsTagsActualized.includes(ustensil.textContent)) {
+            ustensil.style.display = "block";
+          } else {
+            ustensil.style.display = "none";
+          }
+        });
+      }
+      // Le cas où l'INPUT est vide (actualisation normale de tous les tags)
+      else {
+        console.log("input VIDE");
+        // on affiche tous les tags
+        const ingredientsTags = Array.from(
+          document.querySelectorAll(".ingredientsTagsList")
+        );
+        const appliancesTags = Array.from(
+          document.querySelectorAll(".appliancesTagsList")
+        );
+        const ustensilsTags = Array.from(
+          document.querySelectorAll(".ustensilsTagsList")
+        );
+        ingredientsTags.forEach((ingredient) => {
           ingredient.style.display = "block";
-        } else {
-          ingredient.style.display = "none";
-        }
-      });
-      appliancesTags.forEach((appliance) => {
-        console.log(appliance);
-        if (appliancesTagsActualized.includes(appliance.textContent)) {
+        });
+        appliancesTags.forEach((appliance) => {
           appliance.style.display = "block";
-        } else {
-          appliance.style.display = "none";
-        }
-      });
-      ustensilsTags.forEach((ustensil) => {
-        
-        if (ustensilsTagsActualized.includes(ustensil.textContent)) {
+        });
+        ustensilsTags.forEach((ustensil) => {
           ustensil.style.display = "block";
-        } else {
-          ustensil.style.display = "none";
+        });
+      }
+
+ 
+      // if tagsArrayFilter length > 0
+      if (tagsArrayFilter.length > 0) {
+        allArticles.forEach((article) => {
+          if (article.style.display !== "none") {
+            console.log("valide");
+            let ingredientsOfFiltered = [];
+            let ustensilsOfFiltered = [];
+
+          const articleDescription =
+            article.querySelector(".recipe-title").textContent;
+          const articleTitle = article.querySelector(".description").textContent;
+          const articleIndividualIngredients = Array.from(
+            article.querySelectorAll(".preciseIngredient")
+          );
+          const articleUstensilTag = Array.from(
+            article.querySelectorAll(".ustensilTag")
+          );
+          const articleApplianceTag = article.querySelector(".applianceTag");
+
+          articleIndividualIngredients.forEach((ingredient) => {
+            ingredientsOfFiltered.push(ingredient.textContent);
+          });
+          articleUstensilTag.forEach((ustensil) => {
+            ustensilsOfFiltered.push(ustensil.textContent);
+          });
+
+          // on affiche les articles qui correspondent aux tags
+          if (
+            tagsArrayFilter.includes(articleApplianceTag) ||
+            tagsArrayFilter.includes(ingredientsOfFiltered) ||
+            tagsArrayFilter.includes(ustensilsOfFiltered)
+          ) {
+            article.style.display = "flex";
+          } else {
+            article.style.display = "none";
+          }
         }
-      });
-    } 
-    // Le cas où l'INPUT est vide (actualisation normale de tous les tags)
-    else {
-      console.log("input VIDE");
-      // on affiche tous les tags
-      const ingredientsTags = Array.from(
-        document.querySelectorAll(".ingredientsTagsList")
-      );
-      const appliancesTags = Array.from(document.querySelectorAll(".appliancesTagsList"));
-      const ustensilsTags = Array.from(document.querySelectorAll(".ustensilsTagsList"));
-      ingredientsTags.forEach((ingredient) => {
-        ingredient.style.display = "block";
-      });
-      appliancesTags.forEach((appliance) => {
-        appliance.style.display = "block";
-      });
-      ustensilsTags.forEach((ustensil) => {
-        ustensil.style.display = "block";
-      });
-    }
+        });
+      }
+
+
+
     });
   });
 }
+
+
+// gérer le cas où des tags sont déjà affichés (filtrer par tag etc)
