@@ -95,6 +95,14 @@ export function killTags(
           article.style.display = "flex";
         }
       });
+
+const inputValue = document.getElementById("mainSearch").value;
+console.log(inputValue);
+
+// Le cas où l'INPUT est déjà rempli
+if (inputValue.length > 2) {
+
+
       // on supprime les doublons et on trie les tableaux
       ingredientsTagsActualized = [
         ...new Set(ingredientsTagsActualized),
@@ -157,6 +165,26 @@ export function killTags(
           ustensil.style.display = "none";
         }
       });
+    } 
+    // Le cas où l'INPUT est vide (actualisation normale de tous les tags)
+    else {
+      console.log("input VIDE");
+      // on affiche tous les tags
+      const ingredientsTags = Array.from(
+        document.querySelectorAll(".ingredientsTagsList")
+      );
+      const appliancesTags = Array.from(document.querySelectorAll(".appliancesTagsList"));
+      const ustensilsTags = Array.from(document.querySelectorAll(".ustensilsTagsList"));
+      ingredientsTags.forEach((ingredient) => {
+        ingredient.style.display = "block";
+      });
+      appliancesTags.forEach((appliance) => {
+        appliance.style.display = "block";
+      });
+      ustensilsTags.forEach((ustensil) => {
+        ustensil.style.display = "block";
+      });
+    }
     });
   });
 }
