@@ -187,17 +187,33 @@ export function simpleSearch(
             // on push les ingrédients dans ingredientsDisplayed
             const articleIngredients =
               article.querySelectorAll(".preciseIngredient");
-            articleIngredients.forEach((ingredient) => {
-              ingredientsTagsActualizedSecond.push(ingredient.textContent);
-            });
+              filterRecipesItemsDisplayed(
+                articleIngredients,
+                ingredientsTagsActualizedSecond
+              );
+
+            // articleIngredients.forEach((ingredient) => {
+            //   ingredientsTagsActualizedSecond.push(ingredient.textContent);
+            // });
+
             const articleAppliance = article.querySelectorAll(".applianceTag");
-            articleAppliance.forEach((appliance) => {
-              appliancesDisplayed.push(appliance.textContent);
-            });
+            filterRecipesItemsDisplayed(
+              articleAppliance,
+              appliancesDisplayed
+            );
+
+            // articleAppliance.forEach((appliance) => {
+            //   appliancesDisplayed.push(appliance.textContent);
+            // });
+
             const articleUstensils = article.querySelectorAll(".ustensilTag");
-            articleUstensils.forEach((ustensil) => {
-              ustensilsDisplayed.push(ustensil.textContent);
-            });
+            filterRecipesItemsDisplayed(
+              articleUstensils,
+              ustensilsDisplayed
+            );
+            // articleUstensils.forEach((ustensil) => {
+            //   ustensilsDisplayed.push(ustensil.textContent);
+            // });
           }
         });
 
