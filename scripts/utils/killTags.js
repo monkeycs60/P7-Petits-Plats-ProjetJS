@@ -9,7 +9,6 @@ export function killTags(
   tagsArrayFilter
 ) {
   const killCross = document.querySelectorAll(".killcross");
-  console.log(killCross);
   killCross.forEach((cross) => {
     cross.addEventListener("click", () => {
       ingredientsTagsActualized = [];
@@ -88,7 +87,6 @@ export function killTags(
            if (tagsArrayFilter.length > 0) {
 
             tagsArrayFilter.every((tag) => {
-              console.log(tag);
               if (
                 allIngredients.includes(tag.toLocaleLowerCase()) ||
                 allUstensils.includes(tag.toLocaleLowerCase()) ||
@@ -281,6 +279,36 @@ export function killTags(
               ustensil.style.display = "none";
             }
           });
+
+          // si ça correspond aux tags, on n'affiche pas les tags ingrédients 
+            tagsArrayFilter.forEach((tag) => {
+              ingredientsTagsList.forEach((ingredient) => {
+                if (ingredient.textContent === tag) {
+                  ingredient.style.display = "none";
+                }
+              });
+            });
+
+            // si ça correspond aux tags, on n'affiche pas les tags ustensils
+            tagsArrayFilter.forEach((tag) => {
+              ustensilsTagsList.forEach((ustensil) => {
+                if (ustensil.textContent === tag) {
+                  ustensil.style.display = "none";
+                }
+              });
+            });
+
+            // si ça correspond aux tags, on n'affiche pas les tags appareils
+            tagsArrayFilter.forEach((tag) => {
+              appliancesTagsList.forEach((appliance) => {
+                if (appliance.textContent === tag) {
+                  appliance.style.display = "none";
+                }
+              });
+            });
+
+
+
         }
       }
       // Le cas où l'INPUT est vide (actualisation normale de tous les tags)
@@ -306,13 +334,7 @@ export function killTags(
           ustensil.style.display = "block";
         });
 
-        console.log("tagsArrayFilter", tagsArrayFilter);
-        console.log("ingredientsFilteredTags", ingredientsFilteredTags);
-        console.log("ustensilsFilteredTags", ustensilsFilteredTags);
-        console.log("appliancesFilteredTags", appliancesFilteredTags);
-
         if (tagsArrayFilter.length > 0) {
-         console.log(ingredientsFilteredTags);
 
           ingredientsFilteredTags = [
             ...new Set(ingredientsFilteredTags),
@@ -321,11 +343,10 @@ export function killTags(
           ustensilsFilteredTags = [...new Set(ustensilsFilteredTags)].sort(
             (a, b) => a.localeCompare(b)
           );
-          
+
           ingredientsFilteredTags.forEach((ingredient) => {
             ingredient.toLowerCase();
-          }
-          );
+          });
 
           appliancesFilteredTags.forEach((appliance) => {
             appliance.toLowerCase();
@@ -338,11 +359,10 @@ export function killTags(
           ingredientsFilteredTags = ingredientsFilteredTags.map(
             (ingredient) => {
               return ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
-            } 
+            }
           );
 
           ustensilsFilteredTags = ustensilsFilteredTags.map((ustensil) => {
-
             return ustensil.charAt(0).toUpperCase() + ustensil.slice(1);
           });
 
@@ -384,13 +404,35 @@ export function killTags(
             }
           });
 
-          
-        
+          // si ça correspond aux tags, on n'affiche pas les tags ingrédients
+          tagsArrayFilter.forEach((tag) => {
+            ingredientsTagsList.forEach((ingredient) => {
+              if (ingredient.textContent === tag) {
+                ingredient.style.display = "none";
+              }
+            });
+          });
+
+          // si ça correspond aux tags, on n'affiche pas les tags ustensils
+          tagsArrayFilter.forEach((tag) => {
+            ustensilsTagsList.forEach((ustensil) => {
+              if (ustensil.textContent === tag) {
+                ustensil.style.display = "none";
+              }
+            });
+          });
+
+          // si ça correspond aux tags, on n'affiche pas les tags appareils
+          tagsArrayFilter.forEach((tag) => {
+            appliancesTagsList.forEach((appliance) => {
+              if (appliance.textContent === tag) {
+                appliance.style.display = "none";
+              }
+            });
+          });
         }
       }
     });
   });
 }
 
-
-// gérer le cas où des tags sont déjà affichés (filtrer par tag etc)
