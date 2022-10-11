@@ -185,35 +185,25 @@ export function simpleSearch(
         allArticlesInArray.forEach((article) => {
           if (article.style.display !== "none") {
             // on push les ingrédients dans ingredientsDisplayed
-            const articleIngredients =
-              article.querySelectorAll(".preciseIngredient");
+              const articleIngredients = article.querySelectorAll(".preciseIngredient");
+              const articleAppliance = article.querySelectorAll(".applianceTag");
+              const articleUstensils = article.querySelectorAll(".ustensilTag");
+
               filterRecipesItemsDisplayed(
                 articleIngredients,
                 ingredientsTagsActualizedSecond
               );
 
-            // articleIngredients.forEach((ingredient) => {
-            //   ingredientsTagsActualizedSecond.push(ingredient.textContent);
-            // });
-
-            const articleAppliance = article.querySelectorAll(".applianceTag");
             filterRecipesItemsDisplayed(
               articleAppliance,
               appliancesDisplayed
             );
 
-            // articleAppliance.forEach((appliance) => {
-            //   appliancesDisplayed.push(appliance.textContent);
-            // });
-
-            const articleUstensils = article.querySelectorAll(".ustensilTag");
             filterRecipesItemsDisplayed(
               articleUstensils,
               ustensilsDisplayed
             );
-            // articleUstensils.forEach((ustensil) => {
-            //   ustensilsDisplayed.push(ustensil.textContent);
-            // });
+    
           }
         });
 
