@@ -90,7 +90,7 @@ export function killTags(
               if (
                 allIngredients.includes(tag.toLocaleLowerCase()) ||
                 allUstensils.includes(tag.toLocaleLowerCase()) ||
-                articleAppliance.includes(tag.toLocaleLowerCase())
+                articleAppliance.includes(tag)
               ) {
                 article.style.display = "flex";
                 //push des tags dans les tableaux filtered tags
@@ -117,7 +117,6 @@ export function killTags(
           article.style.display = "flex";
 
           if (tagsArrayFilter.length > 0) {
-              console.log("pas d'input rempli mais des tags contenus");
          
               tagsArrayFilter.every((tag) => {
                 if (
@@ -125,7 +124,6 @@ export function killTags(
                   allUstensils.includes(tag.toLocaleLowerCase()) ||
                   articleAppliance.includes(tag)
                 ) {
-                  console.log("ca a marché");
                   article.style.display = "flex";
                   //push des tags dans les tableaux filtered tags
                   articleIndividualIngredients.forEach((ingredient) => {
