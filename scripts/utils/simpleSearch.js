@@ -319,9 +319,6 @@ export function simpleSearch(
         ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
 
         // on actualise les tags
-        const tagArea = document.querySelector(".tag-area");
-        const tagAppliancesField = document.querySelectorAll(".tagAppliances");
-        const tagUstensilsField = document.querySelectorAll(".tagUstensils");
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
         );
@@ -331,51 +328,29 @@ export function simpleSearch(
         const ustensilsEntiers =
           document.querySelectorAll(".ustensilsTagsList");
 
-        // remove elements of Tagsarrayfilter from ingredientsDisplayed
-        ingredientsDisplayed = ingredientsDisplayed.filter(
-          (ingredient) => !tagsArrayFilter.includes(ingredient)
-        );
-        // remove elements of tagsArrayFilter from appliancesDisplayed
-        appliancesDisplayed = appliancesDisplayed.filter(
-          (appliance) => !tagsArrayFilter.includes(appliance)
-        );
+          // on rajoute les majs aux ustensiles
+          ustensilsDisplayed = ustensilsDisplayed.map(
+            (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
+          );
+        
 
-        // remove elements of tagsArrayFilter from ustensilsDisplayed
-        ustensilsDisplayed = ustensilsDisplayed.filter(
-          // ustensil include ustensil first letter capital
-          (ustensil) =>
-            !tagsArrayFilter.includes(ustensil) &&
-            !tagsArrayFilter.includes(
-              ustensil[0].toUpperCase() + ustensil.slice(1)
-            )
-        );
+          doubleFilterRecipeItemsInputAndTags(
+            ingredientsEntiers,
+            ingredientsDisplayed,
+            tagsArrayFilter
+          );
 
-        // n'affiche que les tags qui correspondent aux tags filtrés + recherche simple
-        ingredientsEntiers.forEach((ingredient) => {
-          if (!ingredientsDisplayed.includes(ingredient.textContent)) {
-            ingredient.style.display = "none";
-          } else {
-            ingredient.style.display = "block";
-          }
-        });
-        appliancesEntiers.forEach((appliance) => {
-          if (!appliancesDisplayed.includes(appliance.textContent)) {
-            appliance.style.display = "none";
-          } else {
-            appliance.style.display = "block";
-          }
-        });
-        ustensilsEntiers.forEach((ustensil) => {
-          if (
-            !ustensilsDisplayed.includes(
-              ustensil.textContent.toLocaleLowerCase()
-            )
-          ) {
-            ustensil.style.display = "none";
-          } else {
-            ustensil.style.display = "block";
-          }
-        });
+          doubleFilterRecipeItemsInputAndTags(
+            ustensilsEntiers,
+            ustensilsDisplayed,
+            tagsArrayFilter
+          );
+
+          doubleFilterRecipeItemsInputAndTags(
+            appliancesEntiers,
+            appliancesDisplayed,
+            tagsArrayFilter
+          );
       }
     }
 
