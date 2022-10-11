@@ -273,15 +273,36 @@ export function simpleSearch(
 
       if (tagsArrayFilter.length > 0) {
         const article = document.querySelectorAll("article");
-
         const articleArray = Array.from(article);
+    
 
         articleArray.forEach((article) => {
+          let articleIngredients = Array.from(article.querySelectorAll(
+            ".preciseIngredient"
+          ));
+          let articleAppliance = Array.from(article.querySelectorAll(".applianceTag"));
+          let articleUstensils = Array.from(article.querySelectorAll(".ustensilTag"));
+
+          articleIngredients = articleIngredients.map((ingredient) =>
+            ingredient.textContent.toLowerCase()
+          );
+          articleAppliance = articleAppliance.map((appliance) =>
+            appliance.textContent.toLowerCase()
+          );
+          articleUstensils = articleUstensils.map((ustensil) =>
+            ustensil.textContent.toLowerCase()
+          );
+
+          const articleTags = [
+            ...articleIngredients,
+            ...articleAppliance,
+            ...articleUstensils,
+          ];
+          
+
           if (
             tagsArrayFilter.every((tagValue) =>
-              article.textContent
-                .toLocaleLowerCase()
-                .includes(tagValue.toLocaleLowerCase())
+              articleTags.includes(tagValue.toLowerCase())
             )
           ) {
             article.style.display = "flex";
