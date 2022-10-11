@@ -107,7 +107,6 @@ export function killTags(
               }
             });
 
-
           }
           } else {
             article.style.display = "none";
