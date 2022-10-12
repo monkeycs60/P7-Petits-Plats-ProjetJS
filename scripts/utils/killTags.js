@@ -70,7 +70,7 @@ export function killTags(
           if (
             articleDescription.includes(inputValue) ||
             articleTitle.includes(inputValue) ||
-            allIngredients.includes(inputValue)
+            allIngredients.includes(inputValue.toLocaleLowerCase())
           ) {
             article.style.display = "flex";
             // on push articleIndividualIngredients dans le tableau actualisé

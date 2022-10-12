@@ -79,8 +79,9 @@ export function simpleSearch(
         const articleDescription =
           article.querySelector(".description").textContent;
         const articleAppliance =
-       article.querySelector(".applianceTag").textContent;
+       article.querySelectorAll(".applianceTag");
         const articleUstensils = article.querySelectorAll(".ustensilTag");
+        
 
         // on vérifie si la valeur du champ de recherche est présente dans le titre, les ingrédients ou la description
         if (
@@ -94,36 +95,33 @@ export function simpleSearch(
         ) {
           article.style.display = "flex";
 
-          // On filtre les ingrédients/ustensiles/appareils correspondant aux recettes affichées
+          // On filtre les ingrédients/ustensiles/appareils correspondant aux recettes affichées        
+          filterRecipesItemsDisplayed(
+            articleIngredients,
+            ingredientsTagsActualized
+          );
 
-          
-          // filterRecipesItemsDisplayed(
-          //   ingredientsArrayArticle,
-          //   ingredientsTagsActualized
-          // );
-          // console.log(ingredientsTagsActualized);
+          filterRecipesItemsDisplayed(
+            articleUstensils,
+            ustensilsTagsActualized
+          );
 
-          // filterRecipesItemsDisplayed(
-          //   articleUstensils,
-          //   ustensilsTagsActualized
-          // );
+          filterRecipesItemsDisplayed(
+            articleAppliance,
+            appliancesTagsActualized
+          );
 
-          // filterRecipesItemsDisplayed(
-          //   articleAppliance,
-          //   appliancesTagsActualized
-          // );
+    
+console.log(appliancesTagsActualized);
+          // ingredientsArrayArticle.forEach((ingredient) => {
+          //   ingredientsTagsActualized.push(ingredient);
+          // });
 
-       
+          // appliancesTagsActualized.push(articleAppliance);
 
-          ingredientsArrayArticle.forEach((ingredient) => {
-            ingredientsTagsActualized.push(ingredient);
-          });
-
-          appliancesTagsActualized.push(articleAppliance);
-
-          articleUstensils.forEach((ustensil) => {
-            ustensilsTagsActualized.push(ustensil.textContent);
-          });
+          // articleUstensils.forEach((ustensil) => {
+          //   ustensilsTagsActualized.push(ustensil.textContent);
+          // });
 
           if (tagsArrayFilter.length > 0) {
             if (
@@ -165,11 +163,12 @@ export function simpleSearch(
         (a, b) => a.localeCompare(b)
       );
 
-
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
 
+console.log(applianceList);
+console.log(appliancesTagsActualized);
        
         filterTagList(ingredientList, ingredientsTagsActualized);
         filterTagList(applianceList, appliancesTagsActualized);
