@@ -111,18 +111,6 @@ export function simpleSearch(
             appliancesTagsActualized
           );
 
-    
-console.log(appliancesTagsActualized);
-          // ingredientsArrayArticle.forEach((ingredient) => {
-          //   ingredientsTagsActualized.push(ingredient);
-          // });
-
-          // appliancesTagsActualized.push(articleAppliance);
-
-          // articleUstensils.forEach((ustensil) => {
-          //   ustensilsTagsActualized.push(ustensil.textContent);
-          // });
-
           if (tagsArrayFilter.length > 0) {
             if (
               // article textcontent does not contain all the tags

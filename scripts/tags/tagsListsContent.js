@@ -1,7 +1,6 @@
 import { killTags } from "../utils/killTags.js";
 
 const tagsArrayFilter = [];
-// on récupère les ingrédients des articles affichés
 let ingredientsDisplayed = [];
 const appliancesDisplayed = [];
 const ustensilsDisplayed = [];
@@ -173,7 +172,7 @@ export function tagsListsContent(
       appliancesTagsActualized = [...new Set(appliancesTagsActualized)];
       ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)];
 
-      // on affiche uniquement les tags ingrédients qui correspondent aux aux recettes affichées
+      // on affiche uniquement les tags ingrédients qui correspondent aux recettes affichées
       ingredientsTagsList.forEach((ingredientTags) => {
         if (ingredientsDisplayed.includes(ingredientTags.textContent)) {
           ingredientTags.style.display = "block";
