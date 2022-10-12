@@ -78,10 +78,6 @@ export function simpleSearch(
         });
         const articleDescription =
           article.querySelector(".description").textContent;
-
-        // hidden datas
-        // const articleAppliance =
-        //   Array.from(article.querySelector(".applianceTag").textContent);
         const articleAppliance =
        article.querySelector(".applianceTag").textContent;
         const articleUstensils = article.querySelectorAll(".ustensilTag");
