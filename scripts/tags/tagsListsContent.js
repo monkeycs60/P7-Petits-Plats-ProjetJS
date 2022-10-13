@@ -1,9 +1,9 @@
 import { killTags } from "../utils/killTags.js";
 
-const tagsArrayFilter = [];
+let tagsArrayFilter = [];
 let ingredientsDisplayed = [];
-const appliancesDisplayed = [];
-const ustensilsDisplayed = [];
+let appliancesDisplayed = [];
+let ustensilsDisplayed = [];
 
 function displayFilteredArticles(article, appliancesTagsActualized, ustensilsTagsActualized) {
   article.style.display = "flex";
@@ -167,10 +167,62 @@ export function tagsListsContent(
         }
       });
 
+      function onlyDisplayMatchingTags(
+        newItemsDisplayed,
+        itemTagList,
+        lastArrayActualized
+      ) {
+        newItemsDisplayed = [...new Set(newItemsDisplayed)];
+
+        itemTagList.forEach((itemTag) => {
+          if (!newItemsDisplayed.includes(itemTag.textContent)) {
+            itemTag.style.display = "none";
+          }
+        });
+
+        console.log(tagsValues);
+        tagsValues.forEach((tagValue) => {
+          itemTagList.forEach((itemTag) => {
+            if (itemTag.textContent === tagValue) {
+              itemTag.style.display = "none";
+            }
+          });
+        });
+
+        tagsArrayFilter.push(tagValue);
+        newItemsDisplayed.forEach((item) => {
+          lastArrayActualized.push(item);
+        });
+      }
+
+
+// onlyDisplayMatchingTags(
+//   ingredientsDisplayed,
+//   ingredientsTagsList,
+//   ingredientsTagsActualized
+// );
+
+// onlyDisplayMatchingTags(
+//   appliancesTagsActualized,
+//   appliancesTagsList,
+//   appliancesDisplayed
+// );
+
+// onlyDisplayMatchingTags(
+//   ustensilsTagsActualized,
+//   ustensilsTagsList,
+//   ustensilsDisplayed
+// );
+
+
       // On enlève les doublons du tableau
       ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
       appliancesTagsActualized = [...new Set(appliancesTagsActualized)];
       ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)];
+
+      console.log(ingredientsDisplayed);
+      console.log(appliancesTagsActualized);
+      console.log(ustensilsTagsActualized);
 
       // on affiche uniquement les tags ingrédients qui correspondent aux recettes affichées
       ingredientsTagsList.forEach((ingredientTags) => {
