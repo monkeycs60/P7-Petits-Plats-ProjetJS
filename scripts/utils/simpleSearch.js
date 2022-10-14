@@ -82,7 +82,6 @@ export function simpleSearch(
        article.querySelectorAll(".applianceTag");
         const articleUstensils = article.querySelectorAll(".ustensilTag");
         
-
         // on vérifie si la valeur du champ de recherche est présente dans le titre, les ingrédients ou la description
         if (
           articleTitle.toLowerCase().includes(searchInputValue.toLowerCase()) ||
@@ -154,15 +153,10 @@ export function simpleSearch(
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
-
-console.log(applianceList);
-console.log(appliancesTagsActualized);
        
         filterTagList(ingredientList, ingredientsTagsActualized);
         filterTagList(applianceList, appliancesTagsActualized);
         filterTagList(ustensilList, ustensilsTagsActualized);
-
-    
 
       if (tagsArrayFilter.length > 0) {
         const tagArea = document.querySelector(".tag-area");
@@ -201,15 +195,12 @@ console.log(appliancesTagsActualized);
             filterRecipesItemsDisplayed(articleUstensils, ustensilsDisplayed);
           }
         });
-
         
         // Adapatation du tableau ustensiles avec des MAJUSCULES
         ustensilsDisplayed = ustensilsDisplayed.map(
           (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
         );
       
-       
-
         doubleFilterRecipeItemsInputAndTags(
           ingredientsEntiers,
           ingredientsTagsActualizedSecond,
@@ -227,8 +218,6 @@ console.log(appliancesTagsActualized);
           appliancesDisplayed,
           tagsArrayFilter
         );
-
-
       }
 
       // on vide les tableaux pour la prochaine recherche
@@ -295,6 +284,14 @@ console.log(appliancesTagsActualized);
             articleIngredients.forEach((ingredient) => {
               ingredientsDisplayed.push(ingredient.textContent);
             });
+            const articleAppliance = article.querySelectorAll(".applianceTag");
+            articleAppliance.forEach((appliance) => {
+              appliancesDisplayed.push(appliance.textContent);
+            });
+            const articleUstensils = article.querySelectorAll(".ustensilTag");
+            articleUstensils.forEach((ustensil) => {
+              ustensilsDisplayed.push(ustensil.textContent);
+            });
           } else {
             article.style.display = "none";
           }
@@ -316,6 +313,9 @@ console.log(appliancesTagsActualized);
             (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
           );
         
+          console.log(ustensilsDisplayed);
+          console.log(ingredientsDisplayed);
+          console.log(appliancesDisplayed);
 
           doubleFilterRecipeItemsInputAndTags(
             ingredientsEntiers,
