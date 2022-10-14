@@ -5,21 +5,23 @@ let ustensilsTagsActualized = [];
 // déclaration des fonctions (tri, filtre)
 //BOUCLES NATIVES FOR
 
-function filterRecipesItemsDisplayed(originalArray, filteredArray) {
-  originalArray.forEach((value) => {
-    filteredArray.push(value.textContent);
-  });
+//create the same function as above but with a native for loop
+function filterRecipesItemsDisplayedForLoop(originalArray, filteredArray) {
+  for (let i = 0; i < originalArray.length; i++) {
+    filteredArray.push(originalArray[i].textContent);
+  }
 }
 
- function filterTagList(tagList, tagListActualized) {
-   tagList.childNodes.forEach((tag) => {
-     if (tagListActualized.includes(tag.textContent)) {
-       tag.style.display = "block";
-     } else {
-       tag.style.display = "none";
-     }
-   });
- }
+ // create the same function as filterTagList but with a native for loop
+  function filterTagListForLoop(tagList, tagListActualized) {
+    for (let i = 0; i < tagList.childNodes.length; i++) {
+      if (tagListActualized.includes(tagList.childNodes[i].textContent)) {
+        tagList.childNodes[i].style.display = "block";
+      } else {
+        tagList.childNodes[i].style.display = "none";
+      }
+    }}
+
 
   function doubleFilterRecipeItemsInputAndTags(
     listOfItems,
@@ -97,17 +99,17 @@ export function simpleSearch(
           article.style.display = "flex";
 
           // On filtre les ingrédients/ustensiles/appareils correspondant aux recettes affichées        
-          filterRecipesItemsDisplayed(
+          filterRecipesItemsDisplayedForLoop(
             articleIngredients,
             ingredientsTagsActualized
           );
 
-          filterRecipesItemsDisplayed(
+          filterRecipesItemsDisplayedForLoop(
             articleUstensils,
             ustensilsTagsActualized
           );
 
-          filterRecipesItemsDisplayed(
+          filterRecipesItemsDisplayedForLoop(
             articleAppliance,
             appliancesTagsActualized
           );
@@ -155,13 +157,10 @@ export function simpleSearch(
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
-
-console.log(applianceList);
-console.log(appliancesTagsActualized);
        
-        filterTagList(ingredientList, ingredientsTagsActualized);
-        filterTagList(applianceList, appliancesTagsActualized);
-        filterTagList(ustensilList, ustensilsTagsActualized);
+        filterTagListForLoop(ingredientList, ingredientsTagsActualized);
+        filterTagListForLoop(applianceList, appliancesTagsActualized);
+        filterTagListForLoop(ustensilList, ustensilsTagsActualized);
 
     
 
@@ -192,14 +191,20 @@ console.log(appliancesTagsActualized);
             const articleAppliance = article.querySelectorAll(".applianceTag");
             const articleUstensils = article.querySelectorAll(".ustensilTag");
 
-            filterRecipesItemsDisplayed(
+            filterRecipesItemsDisplayedForLoop(
               articleIngredients,
               ingredientsTagsActualizedSecond
             );
 
-            filterRecipesItemsDisplayed(articleAppliance, appliancesDisplayed);
+            filterRecipesItemsDisplayedForLoop(
+              articleAppliance,
+              appliancesDisplayed
+            );
 
-            filterRecipesItemsDisplayed(articleUstensils, ustensilsDisplayed);
+            filterRecipesItemsDisplayedForLoop(
+              articleUstensils,
+              ustensilsDisplayed
+            );
           }
         });
 
