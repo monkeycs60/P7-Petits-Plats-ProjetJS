@@ -308,6 +308,16 @@ export function simpleSearch(
             for (let i = 0; i < articleIngredients.length; i++) {
               ingredientsDisplayed.push(articleIngredients[i].textContent);
             }
+            const articleAppliance =
+              articleArray[i].querySelectorAll(".applianceTag");
+            for (let i = 0; i < articleAppliance.length; i++) {
+              appliancesDisplayed.push(articleAppliance[i].textContent);
+            }
+            const articleUstensils =
+              articleArray[i].querySelectorAll(".ustensilTag");
+            for (let i = 0; i < articleUstensils.length; i++) {
+              ustensilsDisplayed.push(articleUstensils[i].textContent);
+            }
           } else {
             articleArray[i].style.display = "none";
           }
