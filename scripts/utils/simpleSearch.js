@@ -3,6 +3,7 @@ let appliancesTagsActualized = [];
 let ustensilsTagsActualized = [];
 
 // déclaration des fonctions (tri, filtre)
+//BOUCLES NATIVES FOR
 
 function filterRecipesItemsDisplayed(originalArray, filteredArray) {
   originalArray.forEach((value) => {
