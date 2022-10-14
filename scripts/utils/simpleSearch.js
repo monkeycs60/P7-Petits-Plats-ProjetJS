@@ -22,29 +22,31 @@ function filterRecipesItemsDisplayedForLoop(originalArray, filteredArray) {
       }
     }}
 
-
-  function doubleFilterRecipeItemsInputAndTags(
+  // create the same function as doubleFilterRecipeItemsInputAndTags but with a native for loop 
+  function doubleFilterRecipeItemsInputAndTagsForLoop(
     listOfItems,
     listOfItemsDisplayed,
     listOfTags
   ) {
-    listOfItems.forEach((item) => {
+    for (let i = 0; i < listOfItems.length; i++) {
       if (
-        !listOfItemsDisplayed.includes(item.textContent) ||
-        listOfTags.includes(item.textContent)
+        !listOfItemsDisplayed.includes(listOfItems[i].textContent) ||
+        listOfTags.includes(listOfItems[i].textContent)
       ) {
-        item.style.display = "none";
+        listOfItems[i].style.display = "none";
       } else {
-        item.style.display = "block";
+        listOfItems[i].style.display = "block";
       }
-    });
+    }
   }
 
- function displayEveryTags(fullTagsList) {
-   fullTagsList.childNodes.forEach((tag) => {
-     tag.style.display = "block";
-   });
- }
+
+ // create the same function as displayEveryTags but with a native for loop
+  function displayEveryTagsForLoop(fullTagsList) {
+    for (let i = 0; i < fullTagsList.childNodes.length; i++) {
+      fullTagsList.childNodes[i].style.display = "block";
+    }
+  }
 
 export function simpleSearch(
   recipes,
@@ -70,23 +72,23 @@ export function simpleSearch(
     const searchInputValue = event.target.value.toLowerCase();
     // la recherche commence à partir de 3 caractères - 1er CONDITION
     if (searchInputValue.length > 2) {
-      allArticlesInArray.forEach((article) => {
-        // définition des variables
-        const articleTitle = article.querySelector("h2").textContent;
+      // create the same function as above but with a native for loop
+      for (let i = 0; i < allArticlesInArray.length; i++) {
+        const articleTitle = allArticlesInArray[i].querySelector("h2")
+          .textContent;
         const ingredientsArrayArticle = [];
         const articleIngredients =
-          article.querySelectorAll(".preciseIngredient");
-        articleIngredients.forEach((ingredient) => {
-          ingredientsArrayArticle.push(ingredient.textContent);
-        });
+          allArticlesInArray[i].querySelectorAll(".preciseIngredient");
+        for (let j = 0; j < articleIngredients.length; j++) {
+          ingredientsArrayArticle.push(articleIngredients[j].textContent);
+        }
         const articleDescription =
-          article.querySelector(".description").textContent;
+          allArticlesInArray[i].querySelector(".description").textContent;
         const articleAppliance =
-       article.querySelectorAll(".applianceTag");
-        const articleUstensils = article.querySelectorAll(".ustensilTag");
-        
+          allArticlesInArray[i].querySelectorAll(".applianceTag");
+        const articleUstensils =
+          allArticlesInArray[i].querySelectorAll(".ustensilTag");
 
-        // on vérifie si la valeur du champ de recherche est présente dans le titre, les ingrédients ou la description
         if (
           articleTitle.toLowerCase().includes(searchInputValue.toLowerCase()) ||
           ingredientsArrayArticle.some((ingredient) =>
@@ -96,9 +98,8 @@ export function simpleSearch(
             .toLowerCase()
             .includes(searchInputValue.toLowerCase())
         ) {
-          article.style.display = "flex";
+          allArticlesInArray[i].style.display = "flex";
 
-          // On filtre les ingrédients/ustensiles/appareils correspondant aux recettes affichées        
           filterRecipesItemsDisplayedForLoop(
             articleIngredients,
             ingredientsTagsActualized
@@ -116,20 +117,20 @@ export function simpleSearch(
 
           if (tagsArrayFilter.length > 0) {
             if (
-              // article textcontent does not contain all the tags
               !tagsArrayFilter.every((tag) =>
-                article.textContent
+                allArticlesInArray[i].textContent
                   .toLocaleLowerCase()
                   .includes(tag.toLowerCase())
               )
             ) {
-              article.style.display = "none";
+              allArticlesInArray[i].style.display = "none";
             }
           }
         } else {
-          article.style.display = "none";
+          allArticlesInArray[i].style.display = "none";
         }
-      });
+      }
+
 
       // On restructure les tableaux de tags (suppression des doublons, ajouts des majuscules, tri)
       ingredientsTagsActualized = ingredientsTagsActualized.flat();
@@ -216,19 +217,19 @@ export function simpleSearch(
       
        
 
-        doubleFilterRecipeItemsInputAndTags(
+        doubleFilterRecipeItemsInputAndTagsForLoop(
           ingredientsEntiers,
           ingredientsTagsActualizedSecond,
           tagsArrayFilter
         );
 
-        doubleFilterRecipeItemsInputAndTags(
+        doubleFilterRecipeItemsInputAndTagsForLoop(
           ustensilsEntiers,
           ustensilsDisplayed,
           tagsArrayFilter
         );
 
-        doubleFilterRecipeItemsInputAndTags(
+        doubleFilterRecipeItemsInputAndTagsForLoop(
           appliancesEntiers,
           appliancesDisplayed,
           tagsArrayFilter
@@ -255,9 +256,9 @@ export function simpleSearch(
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
 
-      displayEveryTags(ingredientList);
-      displayEveryTags(applianceList);
-      displayEveryTags(ustensilList);
+      displayEveryTagsForLoop(ingredientList);
+      displayEveryTagsForLoop(applianceList);
+      displayEveryTagsForLoop(ustensilList);
 
 
       if (tagsArrayFilter.length > 0) {
@@ -323,19 +324,19 @@ export function simpleSearch(
           );
         
 
-          doubleFilterRecipeItemsInputAndTags(
+          doubleFilterRecipeItemsInputAndTagsForLoop(
             ingredientsEntiers,
             ingredientsDisplayed,
             tagsArrayFilter
           );
 
-          doubleFilterRecipeItemsInputAndTags(
+          doubleFilterRecipeItemsInputAndTagsForLoop(
             ustensilsEntiers,
             ustensilsDisplayed,
             tagsArrayFilter
           );
 
-          doubleFilterRecipeItemsInputAndTags(
+          doubleFilterRecipeItemsInputAndTagsForLoop(
             appliancesEntiers,
             appliancesDisplayed,
             tagsArrayFilter
