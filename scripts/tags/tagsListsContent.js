@@ -142,24 +142,25 @@ export function tagsListsContent(
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
-          } else if ( lastTag.classList.contains("tagUstensils") && 
-          ustensils.includes(lastTagValue.toLocaleLowerCase())
+          } else if (
+            lastTag.classList.contains("tagUstensils") &&
+            ustensils.includes(lastTagValue.toLocaleLowerCase())
           ) {
             displayFilteredArticles(
               article,
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
-          } else if ( lastTag.classList.contains("tagAppliances") &&
-          article.querySelector(".applianceTag").textContent === lastTagValue  
+          } else if (
+            lastTag.classList.contains("tagAppliances") &&
+            article.querySelector(".applianceTag").textContent === lastTagValue
           ) {
-           displayFilteredArticles(
-             article,
-             appliancesTagsActualized,
-             ustensilsTagsActualized
-           );
-          }
-          else {
+            displayFilteredArticles(
+              article,
+              appliancesTagsActualized,
+              ustensilsTagsActualized
+            );
+          } else {
             article.style.display = "none";
           }
         } else {
@@ -173,6 +174,9 @@ export function tagsListsContent(
         lastArrayActualized
       ) {
         newItemsDisplayed = [...new Set(newItemsDisplayed)];
+        newItemsDisplayed = newItemsDisplayed.map((item) => {
+          return item.charAt(0).toUpperCase() + item.slice(1);
+        });
 
         itemTagList.forEach((itemTag) => {
           if (!newItemsDisplayed.includes(itemTag.textContent)) {
@@ -180,7 +184,6 @@ export function tagsListsContent(
           }
         });
 
-        console.log(tagsValues);
         tagsValues.forEach((tagValue) => {
           itemTagList.forEach((itemTag) => {
             if (itemTag.textContent === tagValue) {
@@ -188,57 +191,28 @@ export function tagsListsContent(
             }
           });
         });
-
-        tagsArrayFilter.push(tagValue);
         newItemsDisplayed.forEach((item) => {
           lastArrayActualized.push(item);
         });
       }
 
+      onlyDisplayMatchingTags(
+        ingredientsDisplayed,
+        ingredientsTagsList,
+        ingredientsTagsActualized
+      );
 
-// onlyDisplayMatchingTags(
-//   ingredientsDisplayed,
-//   ingredientsTagsList,
-//   ingredientsTagsActualized
-// );
+      onlyDisplayMatchingTags(
+        appliancesTagsActualized,
+        appliancesTagsList,
+        appliancesDisplayed
+      );
 
-// onlyDisplayMatchingTags(
-//   appliancesTagsActualized,
-//   appliancesTagsList,
-//   appliancesDisplayed
-// );
-
-// onlyDisplayMatchingTags(
-//   ustensilsTagsActualized,
-//   ustensilsTagsList,
-//   ustensilsDisplayed
-// );
-
-
-      // On enlève les doublons du tableau
-      ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
-      appliancesTagsActualized = [...new Set(appliancesTagsActualized)];
-      ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)];
-
-      console.log(ingredientsDisplayed);
-      console.log(appliancesTagsActualized);
-      console.log(ustensilsTagsActualized);
-
-      // on affiche uniquement les tags ingrédients qui correspondent aux recettes affichées
-      ingredientsTagsList.forEach((ingredientTags) => {
-        if (ingredientsDisplayed.includes(ingredientTags.textContent)) {
-          ingredientTags.style.display = "block";
-          ingredientsTagsActualized.push(ingredientTags.textContent);
-        } else {
-          ingredientTags.style.display = "none";
-        }
-      });
-      // on affiche uniquement les tags appliances qui correspondent aux recettes affichées
-      appliancesTagsList.forEach((applianceTags) => {
-        if (!appliancesTagsActualized.includes(applianceTags.textContent)) {
-          applianceTags.style.display = "none";
-        }
-      });
+      onlyDisplayMatchingTags(
+        ustensilsTagsActualized,
+        ustensilsTagsList,
+        ustensilsDisplayed
+      );
 
       // Quand un tag appliance est sélectionné, cache tous les autres (car 1 recette = 1 appliance)
       const applianceTagsDisplayed =
@@ -249,49 +223,7 @@ export function tagsListsContent(
         });
       }
 
-      // on affiche uniquement les tags ustensiles qui correspondent aux aux recettes affichées
-      ustensilsTagsList.forEach((ustensilTags) => {
-        if (
-          ustensilsTagsActualized.includes(
-            ustensilTags.textContent.toLocaleLowerCase()
-          )
-        ) {
-          ustensilTags.style.display = "block";
-        } else {
-          ustensilTags.style.display = "none";
-        }
-      });
-
-      // on supprime le tag déjà sélectionné de la liste des tags
-      tagsValues.forEach((tagValue) => {
-        ingredientsTagsList.forEach((ingr) => {
-          if (ingr.textContent === tagValue) {
-            ingr.style.display = "none";
-          }
-        });
-        appliancesTagsList.forEach((appliance) => {
-          if (appliance.textContent === tagValue) {
-            appliance.style.display = "none";
-          }
-        });
-        ustensilsTagsList.forEach((ustensil) => {
-          if (ustensil.textContent === tagValue) {
-            ustensil.style.display = "none";
-          }
-        });
-      });
-
-      // push the tagValue in the array
       tagsArrayFilter.push(tagValue);
-
-      // push all elements of ustensilsTagsActualized in the array
-      ustensilsTagsActualized.forEach((ustensil) => {
-        ustensilsDisplayed.push(ustensil);
-      });
-      // push all elements of appliancesTagsActualized in the array
-      appliancesTagsActualized.forEach((appliance) => {
-        appliancesDisplayed.push(appliance);
-      });
 
       killTags(
         ingredientsTags,
