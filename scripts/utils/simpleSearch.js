@@ -209,8 +209,7 @@ export function simpleSearch(
               );
             }
           }
-
-        
+    
         // Adapatation du tableau ustensiles avec des MAJUSCULES
           // create the same function as above but with a native for loop
           for (let i = 0; i < ustensilsDisplayed.length; i++) {
@@ -218,10 +217,6 @@ export function simpleSearch(
               ustensilsDisplayed[i].charAt(0).toUpperCase() +
               ustensilsDisplayed[i].slice(1);
           }
-
-
-      
-       
 
         doubleFilterRecipeItemsInputAndTagsForLoop(
           ingredientsEntiers,
@@ -254,9 +249,10 @@ export function simpleSearch(
 
       // RESET LE CHAMP DES TAGS quand la recherche < 3 caractères
       // on affiche toutes les recettes
-      recipes.forEach((recipe) => {
-        document.getElementById(recipe.id).style.display = "flex";
-      });
+        // create the same function as above but with a native for loop
+        for (let i = 0; i < allArticlesInArray.length; i++) {
+          allArticlesInArray[i].style.display = "flex";
+        }
 
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
@@ -271,47 +267,52 @@ export function simpleSearch(
         const article = document.querySelectorAll("article");
         const articleArray = Array.from(article);
     
+        // create the same function as above but with a native for loop
+        for (let i = 0; i < articleArray.length; i++) {
+          let articleIngredients = Array.from(
+            articleArray[i].querySelectorAll(".preciseIngredient")
+          );
+          let articleAppliance = Array.from(
+            articleArray[i].querySelectorAll(".applianceTag")
+          );
+          let articleUstensils = Array.from(
+            articleArray[i].querySelectorAll(".ustensilTag")
+          );
 
-        articleArray.forEach((article) => {
-          let articleIngredients = Array.from(article.querySelectorAll(
-            ".preciseIngredient"
-          ));
-          let articleAppliance = Array.from(article.querySelectorAll(".applianceTag"));
-          let articleUstensils = Array.from(article.querySelectorAll(".ustensilTag"));
-
-          articleIngredients = articleIngredients.map((ingredient) =>
-            ingredient.textContent.toLowerCase()
-          );
-          articleAppliance = articleAppliance.map((appliance) =>
-            appliance.textContent.toLowerCase()
-          );
-          articleUstensils = articleUstensils.map((ustensil) =>
-            ustensil.textContent.toLowerCase()
-          );
+          // create the same function as above but with a native for loop
+          for (let j = 0; j < articleIngredients.length; j++) {
+            articleIngredients[j] = articleIngredients[j].textContent.toLowerCase();
+          }
+          for (let j = 0; j < articleAppliance.length; j++) {
+            articleAppliance[j] = articleAppliance[j].textContent.toLowerCase();
+          }
+          for (let j = 0; j < articleUstensils.length; j++) {
+            articleUstensils[j] = articleUstensils[j].textContent.toLowerCase();
+          }
 
           const articleTags = [
             ...articleIngredients,
             ...articleAppliance,
             ...articleUstensils,
           ];
-          
 
           if (
             tagsArrayFilter.every((tagValue) =>
               articleTags.includes(tagValue.toLowerCase())
             )
           ) {
-            article.style.display = "flex";
+            articleArray[i].style.display = "flex";
             // push its ingredients in the ingredientsDisplayed array
             const articleIngredients =
-              article.querySelectorAll(".preciseIngredient");
-            articleIngredients.forEach((ingredient) => {
-              ingredientsDisplayed.push(ingredient.textContent);
-            });
+              articleArray[i].querySelectorAll(".preciseIngredient");
+            for (let i = 0; i < articleIngredients.length; i++) {
+              ingredientsDisplayed.push(articleIngredients[i].textContent);
+            }
           } else {
-            article.style.display = "none";
+            articleArray[i].style.display = "none";
           }
-        });
+        }
+
         ingredientsDisplayed = [...new Set(ingredientsDisplayed)];
 
         // on actualise les tags
