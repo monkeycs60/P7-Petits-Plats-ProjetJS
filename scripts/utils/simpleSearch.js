@@ -135,9 +135,9 @@ export function simpleSearch(
       // On restructure les tableaux de tags (suppression des doublons, ajouts des majuscules, tri)
       ingredientsTagsActualized = ingredientsTagsActualized.flat();
       const flatIngredients = [];
-      ingredientsTagsActualized.forEach((ingredient) => {
-        flatIngredients.push(ingredient);
-      });
+      for (let i = 0; i < ingredientsTagsActualized.length; i++) {
+        flatIngredients.push(ingredientsTagsActualized[i]);
+      }
       ingredientsTagsActualized = flatIngredients;
       ingredientsTagsActualized = [
         ...new Set(ingredientsTagsActualized),
@@ -148,13 +148,15 @@ export function simpleSearch(
 
       // partie actualisation TAGS USTENSILS
       ustensilsTagsActualized = ustensilsTagsActualized.flat();
-      ustensilsTagsActualized = ustensilsTagsActualized.map(
-        (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
-      );
+       for (let i = 0; i < ustensilsTagsActualized.length; i++) {
+         ustensilsTagsActualized[i] =
+           ustensilsTagsActualized[i].charAt(0).toUpperCase() +
+           ustensilsTagsActualized[i].slice(1);
+       }
       ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)].sort(
         (a, b) => a.localeCompare(b)
       );
-
+     
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
@@ -162,8 +164,6 @@ export function simpleSearch(
         filterTagListForLoop(ingredientList, ingredientsTagsActualized);
         filterTagListForLoop(applianceList, appliancesTagsActualized);
         filterTagListForLoop(ustensilList, ustensilsTagsActualized);
-
-    
 
       if (tagsArrayFilter.length > 0) {
         const tagArea = document.querySelector(".tag-area");
@@ -182,38 +182,44 @@ export function simpleSearch(
         appliancesDisplayed = [];
         ustensilsDisplayed = [];
 
-        // for each article with not displat none,
-        // we check if the textcontent of the article contains the tag
-        allArticlesInArray.forEach((article) => {
-          if (article.style.display !== "none") {
-            // on push les ingrédients dans ingredientsDisplayed
-            const articleIngredients =
-              article.querySelectorAll(".preciseIngredient");
-            const articleAppliance = article.querySelectorAll(".applianceTag");
-            const articleUstensils = article.querySelectorAll(".ustensilTag");
+          // create the same function as above but with a native for loop
+          for (let i = 0; i < allArticlesInArray.length; i++) {
+            if (allArticlesInArray[i].style.display !== "none") {
+              // on push les ingrédients dans ingredientsDisplayed
+              const articleIngredients =
+                allArticlesInArray[i].querySelectorAll(".preciseIngredient");
+              const articleAppliance =
+                allArticlesInArray[i].querySelectorAll(".applianceTag");
+              const articleUstensils =
+                allArticlesInArray[i].querySelectorAll(".ustensilTag");
 
-            filterRecipesItemsDisplayedForLoop(
-              articleIngredients,
-              ingredientsTagsActualizedSecond
-            );
+              filterRecipesItemsDisplayedForLoop(
+                articleIngredients,
+                ingredientsTagsActualizedSecond
+              );
 
-            filterRecipesItemsDisplayedForLoop(
-              articleAppliance,
-              appliancesDisplayed
-            );
+              filterRecipesItemsDisplayedForLoop(
+                articleAppliance,
+                appliancesDisplayed
+              );
 
-            filterRecipesItemsDisplayedForLoop(
-              articleUstensils,
-              ustensilsDisplayed
-            );
+              filterRecipesItemsDisplayedForLoop(
+                articleUstensils,
+                ustensilsDisplayed
+              );
+            }
           }
-        });
 
         
         // Adapatation du tableau ustensiles avec des MAJUSCULES
-        ustensilsDisplayed = ustensilsDisplayed.map(
-          (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
-        );
+          // create the same function as above but with a native for loop
+          for (let i = 0; i < ustensilsDisplayed.length; i++) {
+            ustensilsDisplayed[i] =
+              ustensilsDisplayed[i].charAt(0).toUpperCase() +
+              ustensilsDisplayed[i].slice(1);
+          }
+
+
       
        
 
