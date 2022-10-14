@@ -326,9 +326,12 @@ export function simpleSearch(
           document.querySelectorAll(".ustensilsTagsList");
 
           // on rajoute les majs aux ustensiles
-          ustensilsDisplayed = ustensilsDisplayed.map(
-            (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
-          );
+            for (let i = 0; i < ustensilsDisplayed.length; i++) {
+              ustensilsDisplayed[i] =
+                ustensilsDisplayed[i].charAt(0).toUpperCase() +
+                ustensilsDisplayed[i].slice(1);
+            }
+
         
 
           doubleFilterRecipeItemsInputAndTagsForLoop(
@@ -355,9 +358,13 @@ export function simpleSearch(
     const noCard = document.querySelector(".no-result");
     const cards = document.querySelectorAll("article");
     const cardsArray = Array.from(cards);
-    const cardsDisplayed = cardsArray.filter(
-      (card) => card.style.display === "flex"
-    );
+    // create the same function as above but with a native for loop
+    const cardsDisplayed = [];
+    for (let i = 0; i < cardsArray.length; i++) {
+      if (cardsArray[i].style.display === "flex") {
+        cardsDisplayed.push(cardsArray[i]);
+      } 
+    }
     if (cardsDisplayed.length === 0) {
       noCard.style.display = "flex";
     } else {
