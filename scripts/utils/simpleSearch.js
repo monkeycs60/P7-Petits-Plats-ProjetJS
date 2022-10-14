@@ -279,19 +279,22 @@ export function simpleSearch(
           ) {
             article.style.display = "flex";
             // push its ingredients in the ingredientsDisplayed array
-            const articleIngredients =
-              article.querySelectorAll(".preciseIngredient");
-            articleIngredients.forEach((ingredient) => {
-              ingredientsDisplayed.push(ingredient.textContent);
-            });
+            const articleIngredients = article.querySelectorAll(".preciseIngredient");
             const articleAppliance = article.querySelectorAll(".applianceTag");
-            articleAppliance.forEach((appliance) => {
-              appliancesDisplayed.push(appliance.textContent);
-            });
             const articleUstensils = article.querySelectorAll(".ustensilTag");
-            articleUstensils.forEach((ustensil) => {
-              ustensilsDisplayed.push(ustensil.textContent);
-            });
+           
+            filterRecipesItemsDisplayed(
+              articleIngredients,
+              ingredientsDisplayed
+            )
+            filterRecipesItemsDisplayed(
+              articleAppliance,
+              appliancesDisplayed
+            )
+            filterRecipesItemsDisplayed(
+              articleUstensils,
+              ustensilsDisplayed
+            )
           } else {
             article.style.display = "none";
           }
