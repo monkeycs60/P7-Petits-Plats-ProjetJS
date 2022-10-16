@@ -203,36 +203,41 @@ export function killTags(
 
 
         if (tagsArrayFilter.length > 0) {
-          ingredientsFilteredTags = [
-            ...new Set(ingredientsFilteredTags),
-          ].sort();
-          appliancesFilteredTags = [...new Set(appliancesFilteredTags)].sort();
-          ustensilsFilteredTags = [...new Set(ustensilsFilteredTags)].sort(
-            (a, b) => a.localeCompare(b)
-          );
+          // ingredientsFilteredTags = [
+          //   ...new Set(ingredientsFilteredTags),
+          // ].sort();
+          // appliancesFilteredTags = [...new Set(appliancesFilteredTags)].sort();
+          // ustensilsFilteredTags = [...new Set(ustensilsFilteredTags)].sort(
+          //   (a, b) => a.localeCompare(b)
+          // );
 
-          ingredientsFilteredTags.forEach((ingredient) => {
-            ingredient.toLowerCase();
-          });
-          appliancesFilteredTags.forEach((appliance) => {
-            appliance.toLowerCase();
-          });
-          ustensilsFilteredTags.forEach((ustensil) => {
-            ustensil.toLowerCase();
-          });
+          // ingredientsFilteredTags.forEach((ingredient) => {
+          //   ingredient.toLowerCase();
+          // });
+          // appliancesFilteredTags.forEach((appliance) => {
+          //   appliance.toLowerCase();
+          // });
+          // ustensilsFilteredTags.forEach((ustensil) => {
+          //   ustensil.toLowerCase();
+          // });
 
-          ingredientsFilteredTags = ingredientsFilteredTags.map(
-            (ingredient) => {
-              return ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
-            }
-          );
-          ustensilsFilteredTags = ustensilsFilteredTags.map((ustensil) => {
-            return ustensil.charAt(0).toUpperCase() + ustensil.slice(1);
-          });
-          //same for appliance
-          appliancesFilteredTags = appliancesFilteredTags.map((appliance) => {
-            return appliance.charAt(0).toUpperCase() + appliance.slice(1);
-          });
+          // ingredientsFilteredTags = ingredientsFilteredTags.map(
+          //   (ingredient) => {
+          //     return ingredient.charAt(0).toUpperCase() + ingredient.slice(1);
+          //   }
+          // );
+          // ustensilsFilteredTags = ustensilsFilteredTags.map((ustensil) => {
+          //   return ustensil.charAt(0).toUpperCase() + ustensil.slice(1);
+          // });
+          // //same for appliance
+          // appliancesFilteredTags = appliancesFilteredTags.map((appliance) => {
+          //   return appliance.charAt(0).toUpperCase() + appliance.slice(1);
+          // });
+
+          // on normalise les tableaux
+          normalizeArray(ingredientsFilteredTags);
+          normalizeArray(appliancesFilteredTags);
+          normalizeArray(ustensilsFilteredTags);
 
           //create const for ingredientstagslist, ustensilstagslist, appliancetagslist
           const ingredientsTagsList = Array.from(
