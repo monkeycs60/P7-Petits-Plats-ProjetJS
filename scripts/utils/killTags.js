@@ -7,8 +7,9 @@ function getAllItems(article, DOMClass, fullArray) {
 
     function GetIndividualItemsFromArticle(originalArray, filteredArray) {
        originalArray.forEach((item) => {
-         filteredArray.push(item.textContent);
-       });
+         filteredArray.push(
+            item.textContent.charAt(0).toUpperCase() + item.textContent.slice(1))
+        });
      }
 
      function normalizeArray(array) {
@@ -129,7 +130,6 @@ export function killTags(
               appliancesTagsActualized
             );
 
-
             if (tagsArrayFilter.length > 0) {
               tagsArrayFilter.every((tag) => {
                 if (
@@ -187,21 +187,6 @@ export function killTags(
                    articleApplianceTag,
                    appliancesTagsActualized
                  );
-
-                   console.log(
-                     "ingredientsFilteredTags",
-                     ingredientsFilteredTags
-                   );
-                   console.log(
-                     "appliancesFilteredTags",
-                     appliancesFilteredTags
-                   );
-                   console.log("ustensilsFilteredTags", ustensilsFilteredTags);
-
-                   console.log(ingredientsTagsActualized);
-                    console.log(appliancesTagsActualized);
-                    console.log(ustensilsTagsActualized);
-
               } else {
                 article.style.display = "none";
               }
@@ -233,7 +218,6 @@ export function killTags(
         displayTags(ingredientsTags, ingredientsTagsActualized);
         displayTags(appliancesTags, appliancesTagsActualized);
         displayTags(ustensilsTags, ustensilsTagsActualized);
-
 
         if (tagsArrayFilter.length > 0) {
 
@@ -270,7 +254,6 @@ export function killTags(
       }
       // Le cas où l'INPUT est vide (actualisation normale de tous les tags)
       else {
-        console.log("input VIDE");
         // on affiche tous les tags
         const ingredientsTags = Array.from(
           document.querySelectorAll(".ingredientsTagsList")
@@ -281,34 +264,16 @@ export function killTags(
         const ustensilsTags = Array.from(
           document.querySelectorAll(".ustensilsTagsList")
         );
-        ingredientsTags.forEach((ingredient) => {
-          ingredient.style.display = "block";
-        });
-        appliancesTags.forEach((appliance) => {
-          appliance.style.display = "block";
-        });
-        ustensilsTags.forEach((ustensil) => {
-          ustensil.style.display = "block";
-        });
 
         displayEveryTags(ingredientsTags);
         displayEveryTags(appliancesTags);
         displayEveryTags(ustensilsTags);
 
-            console.log(ingredientsTagsActualized);
-            console.log(appliancesTagsActualized);
-            console.log(ustensilsTagsActualized);
-
         if (tagsArrayFilter.length > 0) {
-        
           // on normalise les tableaux
           normalizeArray(ingredientsTagsActualized);
           normalizeArray(appliancesTagsActualized);
           normalizeArray(ustensilsTagsActualized);
-
-          console.log("ingredientsFilteredTags", ingredientsFilteredTags);
-          console.log("appliancesFilteredTags", appliancesFilteredTags);
-          console.log("ustensilsFilteredTags", ustensilsFilteredTags);
 
           const ingredientsTagsList = Array.from(
             document.querySelectorAll(".ingredientsTagsList")
