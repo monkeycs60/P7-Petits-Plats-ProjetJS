@@ -315,10 +315,6 @@ export function simpleSearch(
           ustensilsDisplayed = ustensilsDisplayed.map(
             (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
           );
-        
-          console.log(ustensilsDisplayed);
-          console.log(ingredientsDisplayed);
-          console.log(appliancesDisplayed);
 
           doubleFilterRecipeItemsInputAndTags(
             ingredientsEntiers,
