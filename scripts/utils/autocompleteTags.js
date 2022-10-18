@@ -3,17 +3,16 @@ export function autocompleteTags() {
   const inputAppliances = document.querySelector("#inputAppliances");
   const inputUstensils = document.querySelector("#inputUstensils");
 
-
   function autoCompleteOnKeyUp(
-    e, 
+    e,
     tagAreaItems,
     allItemTags,
     allItemsOfArticle
   ) {
-    let tabOfItems = [];
+    const tabOfItems = [];
 
     const allTagsOfSelectedItem = document.querySelectorAll(`.${tagAreaItems}`);
-      allTagsOfSelectedItem.forEach((tag) => {
+    allTagsOfSelectedItem.forEach((tag) => {
       tabOfItems.push(tag.textContent.toLocaleLowerCase());
     });
 
@@ -35,22 +34,29 @@ export function autocompleteTags() {
     });
 
     itemsTagsListArray = [...new Set(itemsTagsListArray)].sort();
-    itemsTagsListArray = itemsTagsListArray.map((hello) => {
-      return hello.toLocaleLowerCase();
-    });
+    itemsTagsListArray = itemsTagsListArray.map((hello) =>
+      hello.toLocaleLowerCase()
+    );
 
-    const filteredItemsTagsListArray = itemsTagsListArray.filter((itemFiltered) => {
-  return itemFiltered.includes(inputValue.toLocaleLowerCase());
-    });
+    const filteredItemsTagsListArray = itemsTagsListArray.filter(
+      (itemFiltered) => itemFiltered.includes(inputValue.toLocaleLowerCase())
+    );
 
     filteredItemsTagsListArray.forEach((element) => {
       if (tabOfItems.includes(element)) {
-       filteredItemsTagsListArray.splice(filteredItemsTagsListArray.indexOf(element), 1);
+        filteredItemsTagsListArray.splice(
+          filteredItemsTagsListArray.indexOf(element),
+          1
+        );
       }
     });
 
     itemsTagsList.forEach((allItems) => {
-      if (!filteredItemsTagsListArray.includes(allItems.textContent.toLocaleLowerCase())) {
+      if (
+        !filteredItemsTagsListArray.includes(
+          allItems.textContent.toLocaleLowerCase()
+        )
+      ) {
         allItems.style.display = "none";
       } else {
         allItems.style.display = "block";
@@ -77,12 +83,6 @@ export function autocompleteTags() {
   });
 
   inputUstensils.addEventListener("keyup", (e) => {
-    autoCompleteOnKeyUp(
-      e,
-      "tagUstensils",
-      "ustensilsTagsList",
-      "ustensilTag"
-    );
+    autoCompleteOnKeyUp(e, "tagUstensils", "ustensilsTagsList", "ustensilTag");
   });
-
 }

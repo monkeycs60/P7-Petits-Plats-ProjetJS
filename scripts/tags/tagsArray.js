@@ -11,10 +11,11 @@ export function creatingTagsArrays(recipes) {
     .map((recipe) => recipe.ingredients)
     .flat()
     // map ingredient with first letter uppercase
-    .map((ingredient) => {
-      return    ingredient.ingredient.charAt(0).toUpperCase() +
-        ingredient.ingredient.slice(1);
-    })
+    .map(
+      (ingredient) =>
+        ingredient.ingredient.charAt(0).toUpperCase() +
+        ingredient.ingredient.slice(1)
+    )
     .sort((a, b) => a.localeCompare(b));
   const allUniqueIngredientsArray = [...new Set(allIngredientsArray)];
   ingredientsTags = allUniqueIngredientsArray;
@@ -36,6 +37,6 @@ export function creatingTagsArrays(recipes) {
   ustensilsTags = allUniqueUstensilsArray
     .map((ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1))
     .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
-    ustensilsTags = [...new Set(ustensilsTags)];
+  ustensilsTags = [...new Set(ustensilsTags)];
 }
 export { ingredientsTags, appliancesTags, ustensilsTags };

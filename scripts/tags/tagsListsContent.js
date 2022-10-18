@@ -1,11 +1,15 @@
 import { killTags } from "../utils/killTags.js";
 
-let tagsArrayFilter = [];
+const tagsArrayFilter = [];
 let ingredientsDisplayed = [];
-let appliancesDisplayed = [];
-let ustensilsDisplayed = [];
+const appliancesDisplayed = [];
+const ustensilsDisplayed = [];
 
-function displayFilteredArticles(article, appliancesTagsActualized, ustensilsTagsActualized) {
+function displayFilteredArticles(
+  article,
+  appliancesTagsActualized,
+  ustensilsTagsActualized
+) {
   article.style.display = "flex";
   article.querySelectorAll(".preciseIngredient").forEach((ingredient) => {
     ingredientsDisplayed.push(ingredient.textContent);
@@ -19,7 +23,6 @@ function displayFilteredArticles(article, appliancesTagsActualized, ustensilsTag
     ustensilsTagsActualized.push(ustensil.textContent);
   });
 }
-
 
 export function tagsListsContent(
   ingredientsTags,
@@ -122,8 +125,8 @@ export function tagsListsContent(
       // on filtre les recettes qui contiennent le ou les tags
       articleArray.forEach((article) => {
         if (article.style.display !== "none") {
-          let ingredients = [];
-          let ustensils = [];
+          const ingredients = [];
+          const ustensils = [];
           article
             .querySelectorAll(".preciseIngredient")
             .forEach((ingredient) => {
@@ -174,9 +177,9 @@ export function tagsListsContent(
         lastArrayActualized
       ) {
         newItemsDisplayed = [...new Set(newItemsDisplayed)];
-        newItemsDisplayed = newItemsDisplayed.map((item) => {
-          return item.charAt(0).toUpperCase() + item.slice(1);
-        });
+        newItemsDisplayed = newItemsDisplayed.map(
+          (item) => item.charAt(0).toUpperCase() + item.slice(1)
+        );
 
         itemTagList.forEach((itemTag) => {
           if (!newItemsDisplayed.includes(itemTag.textContent)) {

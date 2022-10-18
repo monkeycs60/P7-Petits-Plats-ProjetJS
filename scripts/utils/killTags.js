@@ -5,50 +5,49 @@ function getAllItems(article, DOMClass, fullArray) {
   });
 }
 
-    function GetIndividualItemsFromArticle(originalArray, filteredArray) {
-       originalArray.forEach((item) => {
-         filteredArray.push(
-            item.textContent.charAt(0).toUpperCase() + item.textContent.slice(1))
-        });
-     }
+function GetIndividualItemsFromArticle(originalArray, filteredArray) {
+  originalArray.forEach((item) => {
+    filteredArray.push(
+      item.textContent.charAt(0).toUpperCase() + item.textContent.slice(1)
+    );
+  });
+}
 
-     function normalizeArray(array) {
-       array = [...new Set(array)].sort((a, b) =>
-         a.localeCompare(b, "fr", { sensitivity: "base" })
-       );
-       array = array
-         .map((item) => item.toLocaleLowerCase())
-         .map(
-           (item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()
-         );
-        return array;
-     }
+function normalizeArray(array) {
+  array = [...new Set(array)].sort((a, b) =>
+    a.localeCompare(b, "fr", { sensitivity: "base" })
+  );
+  array = array
+    .map((item) => item.toLocaleLowerCase())
+    .map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase());
+  return array;
+}
 
-      function displayTags(tags, tagsActualized) {
-        tags.forEach((tag) => {
-          if (tagsActualized.includes(tag.textContent)) {
-            tag.style.display = "block";
-          } else {
-            tag.style.display = "none";
-          }
-        });
+function displayTags(tags, tagsActualized) {
+  tags.forEach((tag) => {
+    if (tagsActualized.includes(tag.textContent)) {
+      tag.style.display = "block";
+    } else {
+      tag.style.display = "none";
+    }
+  });
+}
+
+function deleteTagClicked(tagsArrayFilter, itemsList) {
+  tagsArrayFilter.forEach((tag) => {
+    itemsList.forEach((itemTag) => {
+      if (itemTag.textContent === tag) {
+        itemTag.style.display = "none";
       }
+    });
+  });
+}
 
-      function deleteTagClicked(tagsArrayFilter, itemsList) {
-        tagsArrayFilter.forEach((tag) => {
-        itemsList.forEach((itemTag) => {
-          if (itemTag.textContent === tag) {
-            itemTag.style.display = "none";
-          }
-        });
-         }); 
-        }
-
-        function displayEveryTags(tagList) {
-          tagList.forEach((tag) => {
-            tag.style.display = "block";
-          });
-        }
+function displayEveryTags(tagList) {
+  tagList.forEach((tag) => {
+    tag.style.display = "block";
+  });
+}
 
 export function killTags(
   ingredientsTags,
@@ -67,9 +66,9 @@ export function killTags(
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
 
-      let ingredientsFilteredTags = [];
-      let appliancesFilteredTags = [];
-      let ustensilsFilteredTags = [];
+      const ingredientsFilteredTags = [];
+      const appliancesFilteredTags = [];
+      const ustensilsFilteredTags = [];
 
       // on supprime le tag du tableau des tags sélectionnés
       tagsArrayFilter.splice(
@@ -84,9 +83,9 @@ export function killTags(
 
       allArticles.forEach((article) => {
         // les 3 champs de la recherche avancée
-        let allIngredients = [];
-        let allAppliances = [];
-        let allUstensils = [];
+        const allIngredients = [];
+        const allAppliances = [];
+        const allUstensils = [];
 
         getAllItems(article, ".preciseIngredient", allIngredients);
         getAllItems(article, ".applianceTag", allAppliances);
@@ -102,7 +101,9 @@ export function killTags(
         const articleUstensilTag = Array.from(
           article.querySelectorAll(".ustensilTag")
         );
-        const articleApplianceTag = Array.from(article.querySelectorAll(".applianceTag"));
+        const articleApplianceTag = Array.from(
+          article.querySelectorAll(".applianceTag")
+        );
 
         // il faut montrer les articles qui correspondent à l'input de 3 lettres, puis filtrer
         const inputValue = document.getElementById("mainSearch").value;
@@ -139,7 +140,7 @@ export function killTags(
                 ) {
                   article.style.display = "flex";
 
-                  //push des tags dans les tableaux filtered tags
+                  // push des tags dans les tableaux filtered tags
                   GetIndividualItemsFromArticle(
                     articleIndividualIngredients,
                     ingredientsFilteredTags
@@ -152,7 +153,6 @@ export function killTags(
                     articleApplianceTag,
                     appliancesFilteredTags
                   );
-
                 } else {
                   article.style.display = "none";
                 }
@@ -162,7 +162,7 @@ export function killTags(
             article.style.display = "none";
           }
         } else {
-          //si l'input est vide, on affiche tous les articles
+          // si l'input est vide, on affiche tous les articles
           // on affiche tous les articles
           article.style.display = "flex";
 
@@ -174,19 +174,19 @@ export function killTags(
                 allAppliances.includes(tag.toLocaleLowerCase())
               ) {
                 article.style.display = "flex";
-             
-                 GetIndividualItemsFromArticle(
-                   articleIndividualIngredients,
-                   ingredientsTagsActualized
-                 );
-                 GetIndividualItemsFromArticle(
-                   articleUstensilTag,
-                   ustensilsTagsActualized
-                 );
-                 GetIndividualItemsFromArticle(
-                   articleApplianceTag,
-                   appliancesTagsActualized
-                 );
+
+                GetIndividualItemsFromArticle(
+                  articleIndividualIngredients,
+                  ingredientsTagsActualized
+                );
+                GetIndividualItemsFromArticle(
+                  articleUstensilTag,
+                  ustensilsTagsActualized
+                );
+                GetIndividualItemsFromArticle(
+                  articleApplianceTag,
+                  appliancesTagsActualized
+                );
               } else {
                 article.style.display = "none";
               }
@@ -199,11 +199,10 @@ export function killTags(
 
       // Le cas où l'INPUT est déjà rempli
       if (inputValue.length > 2) {
-
-      // on normalise les tableaux
-      normalizeArray(ingredientsTagsActualized);
-      normalizeArray(appliancesTagsActualized);
-      normalizeArray(ustensilsTagsActualized);
+        // on normalise les tableaux
+        normalizeArray(ingredientsTagsActualized);
+        normalizeArray(appliancesTagsActualized);
+        normalizeArray(ustensilsTagsActualized);
 
         const ingredientsTags = Array.from(
           document.querySelectorAll(".ingredientsTagsList")
@@ -220,18 +219,17 @@ export function killTags(
         displayTags(ustensilsTags, ustensilsTagsActualized);
 
         if (tagsArrayFilter.length > 0) {
-
           // on normalise les tableaux
           normalizeArray(ingredientsFilteredTags);
           normalizeArray(appliancesFilteredTags);
           normalizeArray(ustensilsFilteredTags);
 
-          //first letter capitalization ustensilsFilteredTags
-          ustensilsFilteredTags.map((tag) => {
-            return tag = tag.charAt(0).toUpperCase() + tag.slice(1);
-          });
+          // first letter capitalization ustensilsFilteredTags
+          ustensilsFilteredTags.map(
+            (tag) => (tag = tag.charAt(0).toUpperCase() + tag.slice(1))
+          );
 
-          //create const for ingredientstagslist, ustensilstagslist, appliancetagslist
+          // create const for ingredientstagslist, ustensilstagslist, appliancetagslist
           const ingredientsTagsList = Array.from(
             document.querySelectorAll(".ingredientsTagsList")
           );
