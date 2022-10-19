@@ -6,7 +6,6 @@ let ustensilsTagsActualized = [];
 
 function filterRecipesItemsDisplayed(originalArray, filteredArray) {
   originalArray.forEach((value) => {
-    // filteredArray.push(value.textContent);
     filteredArray.push(
       value.textContent.charAt(0).toUpperCase() + value.textContent.slice(1)
     );
