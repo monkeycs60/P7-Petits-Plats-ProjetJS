@@ -6,7 +6,10 @@ let ustensilsTagsActualized = [];
 
 function filterRecipesItemsDisplayed(originalArray, filteredArray) {
   originalArray.forEach((value) => {
-    filteredArray.push(value.textContent);
+    // filteredArray.push(value.textContent);
+    filteredArray.push(
+      value.textContent.charAt(0).toUpperCase() + value.textContent.slice(1)
+    );
   });
 }
 
@@ -41,6 +44,16 @@ function displayEveryTags(fullTagsList) {
   fullTagsList.childNodes.forEach((tag) => {
     tag.style.display = "block";
   });
+}
+
+function normalizeArray(array) {
+  array = [...new Set(array)].sort((a, b) =>
+    a.localeCompare(b, "fr", { sensitivity: "base" })
+  );
+  array = array
+    .map((item) => item.toLocaleLowerCase())
+    .map((item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase());
+  return array;
 }
 
 export function simpleSearch(
@@ -126,28 +139,9 @@ export function simpleSearch(
         }
       });
 
-      // On restructure les tableaux de tags (suppression des doublons, ajouts des majuscules, tri)
-      ingredientsTagsActualized = ingredientsTagsActualized.flat();
-      const flatIngredients = [];
-      ingredientsTagsActualized.forEach((ingredient) => {
-        flatIngredients.push(ingredient);
-      });
-      ingredientsTagsActualized = flatIngredients;
-      ingredientsTagsActualized = [
-        ...new Set(ingredientsTagsActualized),
-      ].sort();
-
-      // partie actualisation TAGS APPLIANCES
-      appliancesTagsActualized = [...new Set(appliancesTagsActualized)].sort();
-
-      // partie actualisation TAGS USTENSILS
-      ustensilsTagsActualized = ustensilsTagsActualized.flat();
-      ustensilsTagsActualized = ustensilsTagsActualized.map(
-        (ustensil) => ustensil.charAt(0).toUpperCase() + ustensil.slice(1)
-      );
-      ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)].sort(
-        (a, b) => a.localeCompare(b)
-      );
+      normalizeArray(ingredientsTagsActualized);
+      normalizeArray(ustensilsTagsActualized);
+      normalizeArray(appliancesTagsActualized);
 
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
