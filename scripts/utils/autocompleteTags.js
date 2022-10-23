@@ -3,9 +3,9 @@ export function autocompleteTags() {
   const inputAppliances = document.querySelector("#inputAppliances");
   const inputUstensils = document.querySelector("#inputUstensils");
 
-
+  // on gère l'autocomplete sur tous les inputs recherche avancée
   function autoCompleteOnKeyUp(
-    e, 
+    e,
     tagAreaItems,
     allItemTags,
     allItemsOfArticle
@@ -13,7 +13,7 @@ export function autocompleteTags() {
     let tabOfItems = [];
 
     const allTagsOfSelectedItem = document.querySelectorAll(`.${tagAreaItems}`);
-      allTagsOfSelectedItem.forEach((tag) => {
+    allTagsOfSelectedItem.forEach((tag) => {
       tabOfItems.push(tag.textContent.toLocaleLowerCase());
     });
 
@@ -24,8 +24,10 @@ export function autocompleteTags() {
     const allArticlesArray = Array.from(allArticles);
     const filteredArticles = [];
 
+    // Si la recette est affichée, on récupère tous ses items (ingrédients, ustensils ou appareils)
     allArticlesArray.forEach((article) => {
       if (article.style.display === "none") {
+        console.log("article.style.display === none");
       } else {
         filteredArticles.push(article);
         article.querySelectorAll(`.${allItemsOfArticle}`).forEach((item) => {
@@ -34,23 +36,32 @@ export function autocompleteTags() {
       }
     });
 
+    // mise en forme du tableau (trie, doublons etc)
     itemsTagsListArray = [...new Set(itemsTagsListArray)].sort();
-    itemsTagsListArray = itemsTagsListArray.map((hello) => {
-      return hello.toLocaleLowerCase();
-    });
+    itemsTagsListArray = itemsTagsListArray.map((hello) =>
+      hello.toLocaleLowerCase()
+    );
 
-    const filteredItemsTagsListArray = itemsTagsListArray.filter((itemFiltered) => {
-  return itemFiltered.includes(inputValue.toLocaleLowerCase());
-    });
+    const filteredItemsTagsListArray = itemsTagsListArray.filter(
+      (itemFiltered) => itemFiltered.includes(inputValue.toLocaleLowerCase())
+    );
 
     filteredItemsTagsListArray.forEach((element) => {
       if (tabOfItems.includes(element)) {
-       filteredItemsTagsListArray.splice(filteredItemsTagsListArray.indexOf(element), 1);
+        filteredItemsTagsListArray.splice(
+          filteredItemsTagsListArray.indexOf(element),
+          1
+        );
       }
     });
 
+    // Affiche dans l'auto-complétion les items qui correspondent à la recherche
     itemsTagsList.forEach((allItems) => {
-      if (!filteredItemsTagsListArray.includes(allItems.textContent.toLocaleLowerCase())) {
+      if (
+        !filteredItemsTagsListArray.includes(
+          allItems.textContent.toLocaleLowerCase()
+        )
+      ) {
         allItems.style.display = "none";
       } else {
         allItems.style.display = "block";
@@ -58,6 +69,7 @@ export function autocompleteTags() {
     });
   }
 
+  // Ecoute tous les inputs recherche avancée
   inputIngredients.addEventListener("keyup", (e) => {
     autoCompleteOnKeyUp(
       e,
@@ -77,12 +89,6 @@ export function autocompleteTags() {
   });
 
   inputUstensils.addEventListener("keyup", (e) => {
-    autoCompleteOnKeyUp(
-      e,
-      "tagUstensils",
-      "ustensilsTagsList",
-      "ustensilTag"
-    );
+    autoCompleteOnKeyUp(e, "tagUstensils", "ustensilsTagsList", "ustensilTag");
   });
-
 }
