@@ -1,3 +1,4 @@
+// récupère les tags des recettes affichées dans le DOM
 function getAllItems(article, DOMClass, fullArray) {
   const ItemsInDOM = Array.from(article.querySelectorAll(DOMClass));
   ItemsInDOM.forEach((item) => {
@@ -5,6 +6,7 @@ function getAllItems(article, DOMClass, fullArray) {
   });
 }
 
+// Récupère les éléments individuels (chaque ingrédient, ustensil, appareil)
 function GetIndividualItemsFromArticle(originalArray, filteredArray) {
   originalArray.forEach((item) => {
     filteredArray.push(
@@ -13,6 +15,7 @@ function GetIndividualItemsFromArticle(originalArray, filteredArray) {
   });
 }
 
+// Formate le tableau (supprime les doublons, trie, maj)
 function normalizeArray(array) {
   array = [...new Set(array)].sort((a, b) =>
     a.localeCompare(b, "fr", { sensitivity: "base" })
@@ -23,6 +26,7 @@ function normalizeArray(array) {
   return array;
 }
 
+// Gère l'affichage des tags
 function displayTags(tags, tagsActualized) {
   tags.forEach((tag) => {
     if (tagsActualized.includes(tag.textContent)) {
@@ -33,6 +37,7 @@ function displayTags(tags, tagsActualized) {
   });
 }
 
+// Supprime les tags déjà sélectionnés des tags affichés
 function deleteTagClicked(tagsArrayFilter, itemsList) {
   tagsArrayFilter.forEach((tag) => {
     itemsList.forEach((itemTag) => {
@@ -43,12 +48,14 @@ function deleteTagClicked(tagsArrayFilter, itemsList) {
   });
 }
 
+// Réaffiche tous les tags
 function displayEveryTags(tagList) {
   tagList.forEach((tag) => {
     tag.style.display = "block";
   });
 }
 
+// Fonction principale
 export function killTags(
   ingredientsTags,
   appliancesTags,
@@ -59,6 +66,7 @@ export function killTags(
   ustensilsTagsActualized,
   tagsArrayFilter
 ) {
+  // écoute la croix de chaque tag affiché dans le tag area
   const killCross = document.querySelectorAll(".killcross");
   killCross.forEach((cross) => {
     cross.addEventListener("click", () => {

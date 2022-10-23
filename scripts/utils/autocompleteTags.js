@@ -3,6 +3,7 @@ export function autocompleteTags() {
   const inputAppliances = document.querySelector("#inputAppliances");
   const inputUstensils = document.querySelector("#inputUstensils");
 
+  // on gère l'autocomplete sur tous les inputs recherche avancée
   function autoCompleteOnKeyUp(
     e,
     tagAreaItems,
@@ -23,6 +24,7 @@ export function autocompleteTags() {
     const allArticlesArray = Array.from(allArticles);
     const filteredArticles = [];
 
+    // Si la recette est affichée, on récupère tous ses items (ingrédients, ustensils ou appareils)
     allArticlesArray.forEach((article) => {
       if (article.style.display === "none") {
         console.log("article.style.display === none");
@@ -34,6 +36,7 @@ export function autocompleteTags() {
       }
     });
 
+    // mise en forme du tableau (trie, doublons etc)
     itemsTagsListArray = [...new Set(itemsTagsListArray)].sort();
     itemsTagsListArray = itemsTagsListArray.map((hello) =>
       hello.toLocaleLowerCase()
@@ -52,6 +55,7 @@ export function autocompleteTags() {
       }
     });
 
+    // Affiche dans l'auto-complétion les items qui correspondent à la recherche
     itemsTagsList.forEach((allItems) => {
       if (
         !filteredItemsTagsListArray.includes(
@@ -65,6 +69,7 @@ export function autocompleteTags() {
     });
   }
 
+  // Ecoute tous les inputs recherche avancée
   inputIngredients.addEventListener("keyup", (e) => {
     autoCompleteOnKeyUp(
       e,

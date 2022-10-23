@@ -58,6 +58,7 @@ async function* initGenerator() {
   );
 
   yield 5;
+  // gère l'input recherche principale
   simpleSearch(
     recipes,
     ingredientsTags,

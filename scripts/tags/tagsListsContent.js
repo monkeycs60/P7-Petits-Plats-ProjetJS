@@ -5,12 +5,14 @@ let ingredientsDisplayed = [];
 let appliancesDisplayed = [];
 let ustensilsDisplayed = [];
 
+// Filtrer les recettes en fonction des tags
 function displayFilteredArticles(
   article,
   appliancesTagsActualized,
   ustensilsTagsActualized
 ) {
   article.style.display = "flex";
+  // on récupère les ingrédients
   article.querySelectorAll(".preciseIngredient").forEach((ingredient) => {
     ingredientsDisplayed.push(ingredient.textContent);
   });
@@ -24,6 +26,7 @@ function displayFilteredArticles(
   });
 }
 
+// Fonction principale qui gère les tags
 export function tagsListsContent(
   ingredientsTags,
   appliancesTags,
@@ -116,10 +119,10 @@ export function tagsListsContent(
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
 
-      // always take the last value of the array
+      // sélection du dernier tag ajouté au tableau
       const lastTagValue = tagsValues[tagsValues.length - 1];
 
-      // select last child of tag area
+      // sélectionne le dernier enfant de la liste des tags
       const lastTag = tagArea.lastChild;
 
       // on filtre les recettes qui contiennent le ou les tags
@@ -135,7 +138,7 @@ export function tagsListsContent(
           UniqueArticle.querySelectorAll(".ustensilTag").forEach((ustensil) =>
             ustensilsTab.push(ustensil.textContent)
           );
-
+          // Si le dernier tag ajouté correspond à un des éléments INGREDIENTS de la recette, on affiche la recette
           if (
             lastTag.classList.contains("tagIngredients") &&
             ingredientsTab.includes(lastTagValue)
@@ -145,7 +148,8 @@ export function tagsListsContent(
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
-          } else if (
+          } // Si le dernier tag ajouté correspond à un des éléments USTENSILS de la recette, on affiche la recette
+          else if (
             lastTag.classList.contains("tagUstensils") &&
             ustensilsTab.includes(lastTagValue.toLocaleLowerCase())
           ) {
@@ -154,7 +158,8 @@ export function tagsListsContent(
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
-          } else if (
+          } // Si le dernier tag ajouté correspond à un des éléments APPLIANCES de la recette, on affiche la recette
+          else if (
             lastTag.classList.contains("tagAppliances") &&
             UniqueArticle.querySelector(".applianceTag").textContent ===
               lastTagValue
@@ -172,6 +177,7 @@ export function tagsListsContent(
         }
       });
 
+      // on récupère les tags des recettes affichées
       function onlyDisplayMatchingTags(
         newItemsDisplayed,
         itemTagList,
@@ -229,6 +235,7 @@ export function tagsListsContent(
 
       tagsArrayFilter.push(tagValue);
 
+      // Appelle la fonction qui supprime le tag
       killTags(
         ingredientsTags,
         appliancesTags,

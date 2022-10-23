@@ -1,9 +1,11 @@
+// initialisation des tableaux actualisés
 let ingredientsTagsActualized = [];
 let appliancesTagsActualized = [];
 let ustensilsTagsActualized = [];
 
 // déclaration des fonctions (tri, filtre)
 
+// Filtre les éléments des recettes affichées (ingrédients, appareils, ustensiles)
 function filterRecipesItemsDisplayed(originalArray, filteredArray) {
   originalArray.forEach((value) => {
     filteredArray.push(
@@ -12,6 +14,7 @@ function filterRecipesItemsDisplayed(originalArray, filteredArray) {
   });
 }
 
+// Filtre les tags des recettes affichées
 function filterTagList(tagList, tagListActualized) {
   tagList.childNodes.forEach((tag) => {
     if (tagListActualized.includes(tag.textContent)) {
@@ -22,6 +25,7 @@ function filterTagList(tagList, tagListActualized) {
   });
 }
 
+// Gère les deux filtres (input et tag) pour une recherche croisée
 function doubleFilterRecipeItemsInputAndTags(
   listOfItems,
   listOfItemsDisplayed,
@@ -39,12 +43,14 @@ function doubleFilterRecipeItemsInputAndTags(
   });
 }
 
+// Affiche tous les tags
 function displayEveryTags(fullTagsList) {
   fullTagsList.childNodes.forEach((tag) => {
     tag.style.display = "block";
   });
 }
 
+// Normalise les tableaux (tri, doublons etc.)
 function normalizeArray(array) {
   array = [...new Set(array)].sort((a, b) =>
     a.localeCompare(b, "fr", { sensitivity: "base" })
@@ -55,6 +61,7 @@ function normalizeArray(array) {
   return array;
 }
 
+// fonction principale
 export function simpleSearch(
   recipes,
   ingredientsTags,
@@ -149,6 +156,7 @@ export function simpleSearch(
       filterTagList(applianceList, appliancesTagsActualized);
       filterTagList(ustensilList, ustensilsTagsActualized);
 
+      // Cas où un tag a déjà été sélectionné
       if (tagsArrayFilter.length > 0) {
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
@@ -232,6 +240,7 @@ export function simpleSearch(
       displayEveryTags(applianceList);
       displayEveryTags(ustensilList);
 
+      // Cas où un tag au moins est déjà sélectionné
       if (tagsArrayFilter.length > 0) {
         const article = document.querySelectorAll("article");
         const articleArray = Array.from(article);
