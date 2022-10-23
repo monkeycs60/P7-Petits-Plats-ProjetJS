@@ -156,7 +156,7 @@ export function killTags(
                 } else {
                   article.style.display = "none";
                 }
-                return true;
+                return tag
               });
             }
           } else {
@@ -191,7 +191,7 @@ export function killTags(
               } else {
                 article.style.display = "none";
               }
-              return true;
+              return tag;
             });
           }
         }
