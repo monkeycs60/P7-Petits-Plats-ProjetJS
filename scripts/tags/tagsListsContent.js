@@ -5,8 +5,14 @@ let ingredientsDisplayed = [];
 let appliancesDisplayed = [];
 let ustensilsDisplayed = [];
 
-function displayFilteredArticles(article, appliancesTagsActualized, ustensilsTagsActualized) {
+// Filtrer les recettes en fonction des tags
+function displayFilteredArticles(
+  article,
+  appliancesTagsActualized,
+  ustensilsTagsActualized
+) {
   article.style.display = "flex";
+  // on récupère les ingrédients
   article.querySelectorAll(".preciseIngredient").forEach((ingredient) => {
     ingredientsDisplayed.push(ingredient.textContent);
   });
@@ -20,7 +26,7 @@ function displayFilteredArticles(article, appliancesTagsActualized, ustensilsTag
   });
 }
 
-
+// Fonction principale qui gère les tags
 export function tagsListsContent(
   ingredientsTags,
   appliancesTags,
@@ -113,70 +119,74 @@ export function tagsListsContent(
       // on récupère les valeurs des tags
       const tagsValues = tagsArray.map((tag) => tag.textContent);
 
-      // always take the last value of the array
+      // sélection du dernier tag ajouté au tableau
       const lastTagValue = tagsValues[tagsValues.length - 1];
 
-      // select last child of tag area
+      // sélectionne le dernier enfant de la liste des tags
       const lastTag = tagArea.lastChild;
 
       // on filtre les recettes qui contiennent le ou les tags
-      articleArray.forEach((article) => {
-        if (article.style.display !== "none") {
-          let ingredients = [];
-          let ustensils = [];
-          article
-            .querySelectorAll(".preciseIngredient")
-            .forEach((ingredient) => {
-              ingredients.push(ingredient.textContent);
-            });
-          article
-            .querySelectorAll(".ustensilTag")
-            .forEach((ustensil) => ustensils.push(ustensil.textContent));
-
+      articleArray.forEach((UniqueArticle) => {
+        if (UniqueArticle.style.display !== "none") {
+          let ingredientsTab = [];
+          let ustensilsTab = [];
+          UniqueArticle.querySelectorAll(".preciseIngredient").forEach(
+            (ingredient) => {
+              ingredientsTab.push(ingredient.textContent);
+            }
+          );
+          UniqueArticle.querySelectorAll(".ustensilTag").forEach((ustensil) =>
+            ustensilsTab.push(ustensil.textContent)
+          );
+          // Si le dernier tag ajouté correspond à un des éléments INGREDIENTS de la recette, on affiche la recette
           if (
             lastTag.classList.contains("tagIngredients") &&
-            ingredients.includes(lastTagValue)
+            ingredientsTab.includes(lastTagValue)
           ) {
             displayFilteredArticles(
-              article,
+              UniqueArticle,
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
-          } else if (
+          } // Si le dernier tag ajouté correspond à un des éléments USTENSILS de la recette, on affiche la recette
+          else if (
             lastTag.classList.contains("tagUstensils") &&
-            ustensils.includes(lastTagValue.toLocaleLowerCase())
+            ustensilsTab.includes(lastTagValue.toLocaleLowerCase())
           ) {
             displayFilteredArticles(
-              article,
+              UniqueArticle,
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
-          } else if (
+          } // Si le dernier tag ajouté correspond à un des éléments APPLIANCES de la recette, on affiche la recette
+          else if (
             lastTag.classList.contains("tagAppliances") &&
-            article.querySelector(".applianceTag").textContent === lastTagValue
+            UniqueArticle.querySelector(".applianceTag").textContent ===
+              lastTagValue
           ) {
             displayFilteredArticles(
-              article,
+              UniqueArticle,
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
           } else {
-            article.style.display = "none";
+            UniqueArticle.style.display = "none";
           }
         } else {
-          article.style.display = "none";
+          UniqueArticle.style.display = "none";
         }
       });
 
+      // on récupère les tags des recettes affichées
       function onlyDisplayMatchingTags(
         newItemsDisplayed,
         itemTagList,
         lastArrayActualized
       ) {
         newItemsDisplayed = [...new Set(newItemsDisplayed)];
-        newItemsDisplayed = newItemsDisplayed.map((item) => {
-          return item.charAt(0).toUpperCase() + item.slice(1);
-        });
+        newItemsDisplayed = newItemsDisplayed.map(
+          (item) => item.charAt(0).toUpperCase() + item.slice(1)
+        );
 
         itemTagList.forEach((itemTag) => {
           if (!newItemsDisplayed.includes(itemTag.textContent)) {
@@ -184,9 +194,9 @@ export function tagsListsContent(
           }
         });
 
-        tagsValues.forEach((tagValue) => {
+        tagsValues.forEach((tagValueUnique) => {
           itemTagList.forEach((itemTag) => {
-            if (itemTag.textContent === tagValue) {
+            if (itemTag.textContent === tagValueUnique) {
               itemTag.style.display = "none";
             }
           });
@@ -225,6 +235,7 @@ export function tagsListsContent(
 
       tagsArrayFilter.push(tagValue);
 
+      // Appelle la fonction qui supprime le tag
       killTags(
         ingredientsTags,
         appliancesTags,
