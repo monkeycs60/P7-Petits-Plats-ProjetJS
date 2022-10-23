@@ -79,6 +79,10 @@
   display: none;
 }
 
+#false-title {
+  display: none;
+}
+
 .block-with-text {
   overflow: hidden;
   white-space: nowrap;
