@@ -61,7 +61,6 @@ export function simpleSearch(
   appliancesTags,
   ustensilsTags,
   tagsArrayFilter,
-  ingredientsTagsActualized,
   ingredientsDisplayed,
   ustensilsDisplayed,
   appliancesDisplayed
@@ -151,7 +150,6 @@ export function simpleSearch(
       filterTagList(ustensilList, ustensilsTagsActualized);
 
       if (tagsArrayFilter.length > 0) {
-        const tagArea = document.querySelector(".tag-area");
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
         );
@@ -238,15 +236,15 @@ export function simpleSearch(
         const article = document.querySelectorAll("article");
         const articleArray = Array.from(article);
 
-        articleArray.forEach((article) => {
+        articleArray.forEach((articleOfArray) => {
           let articleIngredients = Array.from(
-            article.querySelectorAll(".preciseIngredient")
+            articleOfArray.querySelectorAll(".preciseIngredient")
           );
           let articleAppliance = Array.from(
-            article.querySelectorAll(".applianceTag")
+            articleOfArray.querySelectorAll(".applianceTag")
           );
           let articleUstensils = Array.from(
-            article.querySelectorAll(".ustensilTag")
+            articleOfArray.querySelectorAll(".ustensilTag")
           );
 
           articleIngredients = articleIngredients.map((ingredient) =>
@@ -270,21 +268,29 @@ export function simpleSearch(
               articleTags.includes(tagValue.toLowerCase())
             )
           ) {
-            article.style.display = "flex";
+            articleOfArray.style.display = "flex";
             // push its ingredients in the ingredientsDisplayed array
-            const articleIngredients =
-              article.querySelectorAll(".preciseIngredient");
-            const articleAppliance = article.querySelectorAll(".applianceTag");
-            const articleUstensils = article.querySelectorAll(".ustensilTag");
+            const articleIngredientsAll =
+              articleOfArray.querySelectorAll(".preciseIngredient");
+            const articleApplianceAll =
+              articleOfArray.querySelectorAll(".applianceTag");
+            const articleUstensilsAll =
+              articleOfArray.querySelectorAll(".ustensilTag");
 
             filterRecipesItemsDisplayed(
-              articleIngredients,
+              articleIngredientsAll,
               ingredientsDisplayed
             );
-            filterRecipesItemsDisplayed(articleAppliance, appliancesDisplayed);
-            filterRecipesItemsDisplayed(articleUstensils, ustensilsDisplayed);
+            filterRecipesItemsDisplayed(
+              articleApplianceAll,
+              appliancesDisplayed
+            );
+            filterRecipesItemsDisplayed(
+              articleUstensilsAll,
+              ustensilsDisplayed
+            );
           } else {
-            article.style.display = "none";
+            articleOfArray.style.display = "none";
           }
         });
         ingredientsDisplayed = [...new Set(ingredientsDisplayed)];

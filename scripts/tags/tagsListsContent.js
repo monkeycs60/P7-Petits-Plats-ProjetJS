@@ -1,9 +1,9 @@
 import { killTags } from "../utils/killTags.js";
 
-const tagsArrayFilter = [];
+let tagsArrayFilter = [];
 let ingredientsDisplayed = [];
-const appliancesDisplayed = [];
-const ustensilsDisplayed = [];
+let appliancesDisplayed = [];
+let ustensilsDisplayed = [];
 
 function displayFilteredArticles(
   article,
@@ -123,51 +123,52 @@ export function tagsListsContent(
       const lastTag = tagArea.lastChild;
 
       // on filtre les recettes qui contiennent le ou les tags
-      articleArray.forEach((article) => {
-        if (article.style.display !== "none") {
-          const ingredients = [];
-          const ustensils = [];
-          article
-            .querySelectorAll(".preciseIngredient")
-            .forEach((ingredient) => {
-              ingredients.push(ingredient.textContent);
-            });
-          article
-            .querySelectorAll(".ustensilTag")
-            .forEach((ustensil) => ustensils.push(ustensil.textContent));
+      articleArray.forEach((UniqueArticle) => {
+        if (UniqueArticle.style.display !== "none") {
+          let ingredientsTab = [];
+          let ustensilsTab = [];
+          UniqueArticle.querySelectorAll(".preciseIngredient").forEach(
+            (ingredient) => {
+              ingredientsTab.push(ingredient.textContent);
+            }
+          );
+          UniqueArticle.querySelectorAll(".ustensilTag").forEach((ustensil) =>
+            ustensilsTab.push(ustensil.textContent)
+          );
 
           if (
             lastTag.classList.contains("tagIngredients") &&
-            ingredients.includes(lastTagValue)
+            ingredientsTab.includes(lastTagValue)
           ) {
             displayFilteredArticles(
-              article,
+              UniqueArticle,
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
           } else if (
             lastTag.classList.contains("tagUstensils") &&
-            ustensils.includes(lastTagValue.toLocaleLowerCase())
+            ustensilsTab.includes(lastTagValue.toLocaleLowerCase())
           ) {
             displayFilteredArticles(
-              article,
+              UniqueArticle,
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
           } else if (
             lastTag.classList.contains("tagAppliances") &&
-            article.querySelector(".applianceTag").textContent === lastTagValue
+            UniqueArticle.querySelector(".applianceTag").textContent ===
+              lastTagValue
           ) {
             displayFilteredArticles(
-              article,
+              UniqueArticle,
               appliancesTagsActualized,
               ustensilsTagsActualized
             );
           } else {
-            article.style.display = "none";
+            UniqueArticle.style.display = "none";
           }
         } else {
-          article.style.display = "none";
+          UniqueArticle.style.display = "none";
         }
       });
 
@@ -187,9 +188,9 @@ export function tagsListsContent(
           }
         });
 
-        tagsValues.forEach((tagValue) => {
+        tagsValues.forEach((tagValueUnique) => {
           itemTagList.forEach((itemTag) => {
-            if (itemTag.textContent === tagValue) {
+            if (itemTag.textContent === tagValueUnique) {
               itemTag.style.display = "none";
             }
           });

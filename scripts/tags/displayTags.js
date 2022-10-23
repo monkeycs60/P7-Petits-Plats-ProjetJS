@@ -8,10 +8,6 @@ export function handleTags() {
   const ustensilsList = document.querySelector(".ustensils");
   const appliancesList = document.querySelector(".appliances");
 
-  const inputIngredients = document.getElementById("inputIngredients");
-  const inputUstensiles = document.getElementById("inputUstensils");
-  const inputAppliances = document.getElementById("inputAppliances");
-
   const ingredientsWidth = ingredients.offsetWidth;
   const appliancesWidth = appliances.offsetWidth;
   const ustensilsWidth = ustensils.offsetWidth;
@@ -27,23 +23,6 @@ export function handleTags() {
   const chevronUpIngredients = document.getElementById("chevronUpIngredients");
   const chevronUpUstensiles = document.querySelector("#chevronUpUstensils");
   const chevronUpAppliances = document.querySelector("#chevronUpAppliances");
-
-  // Fonction PRINCIPALE qui règle l'apparition des Tags
-  function displayTagsDOM() {
-    // Par défaut, les listes sont invisibles
-    ingredientsList.style.display = "none";
-    ustensilsList.style.display = "none";
-    appliancesList.style.display = "none";
-
-    // event listeners apparition/disparition des tags
-    ingredients.addEventListener("click", makeIngredientsListVisible);
-    ustensils.addEventListener("click", makeUstensilsListVisible);
-    appliances.addEventListener("click", makeAppliancesListVisible);
-
-    ingredients.addEventListener("blur", makeIngredientsListInvisible);
-    ustensils.addEventListener("blur", makeUstensilsListInvisible);
-    appliances.addEventListener("blur", makeAppliancesListInvisible);
-  }
 
   // Fonctions listeners des chevrons (apparition/disparition des TAGS)
   function makeIngredientsListVisible() {
@@ -114,6 +93,23 @@ export function handleTags() {
     chevronDownAppliances.style.display = "block";
     chevronUpAppliances.style.display = "none";
     appliances.style.width = `${appliancesWidth}px`;
+  }
+
+  // Fonction PRINCIPALE qui règle l'apparition des Tags
+  function displayTagsDOM() {
+    // Par défaut, les listes sont invisibles
+    ingredientsList.style.display = "none";
+    ustensilsList.style.display = "none";
+    appliancesList.style.display = "none";
+
+    // event listeners apparition/disparition des tags
+    ingredients.addEventListener("click", makeIngredientsListVisible);
+    ustensils.addEventListener("click", makeUstensilsListVisible);
+    appliances.addEventListener("click", makeAppliancesListVisible);
+
+    ingredients.addEventListener("blur", makeIngredientsListInvisible);
+    ustensils.addEventListener("blur", makeUstensilsListInvisible);
+    appliances.addEventListener("blur", makeAppliancesListInvisible);
   }
 
   return displayTagsDOM();

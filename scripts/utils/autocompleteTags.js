@@ -9,7 +9,7 @@ export function autocompleteTags() {
     allItemTags,
     allItemsOfArticle
   ) {
-    const tabOfItems = [];
+    let tabOfItems = [];
 
     const allTagsOfSelectedItem = document.querySelectorAll(`.${tagAreaItems}`);
     allTagsOfSelectedItem.forEach((tag) => {

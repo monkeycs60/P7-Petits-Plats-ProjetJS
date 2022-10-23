@@ -33,6 +33,9 @@
     "radix": "off",
     "no-console": "off",
     "import/no-cycle": "off",
-    "no-lonely-if": "off"
+    "no-lonely-if": "off",
+    "import/no-mutable-exports": "off",
+    "prefer-const": "off",
+    "no-param-reassign": "off"
     }
 }

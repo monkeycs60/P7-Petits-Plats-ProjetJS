@@ -156,6 +156,7 @@ export function killTags(
                 } else {
                   article.style.display = "none";
                 }
+                return true;
               });
             }
           } else {
@@ -190,6 +191,7 @@ export function killTags(
               } else {
                 article.style.display = "none";
               }
+              return true;
             });
           }
         }
@@ -204,19 +206,19 @@ export function killTags(
         normalizeArray(appliancesTagsActualized);
         normalizeArray(ustensilsTagsActualized);
 
-        const ingredientsTags = Array.from(
+        const ingredientsTagsAll = Array.from(
           document.querySelectorAll(".ingredientsTagsList")
         );
-        const appliancesTags = Array.from(
+        const appliancesTagsAll = Array.from(
           document.querySelectorAll(".appliancesTagsList")
         );
-        const ustensilsTags = Array.from(
+        const ustensilsTagsAll = Array.from(
           document.querySelectorAll(".ustensilsTagsList")
         );
 
-        displayTags(ingredientsTags, ingredientsTagsActualized);
-        displayTags(appliancesTags, appliancesTagsActualized);
-        displayTags(ustensilsTags, ustensilsTagsActualized);
+        displayTags(ingredientsTagsAll, ingredientsTagsActualized);
+        displayTags(appliancesTagsAll, appliancesTagsActualized);
+        displayTags(ustensilsTagsAll, ustensilsTagsActualized);
 
         if (tagsArrayFilter.length > 0) {
           // on normalise les tableaux
@@ -226,7 +228,7 @@ export function killTags(
 
           // first letter capitalization ustensilsFilteredTags
           ustensilsFilteredTags.map(
-            (tag) => (tag = tag.charAt(0).toUpperCase() + tag.slice(1))
+            (tag) => tag.charAt(0).toUpperCase() + tag.slice(1)
           );
 
           // create const for ingredientstagslist, ustensilstagslist, appliancetagslist
@@ -253,19 +255,19 @@ export function killTags(
       // Le cas où l'INPUT est vide (actualisation normale de tous les tags)
       else {
         // on affiche tous les tags
-        const ingredientsTags = Array.from(
+        const ingredientsTagsAll = Array.from(
           document.querySelectorAll(".ingredientsTagsList")
         );
-        const appliancesTags = Array.from(
+        const appliancesTagsAll = Array.from(
           document.querySelectorAll(".appliancesTagsList")
         );
-        const ustensilsTags = Array.from(
+        const ustensilsTagsAll = Array.from(
           document.querySelectorAll(".ustensilsTagsList")
         );
 
-        displayEveryTags(ingredientsTags);
-        displayEveryTags(appliancesTags);
-        displayEveryTags(ustensilsTags);
+        displayEveryTags(ingredientsTagsAll);
+        displayEveryTags(appliancesTagsAll);
+        displayEveryTags(ustensilsTagsAll);
 
         if (tagsArrayFilter.length > 0) {
           // on normalise les tableaux

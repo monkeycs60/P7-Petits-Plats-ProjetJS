@@ -4,7 +4,7 @@ import {
   appliancesTags,
   ustensilsTags,
   creatingTagsArrays,
-} from "./tags/TagsArray.js";
+} from "./tags/tagsArray.js";
 import {
   tagsListsContent,
   tagsArrayFilter,
@@ -20,7 +20,6 @@ import {
   simpleSearch,
 } from "./utils/simpleSearch.js";
 import { autocompleteTags } from "./utils/autocompleteTags.js";
-import { killTags } from "./utils/killTags.js";
 
 // Generator Function
 async function* initGenerator() {
