@@ -9,7 +9,7 @@
   flex-direction: column;
   top: 5.5vh;
   overflow-x: auto;
-  scrollbar-width: large;
+  scrollbar-width: auto;
   color: white;
   z-index: 3;
   border-bottom-left-radius: 6px;
