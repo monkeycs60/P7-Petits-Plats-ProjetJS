@@ -36,6 +36,8 @@
     "no-lonely-if": "off",
     "import/no-mutable-exports": "off",
     "prefer-const": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "import/no-extraneous-dependencies": "off",
+    "global-require": "off"
     }
 }

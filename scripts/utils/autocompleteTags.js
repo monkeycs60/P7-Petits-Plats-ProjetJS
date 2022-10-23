@@ -25,6 +25,7 @@ export function autocompleteTags() {
 
     allArticlesArray.forEach((article) => {
       if (article.style.display === "none") {
+        console.log("article.style.display === none");
       } else {
         filteredArticles.push(article);
         article.querySelectorAll(`.${allItemsOfArticle}`).forEach((item) => {
