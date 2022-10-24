@@ -176,6 +176,65 @@ export function killTags(
           article.style.display = "flex";
 
           if (tagsArrayFilter.length > 0) {
+//             const tagAreaChildren =
+//               document.querySelector(".tag-area").childNodes;
+
+//               let tagIngredientsTextContent = [];
+//               let tagAppliancesTextContent = [];
+//               let tagUstensilsTextContent = [];
+//             // on récupère les tags affichés dans le tag area
+//             const tagAreaIngredients = Array.from(
+//               document.querySelectorAll(".tagIngredients")
+//             );
+//             const tagAreaAppliances = Array.from(
+//               document.querySelectorAll(".tagAppliances")
+//             );
+//             const tagAreaUstensils = Array.from(
+//               document.querySelectorAll(".tagUstensils")
+//             );
+
+//             // on récupère le texte des tags affichés dans le tag area
+//             tagAreaIngredients.forEach((tag) => {
+//               tagIngredientsTextContent.push(
+//                 tag.textContent.toLocaleLowerCase()
+//               );
+//             });
+//             tagAreaAppliances.forEach((tag) => {
+//               tagAppliancesTextContent.push(
+//                 tag.textContent.toLocaleLowerCase()
+//               );
+//             });
+//             tagAreaUstensils.forEach((tag) => {
+//               tagUstensilsTextContent.push(
+//                 tag.textContent.toLocaleLowerCase()
+//               );
+//             });
+// console.log(tagIngredientsTextContent);
+// console.log(tagAppliancesTextContent);
+// console.log(tagUstensilsTextContent);
+// console.log(allIngredients);
+
+// console.log(allIngredients.includes(tagIngredientsTextContent));
+// console.log(allAppliances.includes(tagAppliancesTextContent));
+
+     
+//             if (
+//               allIngredients.includes(tagIngredientsTextContent) &&
+//               allAppliances.includes(tagAppliancesTextContent) &&
+//               allUstensils.includes(tagUstensilsTextContent)
+//             ) {
+//               console.log("baby");
+//               article.style.display = "flex";
+//               GetIndividualItemsFromArticle(
+//                 articleIndividualIngredients,
+//                 ingredientsFilteredTags
+//               );
+//             } else {
+//               article.style.display = "none";
+//             }
+
+//             console.log("ceci marche");
+
             tagsArrayFilter.every((tag) => {
               if (
                 allIngredients.includes(tag.toLocaleLowerCase()) ||

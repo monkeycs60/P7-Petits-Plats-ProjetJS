@@ -26,7 +26,8 @@ async function* initGenerator() {
   // on définit les tableaux contenant les tags
 
   // le FETCH
-  const response = await fetch("./../data/recipes.json");
+  // const response = await fetch("./../data/recipes.json");
+  const response = await fetch("/data/recipes.json");
   const data = await response.json();
 
   yield 1;
