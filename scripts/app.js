@@ -27,7 +27,8 @@ async function* initGenerator() {
 
   // le FETCH
   // const response = await fetch("./../data/recipes.json");
-  const lien = `${window.location.origin}/data/recipes.json`;
+  const lien = `${window.location.origin}/P7-Petits-Plats-ProjetJS/data/recipes.json`;
+  console.log(lien);
   const response = await fetch(lien);
   const data = await response.json();
 
