@@ -27,9 +27,15 @@ async function* initGenerator() {
 
   // le FETCH
   // const response = await fetch("./../data/recipes.json");
-  const lien = `${window.location.origin}/P7-Petits-Plats-ProjetJS/data/recipes.json`;
-  console.log(lien);
-  const response = await fetch(lien);
+  let lienExterne = `${window.location.origin}/data/recipes.json`;
+  if (!lienExterne.includes("192.168")) {
+    lienExterne = lienExterne.replace(
+      "/data",
+      "/P7-Petits-Plats-ProjetJS/data"
+    );
+  }
+ 
+  const response = await fetch(lienExterne);
   const data = await response.json();
 
   yield 1;
