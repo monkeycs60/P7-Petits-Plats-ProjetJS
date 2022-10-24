@@ -54,7 +54,6 @@ export function simpleSearch(
   appliancesTags,
   ustensilsTags,
   tagsArrayFilter,
-  ingredientsTagsActualized,
   ingredientsDisplayed,
   ustensilsDisplayed,
   appliancesDisplayed
@@ -165,7 +164,6 @@ export function simpleSearch(
       filterTagListForLoop(ustensilList, ustensilsTagsActualized);
 
       if (tagsArrayFilter.length > 0) {
-        const tagArea = document.querySelector(".tag-area");
         const ingredientsEntiers = document.querySelectorAll(
           ".ingredientsTagsList"
         );
@@ -300,20 +298,20 @@ export function simpleSearch(
           ) {
             articleArray[i].style.display = "flex";
             // push its ingredients in the ingredientsDisplayed array
-            const articleIngredients =
+            const articleIngredientsAll =
               articleArray[i].querySelectorAll(".preciseIngredient");
-            for (let i = 0; i < articleIngredients.length; i++) {
-              ingredientsDisplayed.push(articleIngredients[i].textContent);
+            for (let l = 0; l < articleIngredientsAll.length; l++) {
+              ingredientsDisplayed.push(articleIngredientsAll[l].textContent);
             }
-            const articleAppliance =
+            const articleApplianceAll =
               articleArray[i].querySelectorAll(".applianceTag");
-            for (let i = 0; i < articleAppliance.length; i++) {
-              appliancesDisplayed.push(articleAppliance[i].textContent);
+            for (let m = 0; m < articleApplianceAll.length; m++) {
+              appliancesDisplayed.push(articleApplianceAll[m].textContent);
             }
-            const articleUstensils =
+            const articleUstensilsAll =
               articleArray[i].querySelectorAll(".ustensilTag");
-            for (let i = 0; i < articleUstensils.length; i++) {
-              ustensilsDisplayed.push(articleUstensils[i].textContent);
+            for (let n = 0; n < articleUstensilsAll.length; n++) {
+              ustensilsDisplayed.push(articleUstensilsAll[n].textContent);
             }
           } else {
             articleArray[i].style.display = "none";
