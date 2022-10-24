@@ -3,50 +3,50 @@ let appliancesTagsActualized = [];
 let ustensilsTagsActualized = [];
 
 // déclaration des fonctions (tri, filtre)
-//BOUCLES NATIVES FOR
+// BOUCLES NATIVES FOR
 
-//create the same function as above but with a native for loop
+// create the same function as above but with a native for loop
 function filterRecipesItemsDisplayedForLoop(originalArray, filteredArray) {
   for (let i = 0; i < originalArray.length; i++) {
     filteredArray.push(originalArray[i].textContent);
   }
 }
 
- // create the same function as filterTagList but with a native for loop
-  function filterTagListForLoop(tagList, tagListActualized) {
-    for (let i = 0; i < tagList.childNodes.length; i++) {
-      if (tagListActualized.includes(tagList.childNodes[i].textContent)) {
-        tagList.childNodes[i].style.display = "block";
-      } else {
-        tagList.childNodes[i].style.display = "none";
-      }
-    }}
-
-  // create the same function as doubleFilterRecipeItemsInputAndTags but with a native for loop 
-  function doubleFilterRecipeItemsInputAndTagsForLoop(
-    listOfItems,
-    listOfItemsDisplayed,
-    listOfTags
-  ) {
-    for (let i = 0; i < listOfItems.length; i++) {
-      if (
-        !listOfItemsDisplayed.includes(listOfItems[i].textContent) ||
-        listOfTags.includes(listOfItems[i].textContent)
-      ) {
-        listOfItems[i].style.display = "none";
-      } else {
-        listOfItems[i].style.display = "block";
-      }
+// create the same function as filterTagList but with a native for loop
+function filterTagListForLoop(tagList, tagListActualized) {
+  for (let i = 0; i < tagList.childNodes.length; i++) {
+    if (tagListActualized.includes(tagList.childNodes[i].textContent)) {
+      tagList.childNodes[i].style.display = "block";
+    } else {
+      tagList.childNodes[i].style.display = "none";
     }
   }
+}
 
-
- // create the same function as displayEveryTags but with a native for loop
-  function displayEveryTagsForLoop(fullTagsList) {
-    for (let i = 0; i < fullTagsList.childNodes.length; i++) {
-      fullTagsList.childNodes[i].style.display = "block";
+// create the same function as doubleFilterRecipeItemsInputAndTags but with a native for loop
+function doubleFilterRecipeItemsInputAndTagsForLoop(
+  listOfItems,
+  listOfItemsDisplayed,
+  listOfTags
+) {
+  for (let i = 0; i < listOfItems.length; i++) {
+    if (
+      !listOfItemsDisplayed.includes(listOfItems[i].textContent) ||
+      listOfTags.includes(listOfItems[i].textContent)
+    ) {
+      listOfItems[i].style.display = "none";
+    } else {
+      listOfItems[i].style.display = "block";
     }
   }
+}
+
+// create the same function as displayEveryTags but with a native for loop
+function displayEveryTagsForLoop(fullTagsList) {
+  for (let i = 0; i < fullTagsList.childNodes.length; i++) {
+    fullTagsList.childNodes[i].style.display = "block";
+  }
+}
 
 export function simpleSearch(
   recipes,
@@ -74,8 +74,8 @@ export function simpleSearch(
     if (searchInputValue.length > 2) {
       // create the same function as above but with a native for loop
       for (let i = 0; i < allArticlesInArray.length; i++) {
-        const articleTitle = allArticlesInArray[i].querySelector("h2")
-          .textContent;
+        const articleTitle =
+          allArticlesInArray[i].querySelector("h2").textContent;
         const ingredientsArrayArticle = [];
         const articleIngredients =
           allArticlesInArray[i].querySelectorAll(".preciseIngredient");
@@ -131,7 +131,6 @@ export function simpleSearch(
         }
       }
 
-
       // On restructure les tableaux de tags (suppression des doublons, ajouts des majuscules, tri)
       ingredientsTagsActualized = ingredientsTagsActualized.flat();
       const flatIngredients = [];
@@ -148,22 +147,22 @@ export function simpleSearch(
 
       // partie actualisation TAGS USTENSILS
       ustensilsTagsActualized = ustensilsTagsActualized.flat();
-       for (let i = 0; i < ustensilsTagsActualized.length; i++) {
-         ustensilsTagsActualized[i] =
-           ustensilsTagsActualized[i].charAt(0).toUpperCase() +
-           ustensilsTagsActualized[i].slice(1);
-       }
+      for (let i = 0; i < ustensilsTagsActualized.length; i++) {
+        ustensilsTagsActualized[i] =
+          ustensilsTagsActualized[i].charAt(0).toUpperCase() +
+          ustensilsTagsActualized[i].slice(1);
+      }
       ustensilsTagsActualized = [...new Set(ustensilsTagsActualized)].sort(
         (a, b) => a.localeCompare(b)
       );
-     
+
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
       const ustensilList = document.querySelector(".ustensils");
-       
-        filterTagListForLoop(ingredientList, ingredientsTagsActualized);
-        filterTagListForLoop(applianceList, appliancesTagsActualized);
-        filterTagListForLoop(ustensilList, ustensilsTagsActualized);
+
+      filterTagListForLoop(ingredientList, ingredientsTagsActualized);
+      filterTagListForLoop(applianceList, appliancesTagsActualized);
+      filterTagListForLoop(ustensilList, ustensilsTagsActualized);
 
       if (tagsArrayFilter.length > 0) {
         const tagArea = document.querySelector(".tag-area");
@@ -182,41 +181,41 @@ export function simpleSearch(
         appliancesDisplayed = [];
         ustensilsDisplayed = [];
 
-          // create the same function as above but with a native for loop
-          for (let i = 0; i < allArticlesInArray.length; i++) {
-            if (allArticlesInArray[i].style.display !== "none") {
-              // on push les ingrédients dans ingredientsDisplayed
-              const articleIngredients =
-                allArticlesInArray[i].querySelectorAll(".preciseIngredient");
-              const articleAppliance =
-                allArticlesInArray[i].querySelectorAll(".applianceTag");
-              const articleUstensils =
-                allArticlesInArray[i].querySelectorAll(".ustensilTag");
+        // create the same function as above but with a native for loop
+        for (let i = 0; i < allArticlesInArray.length; i++) {
+          if (allArticlesInArray[i].style.display !== "none") {
+            // on push les ingrédients dans ingredientsDisplayed
+            const articleIngredients =
+              allArticlesInArray[i].querySelectorAll(".preciseIngredient");
+            const articleAppliance =
+              allArticlesInArray[i].querySelectorAll(".applianceTag");
+            const articleUstensils =
+              allArticlesInArray[i].querySelectorAll(".ustensilTag");
 
-              filterRecipesItemsDisplayedForLoop(
-                articleIngredients,
-                ingredientsTagsActualizedSecond
-              );
+            filterRecipesItemsDisplayedForLoop(
+              articleIngredients,
+              ingredientsTagsActualizedSecond
+            );
 
-              filterRecipesItemsDisplayedForLoop(
-                articleAppliance,
-                appliancesDisplayed
-              );
+            filterRecipesItemsDisplayedForLoop(
+              articleAppliance,
+              appliancesDisplayed
+            );
 
-              filterRecipesItemsDisplayedForLoop(
-                articleUstensils,
-                ustensilsDisplayed
-              );
-            }
+            filterRecipesItemsDisplayedForLoop(
+              articleUstensils,
+              ustensilsDisplayed
+            );
           }
-    
+        }
+
         // Adapatation du tableau ustensiles avec des MAJUSCULES
-          // create the same function as above but with a native for loop
-          for (let i = 0; i < ustensilsDisplayed.length; i++) {
-            ustensilsDisplayed[i] =
-              ustensilsDisplayed[i].charAt(0).toUpperCase() +
-              ustensilsDisplayed[i].slice(1);
-          }
+        // create the same function as above but with a native for loop
+        for (let i = 0; i < ustensilsDisplayed.length; i++) {
+          ustensilsDisplayed[i] =
+            ustensilsDisplayed[i].charAt(0).toUpperCase() +
+            ustensilsDisplayed[i].slice(1);
+        }
 
         doubleFilterRecipeItemsInputAndTagsForLoop(
           ingredientsEntiers,
@@ -235,8 +234,6 @@ export function simpleSearch(
           appliancesDisplayed,
           tagsArrayFilter
         );
-
-
       }
 
       // on vide les tableaux pour la prochaine recherche
@@ -249,10 +246,10 @@ export function simpleSearch(
 
       // RESET LE CHAMP DES TAGS quand la recherche < 3 caractères
       // on affiche toutes les recettes
-        // create the same function as above but with a native for loop
-        for (let i = 0; i < allArticlesInArray.length; i++) {
-          allArticlesInArray[i].style.display = "flex";
-        }
+      // create the same function as above but with a native for loop
+      for (let i = 0; i < allArticlesInArray.length; i++) {
+        allArticlesInArray[i].style.display = "flex";
+      }
 
       const ingredientList = document.querySelector(".ingredients");
       const applianceList = document.querySelector(".appliances");
@@ -262,11 +259,10 @@ export function simpleSearch(
       displayEveryTagsForLoop(applianceList);
       displayEveryTagsForLoop(ustensilList);
 
-
       if (tagsArrayFilter.length > 0) {
         const article = document.querySelectorAll("article");
         const articleArray = Array.from(article);
-    
+
         // create the same function as above but with a native for loop
         for (let i = 0; i < articleArray.length; i++) {
           let articleIngredients = Array.from(
@@ -281,7 +277,8 @@ export function simpleSearch(
 
           // create the same function as above but with a native for loop
           for (let j = 0; j < articleIngredients.length; j++) {
-            articleIngredients[j] = articleIngredients[j].textContent.toLowerCase();
+            articleIngredients[j] =
+              articleIngredients[j].textContent.toLowerCase();
           }
           for (let j = 0; j < articleAppliance.length; j++) {
             articleAppliance[j] = articleAppliance[j].textContent.toLowerCase();
@@ -335,32 +332,30 @@ export function simpleSearch(
         const ustensilsEntiers =
           document.querySelectorAll(".ustensilsTagsList");
 
-          // on rajoute les majs aux ustensiles
-            for (let i = 0; i < ustensilsDisplayed.length; i++) {
-              ustensilsDisplayed[i] =
-                ustensilsDisplayed[i].charAt(0).toUpperCase() +
-                ustensilsDisplayed[i].slice(1);
-            }
+        // on rajoute les majs aux ustensiles
+        for (let i = 0; i < ustensilsDisplayed.length; i++) {
+          ustensilsDisplayed[i] =
+            ustensilsDisplayed[i].charAt(0).toUpperCase() +
+            ustensilsDisplayed[i].slice(1);
+        }
 
-        
+        doubleFilterRecipeItemsInputAndTagsForLoop(
+          ingredientsEntiers,
+          ingredientsDisplayed,
+          tagsArrayFilter
+        );
 
-          doubleFilterRecipeItemsInputAndTagsForLoop(
-            ingredientsEntiers,
-            ingredientsDisplayed,
-            tagsArrayFilter
-          );
+        doubleFilterRecipeItemsInputAndTagsForLoop(
+          ustensilsEntiers,
+          ustensilsDisplayed,
+          tagsArrayFilter
+        );
 
-          doubleFilterRecipeItemsInputAndTagsForLoop(
-            ustensilsEntiers,
-            ustensilsDisplayed,
-            tagsArrayFilter
-          );
-
-          doubleFilterRecipeItemsInputAndTagsForLoop(
-            appliancesEntiers,
-            appliancesDisplayed,
-            tagsArrayFilter
-          );
+        doubleFilterRecipeItemsInputAndTagsForLoop(
+          appliancesEntiers,
+          appliancesDisplayed,
+          tagsArrayFilter
+        );
       }
     }
 
@@ -373,7 +368,7 @@ export function simpleSearch(
     for (let i = 0; i < cardsArray.length; i++) {
       if (cardsArray[i].style.display === "flex") {
         cardsDisplayed.push(cardsArray[i]);
-      } 
+      }
     }
     if (cardsDisplayed.length === 0) {
       noCard.style.display = "flex";
