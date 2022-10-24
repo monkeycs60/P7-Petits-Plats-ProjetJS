@@ -1,3 +1,4 @@
+// récupère les tags des recettes affichées dans le DOM
 function getAllItems(article, DOMClass, fullArray) {
   const ItemsInDOM = Array.from(article.querySelectorAll(DOMClass));
   ItemsInDOM.forEach((item) => {
@@ -5,6 +6,7 @@ function getAllItems(article, DOMClass, fullArray) {
   });
 }
 
+// Récupère les éléments individuels (chaque ingrédient, ustensil, appareil)
 function GetIndividualItemsFromArticle(originalArray, filteredArray) {
   originalArray.forEach((item) => {
     filteredArray.push(
@@ -13,6 +15,7 @@ function GetIndividualItemsFromArticle(originalArray, filteredArray) {
   });
 }
 
+// Formate le tableau (supprime les doublons, trie, maj)
 function normalizeArray(array) {
   array = [...new Set(array)].sort((a, b) =>
     a.localeCompare(b, "fr", { sensitivity: "base" })
@@ -23,6 +26,7 @@ function normalizeArray(array) {
   return array;
 }
 
+// Gère l'affichage des tags
 function displayTags(tags, tagsActualized) {
   tags.forEach((tag) => {
     if (tagsActualized.includes(tag.textContent)) {
@@ -33,6 +37,7 @@ function displayTags(tags, tagsActualized) {
   });
 }
 
+// Supprime les tags déjà sélectionnés des tags affichés
 function deleteTagClicked(tagsArrayFilter, itemsList) {
   tagsArrayFilter.forEach((tag) => {
     itemsList.forEach((itemTag) => {
@@ -43,12 +48,14 @@ function deleteTagClicked(tagsArrayFilter, itemsList) {
   });
 }
 
+// Réaffiche tous les tags
 function displayEveryTags(tagList) {
   tagList.forEach((tag) => {
     tag.style.display = "block";
   });
 }
 
+// Fonction principale
 export function killTags(
   ingredientsTags,
   appliancesTags,
@@ -59,6 +66,7 @@ export function killTags(
   ustensilsTagsActualized,
   tagsArrayFilter
 ) {
+  // écoute la croix de chaque tag affiché dans le tag area
   const killCross = document.querySelectorAll(".killcross");
   killCross.forEach((cross) => {
     cross.addEventListener("click", () => {
@@ -66,9 +74,9 @@ export function killTags(
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
 
-      let ingredientsFilteredTags = [];
-      let appliancesFilteredTags = [];
-      let ustensilsFilteredTags = [];
+      const ingredientsFilteredTags = [];
+      const appliancesFilteredTags = [];
+      const ustensilsFilteredTags = [];
 
       // on supprime le tag du tableau des tags sélectionnés
       tagsArrayFilter.splice(
@@ -83,9 +91,9 @@ export function killTags(
 
       allArticles.forEach((article) => {
         // les 3 champs de la recherche avancée
-        let allIngredients = [];
-        let allAppliances = [];
-        let allUstensils = [];
+        const allIngredients = [];
+        const allAppliances = [];
+        const allUstensils = [];
 
         getAllItems(article, ".preciseIngredient", allIngredients);
         getAllItems(article, ".applianceTag", allAppliances);
@@ -140,7 +148,7 @@ export function killTags(
                 ) {
                   article.style.display = "flex";
 
-                  //push des tags dans les tableaux filtered tags
+                  // push des tags dans les tableaux filtered tags
                   GetIndividualItemsFromArticle(
                     articleIndividualIngredients,
                     ingredientsFilteredTags
@@ -156,13 +164,14 @@ export function killTags(
                 } else {
                   article.style.display = "none";
                 }
+                return tag;
               });
             }
           } else {
             article.style.display = "none";
           }
         } else {
-          //si l'input est vide, on affiche tous les articles
+          // si l'input est vide, on affiche tous les articles
           // on affiche tous les articles
           article.style.display = "flex";
 
@@ -190,6 +199,7 @@ export function killTags(
               } else {
                 article.style.display = "none";
               }
+              return tag;
             });
           }
         }
@@ -204,19 +214,19 @@ export function killTags(
         normalizeArray(appliancesTagsActualized);
         normalizeArray(ustensilsTagsActualized);
 
-        const ingredientsTags = Array.from(
+        const ingredientsTagsAll = Array.from(
           document.querySelectorAll(".ingredientsTagsList")
         );
-        const appliancesTags = Array.from(
+        const appliancesTagsAll = Array.from(
           document.querySelectorAll(".appliancesTagsList")
         );
-        const ustensilsTags = Array.from(
+        const ustensilsTagsAll = Array.from(
           document.querySelectorAll(".ustensilsTagsList")
         );
 
-        displayTags(ingredientsTags, ingredientsTagsActualized);
-        displayTags(appliancesTags, appliancesTagsActualized);
-        displayTags(ustensilsTags, ustensilsTagsActualized);
+        displayTags(ingredientsTagsAll, ingredientsTagsActualized);
+        displayTags(appliancesTagsAll, appliancesTagsActualized);
+        displayTags(ustensilsTagsAll, ustensilsTagsActualized);
 
         if (tagsArrayFilter.length > 0) {
           // on normalise les tableaux
@@ -224,12 +234,12 @@ export function killTags(
           normalizeArray(appliancesFilteredTags);
           normalizeArray(ustensilsFilteredTags);
 
-          //first letter capitalization ustensilsFilteredTags
-          ustensilsFilteredTags.map((tag) => {
-            return (tag = tag.charAt(0).toUpperCase() + tag.slice(1));
-          });
+          // first letter capitalization ustensilsFilteredTags
+          ustensilsFilteredTags.map(
+            (tag) => tag.charAt(0).toUpperCase() + tag.slice(1)
+          );
 
-          //create const for ingredientstagslist, ustensilstagslist, appliancetagslist
+          // create const for ingredientstagslist, ustensilstagslist, appliancetagslist
           const ingredientsTagsList = Array.from(
             document.querySelectorAll(".ingredientsTagsList")
           );
@@ -253,19 +263,19 @@ export function killTags(
       // Le cas où l'INPUT est vide (actualisation normale de tous les tags)
       else {
         // on affiche tous les tags
-        const ingredientsTags = Array.from(
+        const ingredientsTagsAll = Array.from(
           document.querySelectorAll(".ingredientsTagsList")
         );
-        const appliancesTags = Array.from(
+        const appliancesTagsAll = Array.from(
           document.querySelectorAll(".appliancesTagsList")
         );
-        const ustensilsTags = Array.from(
+        const ustensilsTagsAll = Array.from(
           document.querySelectorAll(".ustensilsTagsList")
         );
 
-        displayEveryTags(ingredientsTags);
-        displayEveryTags(appliancesTags);
-        displayEveryTags(ustensilsTags);
+        displayEveryTags(ingredientsTagsAll);
+        displayEveryTags(appliancesTagsAll);
+        displayEveryTags(ustensilsTagsAll);
 
         if (tagsArrayFilter.length > 0) {
           // on normalise les tableaux
