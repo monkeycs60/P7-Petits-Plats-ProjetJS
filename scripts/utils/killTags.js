@@ -74,9 +74,9 @@ export function killTags(
       appliancesTagsActualized = [];
       ustensilsTagsActualized = [];
 
-      const ingredientsFilteredTags = [];
-      const appliancesFilteredTags = [];
-      const ustensilsFilteredTags = [];
+      let ingredientsFilteredTags = [];
+      let appliancesFilteredTags = [];
+      let ustensilsFilteredTags = [];
 
       // on supprime le tag du tableau des tags sélectionnés
       tagsArrayFilter.splice(
@@ -91,9 +91,9 @@ export function killTags(
 
       allArticles.forEach((article) => {
         // les 3 champs de la recherche avancée
-        const allIngredients = [];
-        const allAppliances = [];
-        const allUstensils = [];
+        let allIngredients = [];
+        let allAppliances = [];
+        let allUstensils = [];
 
         getAllItems(article, ".preciseIngredient", allIngredients);
         getAllItems(article, ".applianceTag", allAppliances);
@@ -140,109 +140,44 @@ export function killTags(
             );
 
             if (tagsArrayFilter.length > 0) {
-              tagsArrayFilter.every((tag) => {
-                if (
-                  allIngredients.includes(tag.toLocaleLowerCase()) ||
-                  allUstensils.includes(tag.toLocaleLowerCase()) ||
-                  allAppliances.includes(tag.toLocaleLowerCase())
-                ) {
-                  article.style.display = "flex";
+              let tabIngredients = [];
+              let tabAppliances = [];
+              let tabUstensils = [];
 
-                  // push des tags dans les tableaux filtered tags
-                  GetIndividualItemsFromArticle(
-                    articleIndividualIngredients,
-                    ingredientsFilteredTags
-                  );
-                  GetIndividualItemsFromArticle(
-                    articleUstensilTag,
-                    ustensilsFilteredTags
-                  );
-                  GetIndividualItemsFromArticle(
-                    articleApplianceTag,
-                    appliancesFilteredTags
-                  );
-                } else {
-                  article.style.display = "none";
-                }
-                return tag;
+              article.querySelectorAll(".preciseIngredient").forEach((tag) => {
+                tabIngredients.push(
+                  // tag textcontent first letter to uppercase
+                  tag.textContent.charAt(0).toUpperCase() +
+                    tag.textContent.toLocaleLowerCase().slice(1)
+                );
               });
-            }
-          } else {
-            article.style.display = "none";
-          }
-        } else {
-          // si l'input est vide, on affiche tous les articles
-          // on affiche tous les articles
-          article.style.display = "flex";
+              article.querySelectorAll(".applianceTag").forEach((tag) => {
+                tabAppliances.push(
+                  tag.textContent.charAt(0).toUpperCase() +
+                    tag.textContent.toLocaleLowerCase().slice(1)
+                );
+              });
+              article.querySelectorAll(".ustensilTag").forEach((tag) => {
+                tabUstensils.push(
+                  tag.textContent.charAt(0).toUpperCase() +
+                    tag.textContent.toLocaleLowerCase().slice(1)
+                );
+              });
 
-          if (tagsArrayFilter.length > 0) {
-//             const tagAreaChildren =
-//               document.querySelector(".tag-area").childNodes;
+              // if for each tag of tagsArrayfilter, there is a match in the tabIngredients, tabAppliances, tabUstensils then display the article
+              function checkIfTagsMatch(tag) {
+                return (
+                  tabIngredients.includes(tag) ||
+                  tabAppliances.includes(tag) ||
+                  tabUstensils.includes(tag)
+                );
+              }
 
-//               let tagIngredientsTextContent = [];
-//               let tagAppliancesTextContent = [];
-//               let tagUstensilsTextContent = [];
-//             // on récupère les tags affichés dans le tag area
-//             const tagAreaIngredients = Array.from(
-//               document.querySelectorAll(".tagIngredients")
-//             );
-//             const tagAreaAppliances = Array.from(
-//               document.querySelectorAll(".tagAppliances")
-//             );
-//             const tagAreaUstensils = Array.from(
-//               document.querySelectorAll(".tagUstensils")
-//             );
+              let verifInclude = tagsArrayFilter.every(checkIfTagsMatch);
 
-//             // on récupère le texte des tags affichés dans le tag area
-//             tagAreaIngredients.forEach((tag) => {
-//               tagIngredientsTextContent.push(
-//                 tag.textContent.toLocaleLowerCase()
-//               );
-//             });
-//             tagAreaAppliances.forEach((tag) => {
-//               tagAppliancesTextContent.push(
-//                 tag.textContent.toLocaleLowerCase()
-//               );
-//             });
-//             tagAreaUstensils.forEach((tag) => {
-//               tagUstensilsTextContent.push(
-//                 tag.textContent.toLocaleLowerCase()
-//               );
-//             });
-// console.log(tagIngredientsTextContent);
-// console.log(tagAppliancesTextContent);
-// console.log(tagUstensilsTextContent);
-// console.log(allIngredients);
-
-// console.log(allIngredients.includes(tagIngredientsTextContent));
-// console.log(allAppliances.includes(tagAppliancesTextContent));
-
-     
-//             if (
-//               allIngredients.includes(tagIngredientsTextContent) &&
-//               allAppliances.includes(tagAppliancesTextContent) &&
-//               allUstensils.includes(tagUstensilsTextContent)
-//             ) {
-//               console.log("baby");
-//               article.style.display = "flex";
-//               GetIndividualItemsFromArticle(
-//                 articleIndividualIngredients,
-//                 ingredientsFilteredTags
-//               );
-//             } else {
-//               article.style.display = "none";
-//             }
-
-//             console.log("ceci marche");
-
-            tagsArrayFilter.every((tag) => {
-              if (
-                allIngredients.includes(tag.toLocaleLowerCase()) ||
-                allUstensils.includes(tag.toLocaleLowerCase()) ||
-                allAppliances.includes(tag.toLocaleLowerCase())
-              ) {
+              if (verifInclude) {
                 article.style.display = "flex";
-
+                // push des tags dans les tableaux filtered tags
                 GetIndividualItemsFromArticle(
                   articleIndividualIngredients,
                   ingredientsTagsActualized
@@ -258,8 +193,69 @@ export function killTags(
               } else {
                 article.style.display = "none";
               }
-              return tag;
+            }
+          } else {
+            article.style.display = "none";
+          }
+        } else {
+          // si l'input est vide, on affiche tous les articles
+          // on affiche tous les articles
+          article.style.display = "flex";
+
+          if (tagsArrayFilter.length > 0) {
+            let tabIngredients = [];
+            let tabAppliances = [];
+            let tabUstensils = [];
+
+            article.querySelectorAll(".preciseIngredient").forEach((tag) => {
+              tabIngredients.push(
+                // tag textcontent first letter to uppercase
+                tag.textContent.charAt(0).toUpperCase() +
+                  tag.textContent.toLocaleLowerCase().slice(1)
+              );
             });
+            article.querySelectorAll(".applianceTag").forEach((tag) => {
+              tabAppliances.push(
+                tag.textContent.charAt(0).toUpperCase() +
+                  tag.textContent.toLocaleLowerCase().slice(1)
+              );
+            });
+            article.querySelectorAll(".ustensilTag").forEach((tag) => {
+              tabUstensils.push(
+                tag.textContent.charAt(0).toUpperCase() +
+                  tag.textContent.toLocaleLowerCase().slice(1)
+              );
+            });
+
+            // if for each tag of tagsArrayfilter, there is a match in the tabIngredients, tabAppliances, tabUstensils then display the article
+            function checkIfTagsMatch(tag) {
+              return (
+                tabIngredients.includes(tag) ||
+                tabAppliances.includes(tag) ||
+                tabUstensils.includes(tag)
+              );
+            }
+
+            let verifInclude = tagsArrayFilter.every(checkIfTagsMatch);
+
+            if (verifInclude) {
+              article.style.display = "flex";
+              // push des tags dans les tableaux filtered tags
+              GetIndividualItemsFromArticle(
+                articleIndividualIngredients,
+                ingredientsTagsActualized
+              );
+              GetIndividualItemsFromArticle(
+                articleUstensilTag,
+                ustensilsTagsActualized
+              );
+              GetIndividualItemsFromArticle(
+                articleApplianceTag,
+                appliancesTagsActualized
+              );
+            } else {
+              article.style.display = "none";
+            }
           }
         }
       });
@@ -361,6 +357,17 @@ export function killTags(
           deleteTagClicked(tagsArrayFilter, ustensilsTagsList);
         }
       }
+       const noCard = document.querySelector(".no-result");
+       const cards = document.querySelectorAll("article");
+       const cardsArray = Array.from(cards);
+       const cardsDisplayed = cardsArray.filter(
+         (card) => card.style.display === "flex"
+       );
+       if (cardsDisplayed.length === 0) {
+         noCard.style.display = "flex";
+       } else {
+         noCard.style.display = "none";
+       }
     });
   });
 }
