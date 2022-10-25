@@ -26,9 +26,6 @@ async function* initGenerator() {
   // on définit les tableaux contenant les tags
 
   // le FETCH
-  //window href
-  const w = window.location.href;
-  // const response = await fetch("./../data/recipes.json");
   let lienExterne = `${window.location.origin}/data/recipes.json`;
   if (!lienExterne.includes("192.168")) {
     lienExterne = lienExterne.replace(
