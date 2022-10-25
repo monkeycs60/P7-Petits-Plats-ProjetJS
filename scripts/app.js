@@ -27,12 +27,16 @@ async function* initGenerator() {
 
   // le FETCH
   let lienExterne = `${window.location.origin}/data/recipes.json`;
-  if (!lienExterne.includes("192.168")) {
-    lienExterne = lienExterne.replace(
-      "/data",
-      "/P7-Petits-Plats-ProjetJS/data"
-    );
-  }
+
+  // Branche GITHUB Pages
+  // if (
+  //   !lienExterne.includes("192.168") 
+  // ) {
+  //   lienExterne = lienExterne.replace(
+  //     "/data",
+  //     "/P7-Petits-Plats-ProjetJS/data"
+  //   );
+  // }
  
   const response = await fetch(lienExterne);
   const data = await response.json();
