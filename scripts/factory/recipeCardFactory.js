@@ -22,7 +22,7 @@ export function recipeCardFactory(recipe) {
     article.setAttribute("id", id);
     article.innerHTML = `
     <div id="article-image">
-    <img class="w-[85vw] h-[19vh] rounded-lg rounded-b-none object-cover md:h-[14vh] 2xl:h-[17vh] 2xl:w-[26vw]" src="./../../assets/restaurantpreview.png" alt="restaurant card" />
+    <img class="w-[85vw] h-[19vh] rounded-lg rounded-b-none object-cover md:h-[14vh] 2xl:h-[17vh] 2xl:w-[26vw]" src=https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1634025439/01gda3dza3arbz0dq4qbq6caa7.jpg alt="restaurant card" />
     </div>
     <div id="article-content" class="h-[21vh] w-full p-1 flex flex-col rounded-lg rounded-t-none md:h-[16vh] md:p-2 2xl:h-[18vh] 2xl:w-[26vw] 2xl:p-5 2xl:justify-center">
     <div id="card-top" class="h-[6vh] flex w-full justify-between items-center md:h-[5vh] 2xl:h-[6vh]">
